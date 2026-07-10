@@ -6,9 +6,9 @@ This repository is a portfolio-grade, tutorial-style applied ML project: three f
 
 | Audience | Start here |
 |----------|------------|
-| **Portfolio / technical reviewers** | [Architecture](#1-for-portfolio-evaluators) · [Production techniques](#production-upgrade--techniques--why-results-improved) · [Old vs new evidence](#old-vs-new-results-evidence) · [Limitations](#honest-limitations) |
-| **Hands-on operators** | [Installation](#2-for-hands-on-users) · [Runbook](#runbook) · [Troubleshooting](#troubleshooting) · [Extending](#extending-the-project) |
-| **Tutorial learners** | [Concepts](#3-for-tutorial-learners) · [End-to-end flow](#implementation-flow-step-by-step) · [How to read each notebook](#how-to-read-the-notebooks) |
+| **Portfolio / technical reviewers** | [Architecture](#1-for-portfolio-evaluators) · [v1→v2→v3 evidence](#old-vs-new-results-evidence) · [v3 awesome results](#v3-awesome-pipeline-new-code-only) · [Limitations](#honest-limitations) |
+| **Hands-on operators** | [Installation](#2-for-hands-on-users) · [Runbook](#runbook) · [v3 path](#v3-how-to-run-new-code) · [Troubleshooting](#troubleshooting) |
+| **Tutorial learners** | [docs/tutorials/](docs/tutorials/) · [Concepts](#3-for-tutorial-learners) · keep `notebooks/01–03_*` as the learning baseline |
 
 ---
 
@@ -677,23 +677,26 @@ A: Review the **TabFM Non-Commercial License** for weights yourself. This repo�
 
 ```text
 .
-├── README.md                 # this document (incl. v1 vs v2 results)
-├── LICENSE                   # MIT (project code & notebooks)
-├── CONTRIBUTING.md
-├── CODE_OF_CONDUCT.md
-├── pyproject.toml            # uv project + hatch package + dependencies
-├── uv.lock                   # locked versions
-├── .python-version           # 3.13.13
-├── .github/ISSUE_TEMPLATE/   # bug / feature / question forms
-├── src/churn_revenue/        # production helpers (metrics, threshold, modeling)
-│   ├── metrics.py
-│   ├── threshold.py
-│   └── modeling.py
-├── data/                     # optional caches (ignored); .gitkeep only
-└── notebooks/
-    ├── 01_iranian_churn.ipynb / .py   # production pipeline
-    ├── 02_telco_churn.ipynb / .py
-    └── 03_online_retail_ii_churn.ipynb / .py
+├── README.md
+├── LICENSE / CONTRIBUTING.md / CODE_OF_CONDUCT.md
+├── docs/tutorials/              # WHY explanations (v3 concepts)
+│   ├── 00_path_from_v1_to_v3.md
+│   ├── 01_why_not_just_f1.md
+│   ├── 02_hybrid_tabfm_gbm.md
+│   ├── 03_multiwindow_rfm_survival.md
+│   └── 04_target_encoding_and_nested_cv.md
+├── src/churn_revenue/           # shared library (v2 + v3 helpers)
+│   ├── metrics.py, threshold.py, modeling.py
+│   ├── value_policy.py, hybrid.py, target_encoding.py
+│   ├── multiwindow_rfm.py, nested_cv.py, segment_report.py
+├── notebooks/
+│   ├── 01–03_*.ipynb/.py        # LEARNING baseline (do not replace)
+│   └── v3/                      # NEW awesome pipelines
+│       ├── 00_improvement_playbook.*
+│       ├── 01_iranian_v3_awesome.*
+│       ├── 02_telco_v3_awesome.*
+│       └── 03_retail_v3_awesome.*
+└── pyproject.toml / uv.lock
 ```
 
 ---
