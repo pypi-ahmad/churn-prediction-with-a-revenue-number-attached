@@ -1,0 +1,77 @@
+name: Bug report
+description: Report a crash, install failure, wrong metric, or broken notebook path
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report a bug. Please fill in as much as you can so we can reproduce it.
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: What went wrong in one or two sentences?
+      placeholder: e.g. TabFM fails to load weights with FileNotFoundError for pytorch_model.bin
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - Environment / install (uv, Python, packages)
+        - Notebook 01 — Iranian Churn
+        - Notebook 02 — Telco Churn
+        - Notebook 03 — Online Retail II
+        - TabFM / PyTorch / CUDA
+        - Data download (UCI / IBM)
+        - README / docs
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps to reproduce
+      description: Exact commands or notebook cells, in order.
+      placeholder: |
+        1. uv sync
+        2. uv run python notebooks/01_iranian_churn.py
+        3. ...
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+      description: Include the full traceback or error text when possible.
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: OS, Python, key package versions, GPU.
+      placeholder: |
+        OS: Ubuntu 24.04
+        Python: 3.13.13
+        uv: ...
+        tabfm: ...
+        torch: ... (CUDA True/False)
+        GPU: ...
+    validations:
+      required: true
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checks
+      options:
+        - label: I used the project `uv` environment / `churn-revenue-project` kernel when relevant
+        - label: I searched existing issues for duplicates

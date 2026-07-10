@@ -662,6 +662,12 @@ uv run jupyter lab
 
 ---
 
+## Contributing & community
+
+- [Contributing guide](CONTRIBUTING.md) — setup for PRs, notebook norms, verification  
+- [Code of Conduct](CODE_OF_CONDUCT.md) — Contributor Covenant v2.1  
+- [Issue templates](.github/ISSUE_TEMPLATE/) — bug, feature, and question forms on GitHub  
+
 ## Acknowledgments
 
 - UCI Machine Learning Repository — Iranian Churn (563), Online Retail II (502)  
