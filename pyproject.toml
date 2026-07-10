@@ -1,0 +1,29 @@
+[project]
+name = "churn-prediction-with-a-revenue-number-attached"
+version = "0.1.0"
+description = "Churn prediction notebooks with LazyPredict, Google TabFM, and revenue-at-risk framing"
+readme = "README.md"
+requires-python = ">=3.13.13"
+dependencies = [
+    "ipykernel>=7.3.0",
+    "jupyter>=1.1.1",
+    "jupytext>=1.19.4",
+    "lazypredict>=0.3.0",
+    "lightgbm>=4.6.0",
+    "matplotlib>=3.11.0",
+    "nbconvert>=7.17.1",
+    "numpy>=2.5.1",
+    "openpyxl>=3.1.5",
+    "packaging>=26.2",
+    "pandas>=3.0.3",
+    "requests>=2.34.2",
+    "safetensors>=0.8.0",
+    "scikit-learn>=1.9.0",
+    "seaborn>=0.13.2",
+    "tabfm[pytorch]",
+    "ucimlrepo>=0.0.7",
+    "xgboost>=3.3.0",
+]
+
+[tool.uv.sources]
+tabfm = { git = "https://github.com/google-research/tabfm.git" }

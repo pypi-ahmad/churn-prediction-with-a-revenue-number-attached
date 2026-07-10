@@ -1,0 +1,39 @@
+# Python
+__pycache__/
+*.py[oc]
+*.egg-info/
+build/
+dist/
+wheels/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+
+# Virtual environments
+.venv/
+venv/
+
+# uv / local env
+.python-version.bak
+
+# Data caches (notebooks download live; do not commit bulk data)
+data/**
+!data/.gitkeep
+
+# Jupyter / tooling
+*.executed.ipynb
+
+# OS / IDE
+.DS_Store
+.idea/
+.vscode/
+*.swp
+
+# Secrets
+.env
+.env.*
+!.env.example
+
+# Hugging Face / model caches should stay local (outside repo)
+# (weights live under ~/.cache/huggingface)
