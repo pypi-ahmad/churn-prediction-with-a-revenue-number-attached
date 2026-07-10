@@ -12,39 +12,33 @@
 # ---
 
 # %% [markdown]
-# # Iranian Telecom Churn Prediction — with a Revenue Number Attached
+# # Iranian Telecom Churn — Production-Grade Pipeline
 #
-# **What this notebook is for.** Customer churn is not only a classification problem —
-# it is a *cash-flow* problem. Every subscriber who leaves takes their remaining
-# lifetime value with them. Here we build models that predict churn on the UCI
-# **Iranian Churn Dataset** (id 563), then attach a concrete **Customer Value**
-# figure to the customers the model flags as at risk.
+# **Goal.** Predict churn, rank customers for retention, and attach a
+# **Customer Value** revenue number — with methods used in production churn
+# systems (not tutorial defaults only).
 #
-# **What you will get by the end:**
-# 1. Thorough EDA on a real labeled telecom dataset
-# 2. **Part 1:** LazyPredict leaderboard → properly tune the top 3 models
-# 3. **Part 2:** Google **TabFM** (zero-shot tabular foundation model)
-# 4. Side-by-side comparison plus a **revenue-at-risk** number and a retention
-#    prioritization (lift) chart
+# **Production upgrades (vs baseline notebook):**
+# 1. **Train / validation / test** stratified splits (tune threshold on val only)
+# 2. **Imbalance-aware GBMs** (`class_weight`, `scale_pos_weight`, CatBoost balanced)
+# 3. Deeper **RandomizedSearchCV** on PR-AUC
+# 4. **Soft-voting ensemble** + optional **stacking**
+# 5. **Threshold moving** (maximize F1 on validation — not fixed 0.5)
+# 6. **Isotonic calibration** for usable probabilities
+# 7. **TabFM.ensemble()** preset (feature crosses, SVD, NNLS, Platt calibration)
+# 8. Dummy / majority baseline for honesty
 #
-# **Tone:** newbie → pro. Each section explains *why* before the code, then
-# interprets *this run's* actual numbers — not generic tutorial filler.
-#
-# **Dataset license:** CC BY 4.0 via UCI / `ucimlrepo`.
+# **Sources of practice:** class weights first; threshold moving; calibrate before
+# expected-value use; ensemble GBMs; TabFM HF ensemble preset (Google TabFM 1.0.x).
 
 # %% [markdown]
-# ## 1. Setup — make the environment visible
-#
-# Before modeling, we print package versions so this notebook is reproducible.
-# Everything runs inside the project `uv` environment registered as the
-# Jupyter kernel **`churn-revenue-project`**.
+# ## 1. Setup
 
 # %%
 from __future__ import annotations
 
 import sys
 import warnings
-from pathlib import Path
 
 import numpy as np
 import pandas as pd
@@ -58,842 +52,326 @@ import torch
 
 from ucimlrepo import fetch_ucirepo
 from lazypredict.Supervised import LazyClassifier
+from sklearn.model_selection import train_test_split
+from sklearn.dummy import DummyClassifier
+from sklearn.base import clone
 
-from sklearn.model_selection import (
-    train_test_split,
-    RandomizedSearchCV,
-    StratifiedKFold,
+from churn_revenue.metrics import classification_bundle, evaluate_scores, lift_revenue_curve
+from churn_revenue.threshold import tune_threshold_f1, apply_threshold
+from churn_revenue.modeling import (
+    RANDOM_STATE,
+    build_boosting_candidates,
+    resolve_model,
+    tune_model,
+    soft_vote_proba,
+    fit_calibrated_isotonic,
+    production_classical_stack,
+    predict_proba_matrix,
 )
-from sklearn.metrics import (
-    accuracy_score,
-    precision_score,
-    recall_score,
-    f1_score,
-    roc_auc_score,
-    average_precision_score,
-    classification_report,
-    confusion_matrix,
-    RocCurveDisplay,
-    PrecisionRecallDisplay,
-)
-from sklearn.preprocessing import StandardScaler
-from sklearn.pipeline import Pipeline
-from sklearn.compose import ColumnTransformer
-from sklearn.ensemble import (
-    RandomForestClassifier,
-    ExtraTreesClassifier,
-    GradientBoostingClassifier,
-    AdaBoostClassifier,
-    BaggingClassifier,
-    HistGradientBoostingClassifier,
-)
-from sklearn.linear_model import LogisticRegression, RidgeClassifier, SGDClassifier
-from sklearn.neighbors import KNeighborsClassifier
-from sklearn.svm import SVC, LinearSVC
-from sklearn.tree import DecisionTreeClassifier
-from sklearn.naive_bayes import GaussianNB
-from sklearn.discriminant_analysis import (
-    LinearDiscriminantAnalysis,
-    QuadraticDiscriminantAnalysis,
-)
-from sklearn.calibration import CalibratedClassifierCV
-from xgboost import XGBClassifier
-from lightgbm import LGBMClassifier
 
 from tabfm import TabFMClassifier, tabfm_v1_0_0_pytorch as tabfm_v1_0_0
 
 warnings.filterwarnings("ignore")
-RANDOM_STATE = 42
 np.random.seed(RANDOM_STATE)
 
 try:
     display  # type: ignore[name-defined]
 except NameError:
     def display(obj):
-        if isinstance(obj, (pd.DataFrame, pd.Series)):
-            print(obj.to_string())
-        else:
-            print(obj)
+        print(obj.to_string() if isinstance(obj, (pd.DataFrame, pd.Series)) else obj)
 
 sns.set_theme(style="whitegrid", context="notebook")
 plt.rcParams["figure.figsize"] = (8, 4.5)
-plt.rcParams["axes.titlesize"] = 12
 
 print("Python:", sys.version.split()[0])
-print("pandas:", pd.__version__)
-print("numpy:", np.__version__)
-print("scikit-learn:", sklearn.__version__)
-print("lazypredict:", lazypredict.__version__)
-print("tabfm:", tabfm.__version__)
+print("pandas:", pd.__version__, "| sklearn:", sklearn.__version__)
+print("lazypredict:", lazypredict.__version__, "| tabfm:", tabfm.__version__)
 print("torch:", torch.__version__, "| CUDA:", torch.cuda.is_available())
 if torch.cuda.is_available():
     print("GPU:", torch.cuda.get_device_name(0))
-print("Kernel intent: churn-revenue-project (uv-managed .venv)")
 print("Seed:", RANDOM_STATE)
 
 # %% [markdown]
-# ## 2. Data acquisition — UCI Iranian Churn (id 563)
-#
-# This is a **labeled** telecom churn table: each row is a customer with usage
-# and billing-style features, plus a binary `Churn` flag. Unlike Online Retail
-# (notebook 3), we do **not** engineer the label here.
-#
-# We download **inside the notebook** via `ucimlrepo` so anyone re-running this
-# gets the same public source (CC BY 4.0).
+# ## 2. Data + EDA (essentials)
 
 # %%
 iranian = fetch_ucirepo(id=563)
-X_raw = iranian.data.features.copy()
-y_raw = iranian.data.targets.copy()
-df = pd.concat([X_raw, y_raw], axis=1)
-
+df = pd.concat([iranian.data.features, iranian.data.targets], axis=1)
 print("Shape:", df.shape)
 print("Columns:", list(df.columns))
-print("\nDtypes:\n", df.dtypes)
-print("\nHead:")
-display(df.head())
-print("\nMetadata name:", getattr(iranian.metadata, "name", None) if hasattr(iranian, "metadata") else "n/a")
-
-# %% [markdown]
-# ### Observed schema (this run)
-#
-# Column names on UCI can include awkward spacing. We use the **exact** names
-# returned above (e.g. double spaces in some headers) rather than hardcoding
-# from memory.
-
-# %% [markdown]
-# ## 3. Exploratory Data Analysis
-#
-# EDA answers: How big is the table? How imbalanced is churn? Which features
-# move with churn? Where are the heavy tails? We look at **this dataset's**
-# numbers, not generic telecom folklore.
-
-# %%
-print("Missing values per column:")
-print(df.isna().sum())
-print("\nDuplicate rows:", int(df.duplicated().sum()))
-print("\nDescribe (numeric):")
-display(df.describe().T)
+display(df.head(3))
 
 target_col = "Churn"
-churn_counts = df[target_col].value_counts().sort_index()
-churn_rate = float(df[target_col].mean()) if df[target_col].dropna().isin([0, 1]).all() else np.nan
-print("\nChurn value counts:")
-print(churn_counts)
-print(f"Churn rate: {churn_rate:.2%}  (positive class = 1)")
-if churn_rate < 0.35:
-    print("Class imbalance: YES — majority class is non-churn. Accuracy alone will look optimistic.")
-else:
-    print("Class balance note: closer to balanced than many churn sets; still report PR-AUC.")
-
-# %%
-fig, ax = plt.subplots()
-churn_counts.plot(kind="bar", color=["#4C78A8", "#E45756"], ax=ax, rot=0)
-ax.set_title(f"Churn label balance (rate = {churn_rate:.1%})")
-ax.set_xlabel("Churn")
-ax.set_ylabel("Count")
-for i, v in enumerate(churn_counts.values):
-    ax.text(i, v, str(v), ha="center", va="bottom")
-plt.tight_layout()
-plt.show()
-
-# %% [markdown]
-# **Interpretation — label balance.** The bar chart shows a clear minority
-# churn class. On imbalanced problems, a model that always predicts "stay"
-# can post high accuracy while missing every at-risk customer. That is why
-# later we emphasize **recall / F1 on the churn class** and **PR-AUC**, not
-# accuracy alone.
-
-# %%
-# Univariate distributions for key numeric / usage columns
 value_col = "Customer Value"
-usage_cols = [
-    c
-    for c in [
-        "Seconds of Use",
-        "Frequency of use",
-        "Frequency of SMS",
-        "Distinct Called Numbers",
-        "Subscription  Length",
-        "Call  Failure",
-        value_col,
-        "Age",
-        "Charge  Amount",
-    ]
-    if c in df.columns
-]
+y = df[target_col].astype(int)
+X = df.drop(columns=[target_col])
+revenue = df[value_col].copy()
+churn_rate = float(y.mean())
+print(f"Churn rate: {churn_rate:.2%}  | imbalance: {churn_rate < 0.35}")
+print("Missing:", int(df.isna().sum().sum()), "| duplicates:", int(df.duplicated().sum()))
 
-n = len(usage_cols)
-ncols = 3
-nrows = int(np.ceil(n / ncols))
-fig, axes = plt.subplots(nrows, ncols, figsize=(12, 3.2 * nrows))
-axes = np.array(axes).ravel()
-for ax, col in zip(axes, usage_cols):
-    sns.histplot(df[col], bins=30, kde=True, ax=ax, color="#4C78A8")
-    ax.set_title(col)
-for ax in axes[len(usage_cols) :]:
-    ax.axis("off")
-plt.suptitle("Univariate distributions — key numeric features", y=1.01)
+fig, ax = plt.subplots()
+y.value_counts().sort_index().plot(kind="bar", color=["#4C78A8", "#E45756"], ax=ax, rot=0)
+ax.set_title(f"Churn balance ({churn_rate:.1%})")
 plt.tight_layout()
 plt.show()
 
-# %% [markdown]
-# **Interpretation — distributions.** Usage and value columns are typically
-# right-skewed (many light users, a long tail of heavy users). Age / age-group
-# style fields are more discrete. Skew and outliers matter for linear models
-# (scaling helps) less so for tree ensembles.
-
-# %%
-# Churn rate by key (low-cardinality) categoricals / ordinals
-cat_like = [
-    c
-    for c in ["Complains", "Age Group", "Tariff Plan", "Status", "Charge  Amount"]
-    if c in df.columns and df[c].nunique() <= 15
-]
-
-fig, axes = plt.subplots(1, len(cat_like), figsize=(4.2 * len(cat_like), 3.8))
-if len(cat_like) == 1:
-    axes = [axes]
-for ax, col in zip(axes, cat_like):
-    rates = df.groupby(col)[target_col].mean().sort_index()
-    rates.plot(kind="bar", ax=ax, color="#F58518", rot=0)
-    ax.set_title(f"Churn rate by {col}")
-    ax.set_ylabel("Churn rate")
-    ax.set_ylim(0, min(1.0, rates.max() * 1.25 + 0.05))
-plt.tight_layout()
-plt.show()
-
-print("Churn rate tables:")
-for col in cat_like:
-    print(f"\n{col}:")
-    print(df.groupby(col)[target_col].agg(["mean", "count"]))
+corr = df.select_dtypes("number").corr()[target_col].drop(target_col).sort_values(key=np.abs, ascending=False)
+print("Top |corr| with Churn:\n", corr.head(8))
 
 # %% [markdown]
-# **Interpretation — segment churn rates.** Features like complaints and status
-# often separate churners sharply (e.g. customers who already complained). Those
-# are actionable operational signals, not just abstract model inputs.
-
-# %%
-corr = df.select_dtypes(include=[np.number]).corr()
-fig, ax = plt.subplots(figsize=(10, 8))
-sns.heatmap(corr, cmap="vlag", center=0, annot=False, ax=ax)
-ax.set_title("Correlation heatmap (numeric columns)")
-plt.tight_layout()
-plt.show()
-
-print("Correlations with Churn (sorted):")
-print(corr[target_col].drop(target_col).sort_values(key=np.abs, ascending=False))
-
-# %% [markdown]
-# **Interpretation — correlations.** Strong |corr| with `Churn` highlights
-# linear associations only. Trees can still use weaker, nonlinear patterns.
-# Highly correlated usage features may be redundant for linear models but
-# usually fine for boosting.
-
-# %%
-# Outlier flags via IQR on heavy-tailed columns
-heavy = [c for c in ["Seconds of Use", "Frequency of SMS", "Customer Value", "Frequency of use"] if c in df.columns]
-print("IQR outlier rates (values outside [Q1-1.5*IQR, Q3+1.5*IQR]):")
-for col in heavy:
-    q1, q3 = df[col].quantile(0.25), df[col].quantile(0.75)
-    iqr = q3 - q1
-    lo, hi = q1 - 1.5 * iqr, q3 + 1.5 * iqr
-    rate = ((df[col] < lo) | (df[col] > hi)).mean()
-    print(f"  {col}: {rate:.1%}  (bounds {lo:.2f} .. {hi:.2f})")
-
-fig, axes = plt.subplots(1, len(heavy), figsize=(3.8 * len(heavy), 3.6))
-if len(heavy) == 1:
-    axes = [axes]
-for ax, col in zip(axes, heavy):
-    sns.boxplot(y=df[col], ax=ax, color="#54A24B")
-    ax.set_title(col)
-plt.suptitle("Outlier view — heavy-tailed columns", y=1.02)
-plt.tight_layout()
-plt.show()
-
-# %% [markdown]
-# **Interpretation — outliers.** Heavy usage and high `Customer Value` tails
-# are expected in telecom. We keep outliers for tree models (they handle them)
-# and rely on scaling for any linear baselines we tune. We do **not** drop
-# high-value customers — those are exactly the revenue we care about.
-
-# %% [markdown]
-# ## 4. Feature preparation
+# ## 3. Train / validation / test split
 #
-# All observed features are already numeric. We:
-# - keep **Customer Value** as a model feature (it is part of the published
-#   feature set and would typically be known for an active subscriber) **and**
-#   as the Part-9 revenue anchor — so revenue-at-risk is *associated value among
-#   predicted churners*, not an independent external metric
-# - use a stratified 80/20 train/test split shared by Part 1 and Part 2
-# - fit any scaling **only on train** inside pipelines / search
+# Production pattern: **never** tune thresholds or early-stopping decisions on the
+# final test set. We use 60% train / 20% val / 20% test, all stratified.
 
 # %%
-feature_cols = [c for c in df.columns if c != target_col]
-X = df[feature_cols].copy()
-y = df[target_col].astype(int).copy()
-revenue_anchor = df[value_col].copy()
-
-print("Feature columns:", feature_cols)
-print("X shape:", X.shape, "y shape:", y.shape)
-print("Positive rate:", f"{y.mean():.2%}")
-
-X_train, X_test, y_train, y_test, rev_train, rev_test = train_test_split(
-    X,
-    y,
-    revenue_anchor,
-    test_size=0.2,
-    random_state=RANDOM_STATE,
-    stratify=y,
+X_trainval, X_test, y_trainval, y_test, rev_trainval, rev_test = train_test_split(
+    X, y, revenue, test_size=0.20, random_state=RANDOM_STATE, stratify=y
 )
-
-print("Train:", X_train.shape, "Test:", X_test.shape)
-print("Train churn rate:", f"{y_train.mean():.2%}", "| Test churn rate:", f"{y_test.mean():.2%}")
-
-# TabFM path: same rows, native DataFrame (mixed types OK; here all numeric)
-X_train_tab = X_train.copy()
-X_test_tab = X_test.copy()
-
-# %% [markdown]
-# ## 5. Helper functions — metrics, plots, revenue
-#
-# We centralize evaluation so Part 1 models and TabFM are compared fairly.
-
-# %%
-def classification_bundle(y_true, y_pred, y_proba, title: str) -> dict:
-    """Full report suite for an imbalanced binary classifier."""
-    y_true = np.asarray(y_true).astype(int)
-    y_pred = np.asarray(y_pred).astype(int)
-    y_proba = np.asarray(y_proba).astype(float)
-    if y_proba.ndim == 2:
-        y_score = y_proba[:, 1]
-    else:
-        y_score = y_proba
-
-    metrics = {
-        "model": title,
-        "accuracy": accuracy_score(y_true, y_pred),
-        "precision_churn": precision_score(y_true, y_pred, pos_label=1, zero_division=0),
-        "recall_churn": recall_score(y_true, y_pred, pos_label=1, zero_division=0),
-        "f1_churn": f1_score(y_true, y_pred, pos_label=1, zero_division=0),
-        "roc_auc": roc_auc_score(y_true, y_score),
-        "pr_auc": average_precision_score(y_true, y_score),
-    }
-
-    print(f"\n===== {title} =====")
-    print(classification_report(y_true, y_pred, digits=3))
-    print(
-        f"ROC-AUC={metrics['roc_auc']:.4f} | PR-AUC={metrics['pr_auc']:.4f} | "
-        f"F1(churn)={metrics['f1_churn']:.4f}"
-    )
-
-    fig, axes = plt.subplots(1, 3, figsize=(14, 3.8))
-    cm = confusion_matrix(y_true, y_pred)
-    sns.heatmap(cm, annot=True, fmt="d", cmap="Blues", ax=axes[0], cbar=False)
-    axes[0].set_title(f"Confusion — {title}")
-    axes[0].set_xlabel("Predicted")
-    axes[0].set_ylabel("Actual")
-
-    RocCurveDisplay.from_predictions(y_true, y_score, ax=axes[1], name=title)
-    axes[1].set_title("ROC curve")
-    PrecisionRecallDisplay.from_predictions(y_true, y_score, ax=axes[2], name=title)
-    axes[2].set_title("Precision–Recall curve")
-    plt.tight_layout()
-    plt.show()
-    return metrics
-
-
-def lift_revenue_curve(y_true, y_score, revenue, title: str, n_bins: int = 20):
-    """Customers contacted (by descending churn score) vs cumulative revenue of true churners."""
-    order = np.argsort(-np.asarray(y_score))
-    y_sorted = np.asarray(y_true)[order]
-    rev_sorted = np.asarray(revenue, dtype=float)[order]
-    # revenue of true churners captured when we contact top-k by score
-    true_churn_rev = rev_sorted * (y_sorted == 1)
-    cum_rev = np.cumsum(true_churn_rev)
-    cum_n = np.arange(1, len(y_sorted) + 1)
-    # downsample for plot
-    idx = np.linspace(0, len(y_sorted) - 1, num=min(n_bins * 5, len(y_sorted)), dtype=int)
-    fig, ax = plt.subplots(figsize=(8, 4.5))
-    ax.plot(cum_n[idx], cum_rev[idx], label=title, lw=2)
-    # random baseline: average true-churn revenue density
-    total_churn_rev = true_churn_rev.sum()
-    ax.plot(cum_n[idx], total_churn_rev * (cum_n[idx] / len(y_sorted)), "--", color="gray", label="Random order")
-    ax.set_xlabel("Customers contacted (ranked by predicted churn prob)")
-    ax.set_ylabel("Cumulative Customer Value of true churners")
-    ax.set_title("Retention prioritization: value captured vs outreach volume")
-    ax.legend()
-    plt.tight_layout()
-    plt.show()
-    return float(total_churn_rev)
-
-
-# %% [markdown]
-# ## 6. Part 1 — LazyPredict baseline leaderboard
-#
-# LazyPredict fits many sklearn-style classifiers with **default** settings and
-# ranks them. That is a **screening** tool, not the final answer: defaults are
-# under-tuned, and accuracy can mislead under imbalance.
-#
-# **Selection rule for top 3:** prefer **F1 Score** (balances precision & recall
-# on the positive class as LazyPredict reports it). If that column is missing,
-# fall back to **Balanced Accuracy**, then **ROC AUC**. We will still report
-# PR-AUC in the proper re-implementation.
-
-# %%
-lazy = LazyClassifier(
-    verbose=0,
-    ignore_warnings=True,
-    predictions=False,
+X_train, X_val, y_train, y_val, rev_train, rev_val = train_test_split(
+    X_trainval,
+    y_trainval,
+    rev_trainval,
+    test_size=0.25,  # 0.25 * 0.80 = 0.20 overall
     random_state=RANDOM_STATE,
-    classifiers="all",
+    stratify=y_trainval,
 )
-models_df, _ = lazy.fit(X_train, X_test, y_train, y_test)
-print("LazyPredict leaderboard columns:", list(models_df.columns))
-print("\nFull leaderboard:")
-display(models_df)
+print("Train:", X_train.shape, f"churn={y_train.mean():.2%}")
+print("Val:  ", X_val.shape, f"churn={y_val.mean():.2%}")
+print("Test: ", X_test.shape, f"churn={y_test.mean():.2%}")
 
-# %%
-rank_col = None
-for candidate in ["F1 Score", "F1", "Balanced Accuracy", "ROC AUC", "Accuracy"]:
-    if candidate in models_df.columns:
-        rank_col = candidate
-        break
-if rank_col is None:
-    rank_col = models_df.columns[0]
-
-leaderboard = models_df.sort_values(rank_col, ascending=False)
-top3_names = list(leaderboard.head(3).index)
-print(f"Ranking metric: {rank_col}")
-print("Top 3 models:", top3_names)
-display(leaderboard.head(10))
+# LazyPredict screening uses train→val (not test)
+X_train_lp, X_val_lp = X_train.copy(), X_val.copy()
+X_train_tab, X_val_tab, X_test_tab = X_train.copy(), X_val.copy(), X_test.copy()
 
 # %% [markdown]
-# ### Top-3 selection (this run)
-#
-# The three models named above are the LazyPredict winners under our ranking
-# metric. Next we **re-implement** each with a real hyperparameter search and
-# full imbalanced-aware reports — LazyPredict's defaults are only a shortlist.
-
-# %% [markdown]
-# ## 7. Part 1 — properly re-implement & tune the top 3
+# ## 4. Part 1 — screen + production classical models
 
 # %%
-# Map LazyPredict display names → estimator factories + small search spaces
-MODEL_ZOO = {
-    "XGBClassifier": (
-        XGBClassifier(
-            random_state=RANDOM_STATE,
-            eval_metric="logloss",
-            n_jobs=2,
-            tree_method="hist",
-        ),
-        {
-            "n_estimators": [100, 200, 400],
-            "max_depth": [3, 4, 6, 8],
-            "learning_rate": [0.01, 0.05, 0.1, 0.2],
-            "subsample": [0.7, 0.9, 1.0],
-            "colsample_bytree": [0.7, 0.9, 1.0],
-            "min_child_weight": [1, 3, 5],
-        },
-    ),
-    "LGBMClassifier": (
-        LGBMClassifier(random_state=RANDOM_STATE, verbose=-1, n_jobs=2),
-        {
-            "n_estimators": [100, 200, 400],
-            "num_leaves": [15, 31, 63],
-            "learning_rate": [0.01, 0.05, 0.1],
-            "subsample": [0.7, 0.9, 1.0],
-            "colsample_bytree": [0.7, 0.9, 1.0],
-            "min_child_samples": [10, 20, 40],
-        },
-    ),
-    "RandomForestClassifier": (
-        RandomForestClassifier(random_state=RANDOM_STATE, n_jobs=2),
-        {
-            "n_estimators": [100, 200, 400],
-            "max_depth": [None, 6, 12, 20],
-            "min_samples_split": [2, 5, 10],
-            "min_samples_leaf": [1, 2, 4],
-            "max_features": ["sqrt", "log2", None],
-        },
-    ),
-    "ExtraTreesClassifier": (
-        ExtraTreesClassifier(random_state=RANDOM_STATE, n_jobs=2),
-        {
-            "n_estimators": [100, 200, 400],
-            "max_depth": [None, 6, 12, 20],
-            "min_samples_split": [2, 5, 10],
-            "min_samples_leaf": [1, 2, 4],
-            "max_features": ["sqrt", "log2", None],
-        },
-    ),
-    "GradientBoostingClassifier": (
-        GradientBoostingClassifier(random_state=RANDOM_STATE),
-        {
-            "n_estimators": [100, 200],
-            "learning_rate": [0.05, 0.1, 0.2],
-            "max_depth": [2, 3, 4],
-            "subsample": [0.8, 1.0],
-        },
-    ),
-    "HistGradientBoostingClassifier": (
-        HistGradientBoostingClassifier(random_state=RANDOM_STATE),
-        {
-            "max_iter": [100, 200, 300],
-            "learning_rate": [0.05, 0.1, 0.2],
-            "max_depth": [None, 4, 8],
-            "min_samples_leaf": [10, 20, 40],
-        },
-    ),
-    "LogisticRegression": (
-        Pipeline(
-            [
-                ("scaler", StandardScaler()),
-                (
-                    "clf",
-                    LogisticRegression(
-                        max_iter=2000,
-                        random_state=RANDOM_STATE,
-                        class_weight="balanced",
-                    ),
-                ),
-            ]
-        ),
-        {
-            "clf__C": np.logspace(-2, 2, 8),
-            "clf__penalty": ["l2"],
-            "clf__solver": ["lbfgs"],
-        },
-    ),
-    "KNeighborsClassifier": (
-        Pipeline(
-            [
-                ("scaler", StandardScaler()),
-                ("clf", KNeighborsClassifier()),
-            ]
-        ),
-        {
-            "clf__n_neighbors": [3, 5, 7, 11, 15],
-            "clf__weights": ["uniform", "distance"],
-            "clf__p": [1, 2],
-        },
-    ),
-    "SVC": (
-        Pipeline(
-            [
-                ("scaler", StandardScaler()),
-                (
-                    "clf",
-                    SVC(probability=True, random_state=RANDOM_STATE, class_weight="balanced"),
-                ),
-            ]
-        ),
-        {
-            "clf__C": [0.1, 1, 10],
-            "clf__gamma": ["scale", "auto"],
-            "clf__kernel": ["rbf"],
-        },
-    ),
-    "DecisionTreeClassifier": (
-        DecisionTreeClassifier(random_state=RANDOM_STATE, class_weight="balanced"),
-        {
-            "max_depth": [3, 5, 8, 12, None],
-            "min_samples_split": [2, 5, 10],
-            "min_samples_leaf": [1, 2, 5],
-        },
-    ),
-    "AdaBoostClassifier": (
-        AdaBoostClassifier(random_state=RANDOM_STATE),
-        {
-            "n_estimators": [50, 100, 200],
-            "learning_rate": [0.05, 0.1, 0.5, 1.0],
-        },
-    ),
-    "BaggingClassifier": (
-        BaggingClassifier(random_state=RANDOM_STATE, n_jobs=2),
-        {
-            "n_estimators": [20, 50, 100],
-            "max_samples": [0.5, 0.8, 1.0],
-            "max_features": [0.5, 0.8, 1.0],
-        },
-    ),
-    "SGDClassifier": (
-        Pipeline(
-            [
-                ("scaler", StandardScaler()),
-                (
-                    "clf",
-                    SGDClassifier(
-                        loss="log_loss",
-                        random_state=RANDOM_STATE,
-                        class_weight="balanced",
-                    ),
-                ),
-            ]
-        ),
-        {
-            "clf__alpha": np.logspace(-5, -2, 6),
-            "clf__penalty": ["l2", "l1", "elasticnet"],
-        },
-    ),
-    "LinearDiscriminantAnalysis": (
-        Pipeline([("scaler", StandardScaler()), ("clf", LinearDiscriminantAnalysis())]),
-        {"clf__solver": ["svd", "lsqr"]},
-    ),
-    "QuadraticDiscriminantAnalysis": (
-        Pipeline([("scaler", StandardScaler()), ("clf", QuadraticDiscriminantAnalysis())]),
-        {"clf__reg_param": [0.0, 0.1, 0.5]},
-    ),
-    "GaussianNB": (GaussianNB(), {"var_smoothing": np.logspace(-11, -7, 5)}),
-    "RidgeClassifier": (
-        Pipeline(
-            [
-                ("scaler", StandardScaler()),
-                ("clf", RidgeClassifier(random_state=RANDOM_STATE, class_weight="balanced")),
-            ]
-        ),
-        {"clf__alpha": np.logspace(-2, 2, 8)},
-    ),
-    "LinearSVC": (
-        Pipeline(
-            [
-                ("scaler", StandardScaler()),
-                (
-                    "clf",
-                    CalibratedClassifierCV(
-                        LinearSVC(random_state=RANDOM_STATE, class_weight="balanced", max_iter=5000)
-                    ),
-                ),
-            ]
-        ),
-        {"clf__estimator__C": [0.1, 1, 10]},
-    ),
-    "CalibratedClassifierCV": (
-        CalibratedClassifierCV(
-            LogisticRegression(max_iter=1000, class_weight="balanced", random_state=RANDOM_STATE)
-        ),
-        {},
-    ),
-}
+print("=== Dummy baseline (most frequent) ===")
+dummy = DummyClassifier(strategy="most_frequent")
+dummy.fit(X_train, y_train)
+d_proba = predict_proba_matrix(dummy, X_test)
+d_pred = dummy.predict(X_test)
+dummy_metrics = classification_bundle(y_test, d_pred, d_proba, "Dummy most_frequent")
+
+print("\n=== LazyPredict screen (train→val) ===")
+lazy = LazyClassifier(verbose=0, ignore_warnings=True, random_state=RANDOM_STATE)
+models_df, _ = lazy.fit(X_train_lp, X_val_lp, y_train, y_val)
+display(models_df.head(12))
+rank_col = "F1 Score" if "F1 Score" in models_df.columns else models_df.columns[0]
+top3 = list(models_df.sort_values(rank_col, ascending=False).head(3).index)
+print("LazyPredict top-3 by", rank_col, "→", top3)
+
+# Always train production GBM core + LazyPredict winners
+must_train = ["LGBMClassifier", "XGBClassifier", "CatBoostClassifier", "HistGradientBoostingClassifier"]
+to_train = list(dict.fromkeys(top3 + must_train))  # unique, preserve order
+print("Models to tune:", to_train)
+
+zoo = build_boosting_candidates(y_train.to_numpy())
+fitted: dict[str, any] = {}
+val_probas: dict[str, np.ndarray] = {}
+
+for raw in to_train:
+    name, est, grid = resolve_model(raw, y_train.to_numpy(), zoo)
+    if name in fitted:
+        continue
+    print(f"\n### Tuning {name}")
+    best = tune_model(clone(est), grid, X_train, y_train, n_iter=35, n_jobs=2)
+    fitted[name] = best
+    val_probas[name] = predict_proba_matrix(best, X_val)[:, 1]
+
+# Soft-vote ensemble of all tuned models
+print("\n### Soft-vote ensemble")
+vote_models = list(fitted.values())
+val_vote = soft_vote_proba(vote_models, X_val)[:, 1]
+fitted["SoftVote"] = ("soft_vote", vote_models)  # special
+
+# Stacking top 3 by val PR-AUC among single models
+from sklearn.metrics import average_precision_score
+
+single_names = [n for n in fitted if n != "SoftVote"]
+val_ap = {n: average_precision_score(y_val, val_probas[n]) for n in single_names}
+stack_bases = sorted(val_ap, key=val_ap.get, reverse=True)[:3]
+print("Stacking bases:", stack_bases, {k: round(val_ap[k], 4) for k in stack_bases})
+stack = production_classical_stack([(n, fitted[n]) for n in stack_bases], X_train, y_train)
+fitted["Stacking"] = stack
+val_probas["Stacking"] = predict_proba_matrix(stack, X_val)[:, 1]
+val_probas["SoftVote"] = val_vote
+
+# Thresholds on validation
+print("\n=== Validation threshold tuning (max F1) ===")
+thresholds: dict[str, float] = {}
+val_rows = []
+for name, score in val_probas.items():
+    t, row = tune_threshold_f1(y_val, score)
+    thresholds[name] = t
+    row["model"] = name
+    row["val_pr_auc"] = float(average_precision_score(y_val, score))
+    val_rows.append(row)
+    print(f"  {name}: t={t:.3f}  val_F1={row['f1_churn']:.4f}  val_PR-AUC={row['val_pr_auc']:.4f}")
+
+val_df = pd.DataFrame(val_rows).set_index("model").sort_values("f1_churn", ascending=False)
+display(val_df)
+
+best_classical_name = val_df["f1_churn"].idxmax()
+print("Best classical by val F1@tuned threshold:", best_classical_name)
+
+# Optional calibration of best single model (if not ensemble markers)
+calibrated = None
+if best_classical_name not in ("SoftVote", "Stacking"):
+    print(f"\nIsotonic-calibrating {best_classical_name} via CV...")
+    calibrated = fit_calibrated_isotonic(clone(fitted[best_classical_name]), X_train, y_train, cv=3)
+    cal_val = predict_proba_matrix(calibrated, X_val)[:, 1]
+    t_cal, row_cal = tune_threshold_f1(y_val, cal_val)
+    thresholds["Calibrated"] = t_cal
+    fitted["Calibrated"] = calibrated
+    val_probas["Calibrated"] = cal_val
+    print(f"  Calibrated t={t_cal:.3f} val_F1={row_cal['f1_churn']:.4f}")
+    if row_cal["f1_churn"] >= val_df.loc[best_classical_name, "f1_churn"] - 1e-6:
+        best_classical_name = "Calibrated"
+        print("  → using Calibrated as best classical")
+
+# %% [markdown]
+# ## 5. Classical models — final test evaluation
+
+# %%
+def get_test_proba(name: str) -> np.ndarray:
+    obj = fitted[name]
+    if name == "SoftVote":
+        return soft_vote_proba(obj[1], X_test)[:, 1]
+    return predict_proba_matrix(obj, X_test)[:, 1]
 
 
-def resolve_model(name: str):
-    """Exact / case-insensitive match only — avoid 'SVC' matching 'LinearSVC'."""
-    if name in MODEL_ZOO:
-        return name, MODEL_ZOO[name]
-    lower_map = {k.lower(): k for k in MODEL_ZOO}
-    if name.lower() in lower_map:
-        key = lower_map[name.lower()]
-        return key, MODEL_ZOO[key]
-    print(f"WARNING: no param grid for {name!r}; falling back to RandomForestClassifier")
-    return "RandomForestClassifier", MODEL_ZOO["RandomForestClassifier"]
-
-cv = StratifiedKFold(n_splits=5, shuffle=True, random_state=RANDOM_STATE)
 part1_metrics = []
-part1_models = {}
-part1_probas = {}
-
-for raw_name in top3_names:
-    zoo_name, (estimator, param_grid) = resolve_model(raw_name)
-    print(f"\n### Tuning {raw_name} → {zoo_name}")
-    if param_grid:
-        search = RandomizedSearchCV(
-            estimator,
-            param_distributions=param_grid,
-            n_iter=min(20, max(5, len(param_grid) * 3)),
-            scoring="average_precision",  # PR-AUC — appropriate under imbalance
-            cv=cv,
-            random_state=RANDOM_STATE,
-            n_jobs=2,
-            refit=True,
-            verbose=0,
-        )
-        search.fit(X_train, y_train)
-        best = search.best_estimator_
-        print("Best params:", search.best_params_)
-        print("Best CV average_precision:", f"{search.best_score_:.4f}")
-    else:
-        best = estimator
-        best.fit(X_train, y_train)
-        print("No search grid — fit defaults")
-
-    if hasattr(best, "predict_proba"):
-        proba = best.predict_proba(X_test)
-        pred = best.predict(X_test)
-    else:
-        # decision_function fallback
-        if hasattr(best, "decision_function"):
-            scores = best.decision_function(X_test)
-            # map to pseudo-proba via rank for metrics
-            from sklearn.preprocessing import MinMaxScaler
-
-            y_score = MinMaxScaler().fit_transform(scores.reshape(-1, 1)).ravel()
-            proba = np.column_stack([1 - y_score, y_score])
-            pred = best.predict(X_test)
-        else:
-            pred = best.predict(X_test)
-            proba = np.column_stack([1 - pred, pred])
-
-    m = classification_bundle(y_test, pred, proba, title=f"Tuned {zoo_name}")
+test_scores: dict[str, np.ndarray] = {}
+for name in [best_classical_name] + [n for n in ["SoftVote", "Stacking", "LGBMClassifier", "XGBClassifier", "CatBoostClassifier"] if n in fitted and n != best_classical_name]:
+    if name not in fitted:
+        continue
+    score = get_test_proba(name)
+    t = thresholds.get(name, 0.5)
+    pred = apply_threshold(score, t)
+    m = classification_bundle(y_test, pred, np.column_stack([1 - score, score]), f"{name} (t={t:.3f})")
+    m["threshold"] = t
     part1_metrics.append(m)
-    part1_models[zoo_name] = best
-    part1_probas[zoo_name] = proba[:, 1] if proba.ndim == 2 else proba
+    test_scores[name] = score
 
 part1_df = pd.DataFrame(part1_metrics).set_index("model")
-print("\nPart 1 tuned comparison:")
-display(part1_df.sort_values("pr_auc", ascending=False))
+display(part1_df.sort_values("f1_churn", ascending=False))
 
-fig, ax = plt.subplots(figsize=(8, 4))
-plot_df = part1_df[["f1_churn", "pr_auc", "roc_auc"]]
-plot_df.plot(kind="bar", ax=ax, rot=15)
-ax.set_title("Part 1 — tuned top-3 comparison (test set)")
-ax.set_ylabel("Score")
-ax.set_ylim(0, 1.05)
-plt.tight_layout()
-plt.show()
-
-best_part1_name = part1_df["pr_auc"].idxmax()
-best_part1_key = list(part1_probas.keys())[list(part1_df.index).index(best_part1_name)]
-best_part1_proba = part1_probas[best_part1_key]
-best_part1_model = part1_models[best_part1_key]
-best_part1_pred = best_part1_model.predict(X_test)
-print(f"Best Part-1 model by PR-AUC: {best_part1_name} (key={best_part1_key})")
+best_part1_row = part1_df["f1_churn"].idxmax()
+best_part1_key = best_classical_name if best_classical_name in test_scores else list(test_scores.keys())[0]
+# align key to metrics index loosely
+for k in test_scores:
+    if k in best_part1_row or best_part1_row.startswith(k):
+        best_part1_key = k
+        break
+print("Selected Part-1 for comparison:", best_part1_key, "| table row:", best_part1_row)
 
 # %% [markdown]
-# **Why PR-AUC for model selection among the tuned trio?** ROC-AUC can stay
-# high even when precision at useful recall is poor on rare positives. PR-AUC
-# focuses on the churn class and is closer to the retention team's cost
-# structure (you only have budget to contact a fraction of customers).
-
-# %% [markdown]
-# ## 8. Part 2 — Google TabFM (zero-shot tabular foundation model)
+# ## 6. Part 2 — TabFM production ensemble
 #
-# ### License flag (read this before commercial reuse)
+# **License:** TabFM weights = Non-Commercial License v1.0; code Apache 2.0.
+# Review before commercial use — no legal opinion offered.
 #
-# - **Model weights** (Hugging Face `google/tabfm-1.0.0-pytorch`): released under
-#   the **TabFM Non-Commercial License v1.0** — see the LICENSE file on the
-#   model card: https://huggingface.co/google/tabfm-1.0.0-pytorch
-# - **Library code** (`tabfm` package / google-research/tabfm): **Apache 2.0**
-#
-# This notebook is for personal learning / portfolio demonstration. If you
-# reuse the weights for commercial or client work (including possibly firm
-# engagements), **review that license yourself or with counsel**. We are not
-# offering a legal opinion on whether any particular use qualifies.
-#
-# ### What TabFM is (and is not)
-#
-# TabFM treats your labeled training rows as **in-context examples** and
-# predicts in a **single forward pass**. `.fit()` stores / prepares context —
-# it does **not** run gradient updates on the foundation weights. That is why
-# Unsloth (LoRA fine-tuning accelerator) does not apply here.
-#
-# Architectural limits we respect: max 10 classes (binary churn is fine);
-# memory scales with number of training rows used as context.
+# We use `TabFMClassifier.ensemble()`: feature crosses, SVD features, NNLS
+# blending, Platt calibration (Google’s recommended heavier preset).
 
 # %%
-tabfm_device = "cuda" if torch.cuda.is_available() else "cpu"
-print(f"Loading TabFM v1.0.0 PyTorch classification weights on device={tabfm_device}...")
-# device='cuda' is important: default CPU load of ~6.5GB fp32 weights can thrash
-# under memory pressure. bf16 on GPU fits this 8GB-class card cleanly.
-tabfm_base = tabfm_v1_0_0.load(model_type="classification", device=tabfm_device)
-tab_clf = TabFMClassifier(model=tabfm_base)
+device = "cuda" if torch.cuda.is_available() else "cpu"
+print(f"Loading TabFM on {device}...")
+base = tabfm_v1_0_0.load(model_type="classification", device=device)
 
-print(f"TabFM training context size: {len(X_train_tab)} rows (full train; no subsample needed for this small set)")
-tab_clf.fit(X_train_tab, y_train.to_numpy())
-tab_pred = tab_clf.predict(X_test_tab)
-tab_proba = tab_clf.predict_proba(X_test_tab)
+# Context = train only (val used for classical threshold; keep TabFM pure train context)
+# Optionally merge train+val for more context (common for ICL) — we use train+val
+# for TabFM context to maximize ICL examples while test stays pure holdout.
+X_ctx = pd.concat([X_train, X_val], axis=0)
+y_ctx = pd.concat([y_train, y_val], axis=0)
+print(f"TabFM context rows: {len(X_ctx)} (train+val); test={len(X_test)}")
 
-# Ensure integer preds
-tab_pred = np.asarray(tab_pred).astype(int)
-tab_metrics = classification_bundle(y_test, tab_pred, tab_proba, title="TabFM v1.0.0")
+# n_estimators=16 for speed/VRAM balance on laptop GPU; override ensemble default 32 if needed
+tab_clf = TabFMClassifier.ensemble(
+    base,
+    n_estimators=16 if device == "cuda" else 8,
+    random_state=RANDOM_STATE,
+    verbose=True,
+    batch_size=1,
+)
+tab_clf.fit(X_ctx, y_ctx.to_numpy())
+tab_proba = np.asarray(tab_clf.predict_proba(X_test_tab), dtype=float)
+tab_score = tab_proba[:, 1] if tab_proba.ndim == 2 else tab_proba
+
+# Threshold from validation scores of TabFM (need val predict)
+tab_val_proba = np.asarray(tab_clf.predict_proba(X_val_tab), dtype=float)
+tab_val_score = tab_val_proba[:, 1] if tab_val_proba.ndim == 2 else tab_val_proba
+t_tab, tab_val_row = tune_threshold_f1(y_val, tab_val_score)
+print(f"TabFM val threshold={t_tab:.3f} F1={tab_val_row['f1_churn']:.4f}")
+tab_pred = apply_threshold(tab_score, t_tab)
+tab_metrics = classification_bundle(
+    y_test, tab_pred, tab_proba, f"TabFM.ensemble (t={t_tab:.3f})"
+)
+tab_metrics["threshold"] = t_tab
 
 # %% [markdown]
-# ## 9. Final comparison — metrics + revenue-at-risk + lift
-#
-# We compare **best tuned Part-1 model** vs **TabFM** on the **same test split**.
+# ## 7. Final comparison + revenue-at-risk
 
 # %%
 compare = pd.concat(
     [
-        part1_df.loc[[best_part1_name]],
+        part1_df.loc[[best_part1_row]],
         pd.DataFrame([tab_metrics]).set_index("model"),
+        part1_df.loc[[dummy_metrics["model"]]] if dummy_metrics["model"] in part1_df.index else pd.DataFrame([dummy_metrics]).set_index("model"),
     ]
 )
-print("Side-by-side (test set):")
-display(compare)
+# ensure dummy present
+if "Dummy most_frequent" not in compare.index:
+    compare = pd.concat([compare, pd.DataFrame([dummy_metrics]).set_index("model")])
 
-fig, ax = plt.subplots(figsize=(8, 4))
-compare[["f1_churn", "pr_auc", "roc_auc", "recall_churn", "precision_churn"]].plot(
-    kind="bar", ax=ax, rot=15
-)
-ax.set_title("Best Part-1 vs TabFM — test metrics")
+print("Side-by-side (TEST only):")
+display(compare.sort_values("f1_churn", ascending=False))
+
+fig, ax = plt.subplots(figsize=(9, 4.5))
+plot_cols = [c for c in ["f1_churn", "pr_auc", "roc_auc", "recall_churn", "precision_churn"] if c in compare.columns]
+compare[plot_cols].plot(kind="bar", ax=ax, rot=20)
+ax.set_title("Test metrics — production classical vs TabFM ensemble vs baseline")
 ax.set_ylim(0, 1.05)
-ax.legend(loc="lower right", fontsize=8)
+ax.legend(fontsize=8, loc="lower right")
 plt.tight_layout()
 plt.show()
 
-# Revenue-at-risk on test set for each model
+# Revenue
+best_score = test_scores[best_part1_key]
+best_t = thresholds.get(best_part1_key, 0.5)
+best_pred = apply_threshold(best_score, best_t)
 rev_test_arr = rev_test.to_numpy()
-for label, pred, proba in [
-    (best_part1_name, best_part1_pred, best_part1_proba),
-    ("TabFM v1.0.0", tab_pred, tab_proba[:, 1] if np.asarray(tab_proba).ndim == 2 else tab_proba),
+
+for label, pred, score in [
+    (best_part1_row, best_pred, best_score),
+    (f"TabFM.ensemble (t={t_tab:.3f})", tab_pred, tab_score),
 ]:
     mask = np.asarray(pred).astype(int) == 1
-    rar = float(rev_test_arr[mask].sum())
-    n_flag = int(mask.sum())
     print(f"\n{label}:")
-    print(f"  Flagged as churn: {n_flag} / {len(pred)} test customers")
-    print(f"  Revenue-at-risk (sum of Customer Value for flagged): {rar:,.2f}")
-    print(
-        "  Framing: this is Customer Value *associated with* customers the model "
-        "labels as likely churners — NOT a proven forecast of cash that will "
-        "definitely be lost, and NOT adjusted for intervention success rates."
-    )
+    print(f"  Flagged: {int(mask.sum())} / {len(pred)}")
+    print(f"  Revenue-at-risk (Customer Value): {float(rev_test_arr[mask].sum()):,.2f}")
+    print("  Framing: associated value of flagged customers — not proven lost cash.")
 
-# Lift curves
-print("\nLift / prioritization curves:")
-lift_revenue_curve(y_test, best_part1_proba, rev_test_arr, title=best_part1_name)
-tab_score = tab_proba[:, 1] if np.asarray(tab_proba).ndim == 2 else np.asarray(tab_proba)
-lift_revenue_curve(y_test, tab_score, rev_test_arr, title="TabFM v1.0.0")
+lift_revenue_curve(y_test, best_score, rev_test_arr, title=str(best_part1_row), ylabel="Cumulative Customer Value of true churners")
+lift_revenue_curve(y_test, tab_score, rev_test_arr, title="TabFM.ensemble", ylabel="Cumulative Customer Value of true churners")
 
 # %% [markdown]
-# ### What the revenue number means (plain language)
+# ## 8. Manager summary
 #
-# If the retention team only acted on **model-flagged** test customers, the
-# **sum of `Customer Value`** among those flags is the "revenue attached" to
-# the alert list. It answers: *how much historical/current value sits under
-# the red flags?* It does **not** answer: *how much will we save if we call
-# them?* (that needs intervention uplift experiments).
-#
-# The lift chart answers a better operational question: *if we rank everyone
-# by churn probability and only have budget to contact the top K%, how much
-# of the true churners' value do we cover?* Steeper-than-random curves mean
-# the ranking is useful for campaign prioritization.
-
-# %% [markdown]
-# ## 10. Manager summary
-#
-# **If you had 60 seconds with your manager:**
-#
-# - We modeled Iranian telecom churn (~15%+ churn rate; imbalanced) with a
-#   careful train/test split and metrics that respect imbalance (F1 / PR-AUC).
-# - LazyPredict shortlisted classical models; we **re-tuned the top 3** with
-#   cross-validated PR-AUC and full error reports.
-# - We also ran **Google TabFM**, a zero-shot tabular foundation model whose
-#   weights are **non-commercial licensed** — fine for learning, review before
-#   client use.
-# - The side-by-side table shows which approach won **on this split** (see
-#   printed metrics above — re-run will match the baked outputs).
-# - We attached **Customer Value** to predicted churners and showed a
-#   contact-prioritization curve so the model output maps to a retention
-#   budget decision, not just a leaderboard score.
-#
-# **Next steps a team would take:** threshold tuning for contact capacity,
-# cost-sensitive utility (false positive call cost vs false negative loss),
-# and a real uplift test before claiming "saved revenue."
+# - Iranian churn is **imbalanced (~15.7%)**; we optimize ranking (PR-AUC) and
+#   **threshold on validation**, never on test.
+# - Production classical stack: imbalance-aware GBMs (LGBM/XGB/CatBoost), soft
+#   vote / stacking, optional calibration.
+# - **TabFM.ensemble** uses Google’s heavier zero-shot preset (crosses + NNLS +
+#   Platt); weights are **non-commercial**.
+# - Revenue-at-risk uses **Customer Value** on predicted churners for campaign
+#   sizing — not causal savings without uplift tests.
+# - Compare tables above for this run’s winner.
 
 # %%
-print("Notebook 01 complete.")
-print("Best Part-1:", best_part1_name)
+print("Notebook 01 (production) complete.")
 print(compare.round(4).to_string())

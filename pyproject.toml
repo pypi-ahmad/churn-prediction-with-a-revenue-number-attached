@@ -5,6 +5,7 @@ description = "Churn prediction notebooks with LazyPredict, Google TabFM, and re
 readme = "README.md"
 requires-python = ">=3.13.13"
 dependencies = [
+    "catboost>=1.2.10",
     "ipykernel>=7.3.0",
     "jupyter>=1.1.1",
     "jupytext>=1.19.4",
@@ -14,6 +15,7 @@ dependencies = [
     "nbconvert>=7.17.1",
     "numpy>=2.5.1",
     "openpyxl>=3.1.5",
+    "optuna>=4.9.0",
     "packaging>=26.2",
     "pandas>=3.0.3",
     "requests>=2.34.2",
@@ -24,6 +26,13 @@ dependencies = [
     "ucimlrepo>=0.0.7",
     "xgboost>=3.3.0",
 ]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/churn_revenue"]
 
 [tool.uv.sources]
 tabfm = { git = "https://github.com/google-research/tabfm.git" }

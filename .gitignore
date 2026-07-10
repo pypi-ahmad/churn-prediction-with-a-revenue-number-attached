@@ -37,3 +37,6 @@ data/**
 
 # Hugging Face / model caches should stay local (outside repo)
 # (weights live under ~/.cache/huggingface)
+
+# CatBoost local training artifacts
+catboost_info/
