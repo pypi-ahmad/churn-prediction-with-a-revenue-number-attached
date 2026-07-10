@@ -15,14 +15,17 @@ This repository is a portfolio-grade, tutorial-style applied ML project: three f
 ## Table of contents
 
 1. [Project overview](#project-overview)
-2. [Production upgrade — techniques & why results improved](#production-upgrade--techniques--why-results-improved)
-3. [Old vs new results (evidence)](#old-vs-new-results-evidence)
-4. [1. For portfolio evaluators](#1-for-portfolio-evaluators)
-5. [2. For hands-on users](#2-for-hands-on-users)
-6. [3. For tutorial learners](#3-for-tutorial-learners)
-7. [Repository map](#repository-map)
-8. [Licenses & data provenance](#licenses--data-provenance)
-9. [Honest limitations](#honest-limitations)
+2. [Three generations at a glance](#three-generations-at-a-glance)
+3. [Production upgrade (v1 → v2) — techniques](#production-upgrade--techniques--why-results-improved)
+4. [Results: v1 vs v2 (evidence, kept)](#old-vs-new-results-evidence)
+5. [Results: v3 awesome (new code + comparison)](#v3-awesome-pipeline-new-code-only)
+6. [1. For portfolio evaluators](#1-for-portfolio-evaluators)
+7. [2. For hands-on users](#2-for-hands-on-users)
+8. [3. For tutorial learners](#3-for-tutorial-learners)
+9. [Repository map](#repository-map)
+10. [Licenses & data provenance](#licenses--data-provenance)
+11. [Honest limitations](#honest-limitations)
+
 ---
 
 ## Project overview
@@ -39,13 +42,21 @@ Most tutorial notebooks stop at (1). This project deliberately finishes (2) and 
 
 ### Deliverables
 
-Three notebooks, same methodological skeleton, different data realities:
+**Three generations of code** (older ones are kept for learning — nothing was deleted):
 
-| # | Notebook | Domain | Label | Revenue anchor |
-|---|----------|--------|-------|----------------|
-| 1 | [`notebooks/01_iranian_churn.ipynb`](notebooks/01_iranian_churn.ipynb) | Telecom (UCI 563) | Given (`Churn`) | `Customer Value` |
-| 2 | [`notebooks/02_telco_churn.ipynb`](notebooks/02_telco_churn.ipynb) | Telecom (IBM sample) | Given (`Yes`/`No`) | `MonthlyCharges` (+ `TotalCharges` context) |
-| 3 | [`notebooks/03_online_retail_ii_churn.ipynb`](notebooks/03_online_retail_ii_churn.ipynb) | Online retail (UCI 502) | **Engineered** (RFM + 90-day inactivity) | Pre-cutoff `Monetary` |
+| Generation | Location | Role |
+|------------|----------|------|
+| **v1 / v2 (learning + production baseline)** | [`notebooks/01–03_*`](notebooks/) | Unchanged teaching path: EDA → LazyPredict → GBM/TabFM → revenue |
+| **v3 (awesome)** | [`notebooks/v3/`](notebooks/v3/) | New pipelines only: hybrid models, value policies, multi-window RFM, CV/segments |
+| **Tutorials** | [`docs/tutorials/`](docs/tutorials/) | Plain-language *why* for each v3 technique |
+
+**Datasets (same three across generations):**
+
+| # | Learning notebook (v1/v2) | v3 notebook | Domain | Label | Revenue anchor |
+|---|---------------------------|-------------|--------|-------|----------------|
+| 1 | [`01_iranian_churn`](notebooks/01_iranian_churn.ipynb) | [`v3/01_iranian_v3_awesome`](notebooks/v3/01_iranian_v3_awesome.ipynb) | Telecom (UCI 563) | Given (`Churn`) | `Customer Value` |
+| 2 | [`02_telco_churn`](notebooks/02_telco_churn.ipynb) | [`v3/02_telco_v3_awesome`](notebooks/v3/02_telco_v3_awesome.ipynb) | Telecom (IBM) | Given | `MonthlyCharges` |
+| 3 | [`03_online_retail_ii_churn`](notebooks/03_online_retail_ii_churn.ipynb) | [`v3/03_retail_v3_awesome`](notebooks/v3/03_retail_v3_awesome.ipynb) | Online retail (UCI 502) | Engineered RFM | `Monetary` |
 
 Each notebook, in order:
 
@@ -73,10 +84,33 @@ Jupytext percent-format `.py` sources sit beside each `.ipynb` for script debugg
 
 ---
 
+## Three generations at a glance
+
+| | **v1** (tutorial baseline) | **v2** (production notebooks `01–03`) | **v3** (new `notebooks/v3/`) |
+|--|----------------------------|----------------------------------------|------------------------------|
+| **Goal** | Teach the full pipeline | Raise F1/recall with production ML hygiene | Optimize **campaign value**, hybrid models, honest uncertainty |
+| **Code** | Early notebook structure | Same files, upgraded in place | **New files only** — does not edit `01–03` |
+| **Split** | Train/test 80/20 | Train/val/test 60/20/20 | Same 60/20/20 |
+| **Decision rule** | Threshold ≈ 0.5 | Val-tuned F1 threshold | Val-tuned F1 **plus top-K / EV policy** |
+| **Models** | LazyPredict top-3 + plain TabFM | Forced GBMs, soft-vote, stack, TabFM.ensemble | Hybrid meta(GBM, TabFM), TE features, multi-window RFM |
+| **Business output** | Revenue-at-risk sum | Same + better flags | **Net expected value** under budget + segment tables |
+| **Where numbers live** | Tables labeled “v1 baseline (kept)” | Tables labeled “v2 production” | Section [v3 awesome](#v3-awesome-pipeline-new-code-only) |
+
+**How to compare fairly**
+
+- Prefer **F1 / PR-AUC / recall** for ranking quality.  
+- Prefer **precision@top-K and net EV** for “would we run this campaign?”  
+- **Revenue-at-risk $** rises when more customers are flagged — that is coverage, not automatically ROI.  
+- v3 TabFM may use a **smaller context** when GPU free memory is low (documented in runs).
+
+---
+
 ## Production upgrade — techniques & why results improved
 
-We upgraded from a solid **v1 tutorial baseline** to a **v2 production-style pipeline**.  
-v1 results are **kept below** for comparison (not deleted). v2 numbers come from re-runs on the same machine/stack (Python 3.13.13, seed 42, CUDA TabFM).
+We upgraded from a solid **v1 tutorial baseline** to a **v2 production-style pipeline** inside `notebooks/01–03_*`.  
+**v1 and v2 numbers are both kept below** (not deleted). Later, **v3** adds still more techniques in separate notebooks.
+
+v2 numbers come from executed runs on this machine (Python 3.13.13, seed 42, CUDA TabFM where available).
 
 ### What we changed (techniques)
 
@@ -135,12 +169,13 @@ Research alignment (industry practice, not marketing):
 ## Old vs new results (evidence)
 
 > **v1 (baseline):** first full notebook runs — LazyPredict top-3, modest RandomizedSearch, default 0.5 decisions, plain `TabFMClassifier`.  
-> **v2 (production):** techniques above; metrics from executed production pipeline runs (2026-07-10, this machine).
+> **v2 (production):** techniques in the section above; metrics from executed `notebooks/01–03` runs (2026-07-10, this machine).  
+> **v3 (awesome):** separate new notebooks under `notebooks/v3/` — see next major section for full detail and three-way comparison.
 
-### Headline scorecard (best classical vs TabFM)
+### Headline scorecard — v1 vs v2 (ranking metrics)
 
-| Dataset | Metric | v1 Classical | v2 Classical | Δ | v1 TabFM | v2 TabFM.ensemble | Δ |
-|---------|--------|--------------|--------------|---|----------|-------------------|---|
+| Dataset | Metric | v1 Classical | v2 Classical | Δ v1→v2 | v1 TabFM | v2 TabFM.ensemble | Δ v1→v2 |
+|---------|--------|--------------|--------------|---------|----------|-------------------|---------|
 | **Iranian** | F1 (churn) | 0.8763 (LGBM) | **0.9135** (Calibrated) | **+0.037** | 0.9659 | 0.9565 | −0.009 |
 | | PR-AUC | 0.9589 | 0.9568 | −0.002 | 0.9963 | **0.9966** | +0.000 |
 | | ROC-AUC | 0.9914 | 0.9908 | −0.001 | 0.9993 | **0.9994** | +0.000 |
@@ -154,7 +189,24 @@ Research alignment (industry practice, not marketing):
 | | ROC-AUC | 0.8330 | 0.8317 | −0.001 | 0.8336 | 0.8325 | −0.001 |
 | | Recall (churn) | 0.9201 | **0.9623** | **+0.042** | 0.8989 | **0.9246** | **+0.026** |
 
-**Takeaway:** Largest real-world gains are on **Telco** (harder categorical churn) and **Iranian classical recall/F1**. Retail was already strong; v2 mainly improves **recall/operating point** and process rigor (val thresholds, ensembles, calibration).
+**Takeaway (v1 → v2):** Largest ranking gains on **Telco** and **Iranian classical recall/F1**. Retail was already strong; v2 mainly improves **recall/operating point** and process rigor.
+
+### Headline scorecard — best model across **v1 / v2 / v3**
+
+“Best” = highest **F1 (churn)** among classical or hybrid on that generation’s test report (TabFM shown separately).
+
+| Dataset | v1 best F1 | v2 best F1 | v3 best F1 | What actually got better by v3? |
+|---------|------------|------------|------------|----------------------------------|
+| **Iranian** | 0.9659 TabFM | 0.9565 TabFM.ens / 0.9135 Calib | **0.9652 TabFM** / 0.9565 Hybrid | Ranking already near ceiling; v3 adds **top-15% policy** (prec **0.97**, net EV **~2.9k**) + CV ±std |
+| **Telco** | 0.5932 AdaBoost | **0.6407** XGB | **0.6348** XGB+TE / Hybrid PR-AUC **0.664** | F1 holds v2 gains; **campaign top-5%** (prec **0.86**, +net EV); segments show *where* model works |
+| **Retail** | 0.8502 LGBM | 0.8484 Stack | **0.8536** TabFM / **0.8534** Hybrid | Slight F1/PR-AUC edge + **multi-horizon label truth** + high-value segment gap |
+
+**Plain-language summary of the full journey**
+
+1. **v1** proved the end-to-end story works (data → model → revenue number).  
+2. **v2** fixed the decision threshold and imbalance training → **much higher recall** on Telco/Iranian classical.  
+3. **v3** does not replace v1/v2 files; it answers “how do we *act* and *trust* the model?” (budget policies, hybrid blend, multi-window features, repeated CV, segments).  
+4. On Iranian/Retail, chasing higher F1 alone yields **diminishing returns**; v3’s “awesome” is **policy + diagnosis**, not only leaderboard points.
 
 ---
 
@@ -253,21 +305,22 @@ Revenue-at-risk v2 (TabFM.ensemble): Monetary **~688,132** (789 flags) at the va
 
 ## v3 awesome pipeline (NEW code only)
 
-> **Important:** `notebooks/01_*` … `03_*` were **not edited**. They stay as the learning baseline.  
+> **Important:** `notebooks/01_*` … `03_*` were **not edited** for v3. They stay as the learning baseline (with their v1/v2 results above).  
 > All “awesome” work lives in **`notebooks/v3/`** + **`docs/tutorials/`** + extra modules under `src/churn_revenue/`.
 
-### Why v3 exists
+### What changed in v3 (and why — without removing v1/v2)
 
-| Technique | Why we do it | Where |
-|-----------|--------------|--------|
-| Hybrid meta(p_GBM, p_TabFM) | Trees & TabFM err differently | all v3 dataset notebooks |
-| Top-K / EV contact policy | F1 ≠ call-center budget ROI | `value_policy.py` + v3 notebooks |
-| OOF target encoding + interactions | Telco categoricals without leakage | `02_telco_v3_awesome` |
-| Multi-window RFM + multi-horizon hazard | Capture cooling-off; label sensitivity | `03_retail_v3_awesome` |
-| Repeated stratified CV | Mean ± std, not one lucky split | all v3 |
-| Segment reports | Ops: where the model fails | Contract / tenure / Monetary Q |
+| New technique | Problem it solves | Why F1 alone is not enough |
+|---------------|-------------------|----------------------------|
+| **Hybrid meta(p_GBM, p_TabFM)** | Trees and TabFM mis-rank different customers | Blended scores often win **PR-AUC** even when F1 is similar |
+| **Top-K / expected-value policy** | Call centers have budgets; contacts cost money | Maximizes **net EV** = p×value×p_save − cost under a contact cap |
+| **OOF target encoding (Telco)** | High-cardinality cats explode or leak if encoded naively | Leakage-safe category signal → stable ranking |
+| **Multi-window RFM + multi-horizon labels (Retail)** | Single RFM snapshot hides “cooling off” | Better features; **honest** view that 30d vs 120d churn rates differ a lot |
+| **Repeated stratified CV** | One holdout can look lucky | Reports **mean ± std** for portfolio credibility |
+| **Segment reports** | Global F1 hides failures | Shows e.g. Telco strong on month-to-month, weak on two-year contracts |
 
-**Tutorials (read these):** [`docs/tutorials/`](docs/tutorials/) — path map, why not only F1, hybrid TabFM+GBM, multi-window RFM, target encoding & nested CV.
+**Tutorials:** [`docs/tutorials/`](docs/tutorials/)  
+(`00` path map · `01` value thresholds · `02` hybrid · `03` multi-window RFM · `04` TE & nested CV)
 
 ### v3 how to run
 
@@ -279,45 +332,77 @@ MPLBACKEND=Agg uv run python notebooks/v3/02_telco_v3_awesome.py
 MPLBACKEND=Agg uv run python notebooks/v3/03_retail_v3_awesome.py
 ```
 
-TabFM uses a **VRAM-aware** path (smaller context / fewer estimators if free GPU memory is low).
+**Hardware note:** v3 TabFM is **VRAM-aware**. If free GPU memory is low (e.g. another process holding ~4GB), it caps context (e.g. 600–800 rows) and uses a light config so hybrid still runs. Full TabFM.ensemble from v2 remains in the learning notebooks when VRAM allows.
 
-### v3 real metrics (this machine, seed=42)
+### v3 vs v1/v2 — side-by-side (same datasets)
 
-**Iranian v3**
+#### Iranian — ranking already excellent; v3 wins on **policy**
 
-| Model | F1 | PR-AUC | ROC-AUC | Recall |
-|-------|-----|--------|---------|--------|
+| Generation | Best ranking result | Extra that v3 adds |
+|------------|---------------------|--------------------|
+| v1 | TabFM F1 **0.9659**, PR-AUC 0.9963 | — |
+| v2 | Calibrated F1 **0.9135** (recall 0.96); TabFM.ens F1 0.9565, Brier **0.0075** | Val thresholds, calibration |
+| **v3** | TabFM F1 **0.9652**, PR-AUC **0.9973**; Hybrid F1 0.9565, recall **1.0** | **Top-15% contact policy**: prec **0.968**, recall **0.929**, net EV **~2,884** (p_save=0.30, cost=5); CV PR-AUC **0.925±0.012** |
+
+| Model (v3 test) | F1 | PR-AUC | ROC-AUC | Recall |
+|-----------------|-----|--------|---------|--------|
 | GBM XGB | 0.8857 | 0.9632 | 0.9920 | 0.9394 |
 | **TabFM (train-ctx)** | **0.9652** | **0.9973** | **0.9995** | 0.9798 |
 | Hybrid meta | 0.9565 | 0.9941 | 0.9989 | **1.000** |
 
-Policy (hybrid, val-chosen top **15%**): precision@policy **0.968**, recall@policy **0.929**, net EV **~2,884** (p_save=0.30, cost=5).  
-Repeated CV (XGB): PR-AUC **0.925 ± 0.012**, F1 **0.847 ± 0.016**.
+**Explain:** On this dataset, model ranking was already near the ceiling by v1/v2. v3’s win is operational: with only **15%** of customers contacted, hybrid ranking still reaches **~93%** of true churners at **97%** precision among contacts — better campaign economics than “flag everyone above 0.5.”
 
-**Telco v3**
+#### Telco — hard problem; v2 fixed recall, v3 adds **ROI + diagnosis**
 
-| Model | F1 | PR-AUC | ROC-AUC | Recall |
-|-------|-----|--------|---------|--------|
-| XGB + OOF TE | **0.6348** | 0.6581 | 0.8473 | 0.6925 |
+| Generation | Best F1 | Best PR-AUC | Campaign / extras |
+|------------|---------|-------------|-------------------|
+| v1 | 0.5932 AdaBoost | 0.6585 / TabFM 0.6633 | Revenue sum on flags (~24k MonthlyCharges) |
+| v2 | **0.6407** XGB | TabFM.ens **0.6722** | Much higher recall (0.72–0.74); larger flag lists → higher $ at risk |
+| **v3** | **0.6348** XGB+TE | Hybrid **0.6642** | **Top-5% policy** prec **0.859**, net EV **+195** (p_save=0.25, cost=15); segments by Contract/tenure |
+
+| Model (v3 test) | F1 | PR-AUC | ROC-AUC | Recall |
+|-----------------|-----|--------|---------|--------|
+| **XGB + OOF TE** | **0.6348** | 0.6581 | 0.8473 | 0.6925 |
 | CatBoost native | 0.6178 | 0.6554 | 0.8450 | 0.6765 |
-| Hybrid meta | 0.6325 | **0.6642** | **0.8482** | **0.7086** |
-| TabFM (capped ctx) | 0.6313 | 0.6622 | 0.8444 | 0.6684 |
+| GBM blend | 0.6297 | 0.6586 | 0.8472 | 0.6979 |
+| TabFM (ctx 800) | 0.6313 | 0.6622 | 0.8444 | 0.6684 |
+| **Hybrid meta** | 0.6325 | **0.6642** | **0.8482** | **0.7086** |
 
-vs **v1 F1 0.593** / **v2 F1 0.641**. v3 matches strong F1 and adds hybrid PR-AUC + **top-5% policy** (precision@policy **0.86**, positive net EV). Segments: strong on month-to-month / tenure 0–12; weak on two-year contracts.  
-Repeated CV: PR-AUC **0.655 ± 0.016**, F1 **0.601 ± 0.038**.
+**Explain:**  
+- **v1 → v2** is the big F1/recall jump (imbalance + threshold).  
+- **v2 → v3** keeps that quality while hybrid edges **PR-AUC** and **top-5%** contacts stay high-precision (good for expensive interventions). Expanding to top-10% can make net EV negative under these cost assumptions — that is a *feature* of the policy analysis, not a failure.  
+- Segments: strong on **Month-to-month** / **tenure 0–12**; weak on **Two year** (rare churn, hard positives).
 
-**Retail v3**
+Repeated CV (XGB+TE on train matrix): PR-AUC **0.655 ± 0.016**, F1 **0.601 ± 0.038**.
 
-| Model | F1 | PR-AUC | ROC-AUC | Recall |
-|-------|-----|--------|---------|--------|
+#### Retail — soft label ceiling; v3 improves **features + honesty**
+
+| Generation | Best F1 | Notes |
+|------------|---------|--------|
+| v1 | 0.8502 LGBM | Simple RFM + 90d inactivity |
+| v2 | 0.8484 Stack / TabFM 0.8444 | Higher recall; process rigor |
+| **v3** | **0.8536** TabFM / **0.8534** Hybrid | Multi-window RFM; hybrid PR-AUC **0.899** |
+
+| Model (v3 test) | F1 | PR-AUC | ROC-AUC | Recall |
+|-----------------|-----|--------|---------|--------|
 | XGB multi-window | 0.8467 | 0.8954 | 0.8286 | **0.9623** |
-| TabFM | **0.8536** | 0.8979 | 0.8285 | 0.9276 |
+| **TabFM** | **0.8536** | 0.8979 | 0.8285 | 0.9276 |
 | **Hybrid meta** | 0.8534 | **0.8991** | **0.8321** | 0.9216 |
 
-Horizon sensitivity: churn@30d **82%** → @90d **67%** → @120d **61%**.  
+**Label sensitivity (v3 only — why definition matters):**
+
+| Horizon | Churn rate |
+|---------|------------|
+| 30 days | **82.1%** |
+| 60 days | 72.6% |
+| 90 days (primary) | **67.1%** |
+| 120 days | 60.6% |
+
+**Explain:** Dummy majority already gets F1 ≈ 0.80 at 67% churn. Large F1 leaps are unrealistic. v3’s value is (1) slightly better ranking via multi-window features + hybrid, (2) **horizon tables** so nobody confuses a modeling assumption with ground truth, (3) Monetary quartile segments (easy on low-value silent buyers, harder on high-value Q4).
+
 Repeated CV: PR-AUC **0.883 ± 0.013**, F1 **0.847 ± 0.010**.
 
-### Learning path
+### Learning path (keep using old notebooks)
 
 | Stage | Code | Purpose |
 |-------|------|---------|
@@ -426,7 +511,7 @@ Cross-notebook metrics are **not** comparable as a single leaderboard (different
 
 ---
 
-## Runtime stack (v2 runs)
+## Runtime stack (v2 / v3 runs)
 
 | Component | Observed |
 |-----------|----------|
@@ -453,7 +538,8 @@ revenue_at_risk = sum(anchor_column | model predicts churn on test set)
 | A size estimate of the alert list | Net savings after interventions |
 | Useful for prioritization discussions | Causal uplift without experiments |
 
-Full **v1 vs v2 metric tables** live in [Old vs new results](#old-vs-new-results-evidence).
+Full **v1 vs v2 detail tables** live in [Old vs new results](#old-vs-new-results-evidence).  
+**v3 metrics and comparisons** live in [v3 awesome pipeline](#v3-awesome-pipeline-new-code-only).
 
 ---
 
@@ -536,6 +622,17 @@ MPLBACKEND=Agg uv run python notebooks/03_online_retail_ii_churn.py
 ```
 
 Errors print as normal Python tracebacks (easier than notebook UI while fixing bugs).
+
+#### D. v3 awesome pipelines (new code — does not replace A–C)
+
+```bash
+MPLBACKEND=Agg uv run python notebooks/v3/00_improvement_playbook.py
+MPLBACKEND=Agg uv run python notebooks/v3/01_iranian_v3_awesome.py
+MPLBACKEND=Agg uv run python notebooks/v3/02_telco_v3_awesome.py
+MPLBACKEND=Agg uv run python notebooks/v3/03_retail_v3_awesome.py
+```
+
+Read `docs/tutorials/` for the *why* behind each technique. Metrics and comparisons: [v3 section](#v3-awesome-pipeline-new-code-only).
 
 ### Data acquisition (no manual pre-download required)
 
@@ -803,7 +900,8 @@ Nothing in this README is legal advice.
 8. **Package API drift risk** — TabFM is young; pin git source carefully (`max_num_rows` incompatible with NNLS ensemble).  
 9. **Cross-dataset leaderboards are invalid** — Different problems; do not average F1 across notebooks.  
 10. **v1 vs v2 protocol** — v2 adds validation and features; revenue-at-risk is not a pure “accuracy” KPI (flag volume moves the sum).  
-11. **Duplicate rows (Iranian EDA noted 300)** — Left as-is for fidelity to the published table.
+11. **v3 vs v2 protocol** — v3 adds hybrid/policy/multi-window; TabFM context may be capped under low free VRAM; net EV uses assumed `p_save` (not measured uplift).  
+12. **Duplicate rows (Iranian EDA noted 300)** — Left as-is for fidelity to the published table.
 ---
 
 ## Quick start (shortest path)
