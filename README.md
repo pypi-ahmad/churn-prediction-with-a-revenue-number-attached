@@ -251,6 +251,81 @@ Revenue-at-risk v2 (TabFM.ensemble): Monetary **~688,132** (789 flags) at the va
 
 ---
 
+## v3 awesome pipeline (NEW code only)
+
+> **Important:** `notebooks/01_*` … `03_*` were **not edited**. They stay as the learning baseline.  
+> All “awesome” work lives in **`notebooks/v3/`** + **`docs/tutorials/`** + extra modules under `src/churn_revenue/`.
+
+### Why v3 exists
+
+| Technique | Why we do it | Where |
+|-----------|--------------|--------|
+| Hybrid meta(p_GBM, p_TabFM) | Trees & TabFM err differently | all v3 dataset notebooks |
+| Top-K / EV contact policy | F1 ≠ call-center budget ROI | `value_policy.py` + v3 notebooks |
+| OOF target encoding + interactions | Telco categoricals without leakage | `02_telco_v3_awesome` |
+| Multi-window RFM + multi-horizon hazard | Capture cooling-off; label sensitivity | `03_retail_v3_awesome` |
+| Repeated stratified CV | Mean ± std, not one lucky split | all v3 |
+| Segment reports | Ops: where the model fails | Contract / tenure / Monetary Q |
+
+**Tutorials (read these):** [`docs/tutorials/`](docs/tutorials/) — path map, why not only F1, hybrid TabFM+GBM, multi-window RFM, target encoding & nested CV.
+
+### v3 how to run
+
+```bash
+uv sync
+MPLBACKEND=Agg uv run python notebooks/v3/00_improvement_playbook.py
+MPLBACKEND=Agg uv run python notebooks/v3/01_iranian_v3_awesome.py
+MPLBACKEND=Agg uv run python notebooks/v3/02_telco_v3_awesome.py
+MPLBACKEND=Agg uv run python notebooks/v3/03_retail_v3_awesome.py
+```
+
+TabFM uses a **VRAM-aware** path (smaller context / fewer estimators if free GPU memory is low).
+
+### v3 real metrics (this machine, seed=42)
+
+**Iranian v3**
+
+| Model | F1 | PR-AUC | ROC-AUC | Recall |
+|-------|-----|--------|---------|--------|
+| GBM XGB | 0.8857 | 0.9632 | 0.9920 | 0.9394 |
+| **TabFM (train-ctx)** | **0.9652** | **0.9973** | **0.9995** | 0.9798 |
+| Hybrid meta | 0.9565 | 0.9941 | 0.9989 | **1.000** |
+
+Policy (hybrid, val-chosen top **15%**): precision@policy **0.968**, recall@policy **0.929**, net EV **~2,884** (p_save=0.30, cost=5).  
+Repeated CV (XGB): PR-AUC **0.925 ± 0.012**, F1 **0.847 ± 0.016**.
+
+**Telco v3**
+
+| Model | F1 | PR-AUC | ROC-AUC | Recall |
+|-------|-----|--------|---------|--------|
+| XGB + OOF TE | **0.6348** | 0.6581 | 0.8473 | 0.6925 |
+| CatBoost native | 0.6178 | 0.6554 | 0.8450 | 0.6765 |
+| Hybrid meta | 0.6325 | **0.6642** | **0.8482** | **0.7086** |
+| TabFM (capped ctx) | 0.6313 | 0.6622 | 0.8444 | 0.6684 |
+
+vs **v1 F1 0.593** / **v2 F1 0.641**. v3 matches strong F1 and adds hybrid PR-AUC + **top-5% policy** (precision@policy **0.86**, positive net EV). Segments: strong on month-to-month / tenure 0–12; weak on two-year contracts.  
+Repeated CV: PR-AUC **0.655 ± 0.016**, F1 **0.601 ± 0.038**.
+
+**Retail v3**
+
+| Model | F1 | PR-AUC | ROC-AUC | Recall |
+|-------|-----|--------|---------|--------|
+| XGB multi-window | 0.8467 | 0.8954 | 0.8286 | **0.9623** |
+| TabFM | **0.8536** | 0.8979 | 0.8285 | 0.9276 |
+| **Hybrid meta** | 0.8534 | **0.8991** | **0.8321** | 0.9216 |
+
+Horizon sensitivity: churn@30d **82%** → @90d **67%** → @120d **61%**.  
+Repeated CV: PR-AUC **0.883 ± 0.013**, F1 **0.847 ± 0.010**.
+
+### Learning path
+
+| Stage | Code | Purpose |
+|-------|------|---------|
+| v1/v2 | `notebooks/01–03_*` (**left intact**) | Learn EDA, LazyPredict, classical tuning, TabFM, revenue framing |
+| v3 | `notebooks/v3/*` + `docs/tutorials/*` | Value policy, hybrid models, multi-window RFM, CV/segments |
+
+---
+
 ## 1. For portfolio evaluators
 
 ### Design thesis
