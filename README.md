@@ -2,7 +2,7 @@
 
 **Predict who leaves. Rank who to contact. Put a currency figure next to the alert.**
 
-This repository is a portfolio-grade, tutorial-style applied ML project: three fully executed Jupyter notebooks that download real public datasets, run classical churn classifiers and Google's **TabFM** tabular foundation model, and convert predictions into **revenue-at-risk** and **outreach prioritization** views—not just accuracy scores.
+This repository is a tutorial and portfolio applied ML project. Three executed Jupyter notebooks download public datasets, run classical churn classifiers and Google's **TabFM** tabular foundation model, and turn predictions into **revenue-at-risk** and **outreach prioritization** views alongside accuracy scores.
 
 | Audience | Start here |
 |----------|------------|
@@ -16,10 +16,10 @@ This repository is a portfolio-grade, tutorial-style applied ML project: three f
 
 1. [Project overview](#project-overview)
 2. [Three generations at a glance](#three-generations-at-a-glance)
-3. [Production upgrade (v1 → v2) — techniques](#production-upgrade--techniques--why-results-improved)
+3. [Production upgrade (v1 → v2): techniques and results](#production-upgrade-techniques-and-results)
 4. [Results: v1 vs v2 (evidence, kept)](#old-vs-new-results-evidence)
 5. [Results: v3 awesome (new code + comparison)](#v3-awesome-pipeline-new-code-only)
-6. [1. For portfolio evaluators](#1-for-portfolio-evaluators)
+6. [1. For portfolio reviewers](#1-for-portfolio-reviewers)
 7. [2. For hands-on users](#2-for-hands-on-users)
 8. [3. For tutorial learners](#3-for-tutorial-learners)
 9. [Repository map](#repository-map)
@@ -105,10 +105,10 @@ Jupytext percent-format `.py` sources sit beside each `.ipynb` for script debugg
 
 ---
 
-## Production upgrade — techniques & why results improved
+## Production upgrade: techniques and results
 
-We upgraded from a solid **v1 tutorial baseline** to a **v2 production-style pipeline** inside `notebooks/01–03_*`.  
-**v1 and v2 numbers are both kept below** (not deleted). Later, **v3** adds still more techniques in separate notebooks.
+The project moves from the **v1 tutorial baseline** to a **v2 production-style pipeline** inside `notebooks/01–03_*`.
+The **v1 and v2 numbers remain below**. **v3** adds more techniques in separate notebooks.
 
 v2 numbers come from executed runs on this machine (Python 3.13.13, seed 42, CUDA TabFM where available).
 
@@ -129,7 +129,7 @@ v2 numbers come from executed runs on this machine (Python 3.13.13, seed 42, CUD
 | **Dummy baseline** | Proves we beat "always majority" | All notebooks |
 | **Shared production library** | One implementation of metrics/threshold/modeling for consistency | `src/churn_revenue/` |
 
-Research alignment (industry practice, not marketing):
+These choices follow common applied ML practice:
 
 - Prefer **class weights + threshold tuning** over resampling for GBMs on tabular churn.  
 - Optimize **ranking** (PR-AUC) during training; choose **operating point** on a held-out validation set.  
@@ -137,7 +137,7 @@ Research alignment (industry practice, not marketing):
 - **Ensemble** heterogeneous strong learners (trees + foundation model).  
 - TabFM docs recommend the **ensemble** path for stronger zero-shot tabular results.
 
-### How we got better results (mechanism, not magic)
+### Why the results improved
 
 1. **Recall at useful precision (Telco, Iranian classical).**  
    v1 used default 0.5 cutoffs after tuning. v2 moves the threshold on validation (e.g. Iranian calibrated **t=0.35**, Telco XGB **t=0.60**). That alone lifts churn **F1** by catching more true leavers without collapsing precision as badly as a naive low cutoff.
@@ -201,12 +201,12 @@ Research alignment (industry practice, not marketing):
 | **Telco** | 0.5932 AdaBoost | **0.6407** XGB | **0.6348** XGB+TE / Hybrid PR-AUC **0.664** | F1 holds v2 gains; **campaign top-5%** (prec **0.86**, +net EV); segments show *where* model works |
 | **Retail** | 0.8502 LGBM | 0.8484 Stack | **0.8536** TabFM / **0.8534** Hybrid | Slight F1/PR-AUC edge + **multi-horizon label truth** + high-value segment gap |
 
-**Plain-language summary of the full journey**
+**Summary of the full journey**
 
 1. **v1** proved the end-to-end story works (data → model → revenue number).  
 2. **v2** fixed the decision threshold and imbalance training → **much higher recall** on Telco/Iranian classical.  
-3. **v3** does not replace v1/v2 files; it answers "how do we *act* and *trust* the model?" (budget policies, hybrid blend, multi-window features, repeated CV, segments).  
-4. On Iranian/Retail, chasing higher F1 alone yields **diminishing returns**; v3's "awesome" is **policy + diagnosis**, not only leaderboard points.
+3. **v3** does not replace v1/v2 files. It focuses on how to use and assess the model with budget policies, hybrid blending, multi-window features, repeated CV, and segments.
+4. On Iranian/Retail, higher F1 alone offers **diminishing returns**; v3 adds **policy + diagnosis** alongside leaderboard metrics.
 
 ---
 
@@ -308,7 +308,7 @@ Revenue-at-risk v2 (TabFM.ensemble): Monetary **~688,132** (789 flags) at the va
 > **Important:** `notebooks/01_*` … `03_*` were **not edited** for v3. They stay as the learning baseline (with their v1/v2 results above).  
 > All "awesome" work lives in **`notebooks/v3/`** + **`docs/tutorials/`** + extra modules under `src/churn_revenue/`.
 
-### What changed in v3 (and why — without removing v1/v2)
+### What changed in v3 (without removing v1/v2)
 
 | New technique | Problem it solves | Why F1 alone is not enough |
 |---------------|-------------------|----------------------------|
@@ -411,7 +411,7 @@ Repeated CV: PR-AUC **0.883 ± 0.013**, F1 **0.847 ± 0.010**.
 
 ---
 
-## 1. For portfolio evaluators
+## 1. For portfolio reviewers
 
 ### Design thesis
 
