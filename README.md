@@ -1,14 +1,14 @@
 # Churn Prediction with a Revenue Number Attached
 
-**Predict who leaves. Rank who to contact. Put a currency figure next to the alert.**
+Predict churn, prioritize contacts, and attach a revenue figure to each alert.
 
-This repository is a tutorial and portfolio applied ML project. Three executed Jupyter notebooks download public datasets, run classical churn classifiers and Google's **TabFM** tabular foundation model, and turn predictions into **revenue-at-risk** and **outreach prioritization** views alongside accuracy scores.
+This tutorial and portfolio project contains three executed Jupyter notebooks. They download public datasets, run classical churn classifiers and Google's TabFM tabular foundation model, and show revenue at risk and contact prioritization alongside accuracy scores. A separate CUDA benchmark runner evaluates zero-shot Mitra and a Retail-only TimesFM risk experiment without changing the notebooks.
 
 | Audience | Start here |
 |----------|------------|
-| **Portfolio / technical reviewers** | [Architecture](#1-for-portfolio-evaluators) · [v1→v2→v3 evidence](#old-vs-new-results-evidence) · [v3 awesome results](#v3-awesome-pipeline-new-code-only) · [Limitations](#honest-limitations) |
-| **Hands-on operators** | [Installation](#2-for-hands-on-users) · [Runbook](#runbook) · [v3 path](#v3-how-to-run-new-code) · [Troubleshooting](#troubleshooting) |
-| **Tutorial learners** | [docs/tutorials/](docs/tutorials/) · [Concepts](#3-for-tutorial-learners) · keep `notebooks/01–03_*` as the learning baseline |
+| Portfolio and technical reviewers | [Architecture](#1-for-portfolio-evaluators), [v1 to v3 evidence](#old-vs-new-results-evidence), [v3 results](#v3-awesome-pipeline-new-code-only), and [limitations](#honest-limitations) |
+| Hands-on operators | [Installation](#2-for-hands-on-users), [runbook](#runbook), [v3 path](#v3-how-to-run-new-code), and [troubleshooting](#troubleshooting) |
+| Tutorial learners | [docs/tutorials/](docs/tutorials/), [concepts](#3-for-tutorial-learners), and `notebooks/01–03_*` for the learning baseline |
 
 ---
 
@@ -34,21 +34,22 @@ This repository is a tutorial and portfolio applied ML project. Three executed J
 
 Customer churn is usually framed as binary classification. Business stakeholders care about three different questions:
 
-1. **Discrimination** — Can the model rank true leavers above stayers under class imbalance?
-2. **Exposure** — How much revenue (or historical value) is attached to customers we would flag today?
-3. **Action** — If we can only call the top *K*% of the list, how much true-churn value do we cover?
+1. Can the model rank true leavers above stayers under class imbalance?
+2. How much revenue or historical value is attached to customers we would flag today?
+3. If we can call only the top *K*% of the list, how much true-churn value do we cover?
 
-Most tutorial notebooks stop at (1). This project deliberately finishes (2) and (3).
+Most tutorial notebooks stop at ranking. This project also covers exposure and contact decisions.
 
 ### Deliverables
 
-**Three generations of code** (older ones are kept for learning — nothing was deleted):
+The repository has three code generations. The older notebooks remain for learning.
 
 | Generation | Location | Role |
 |------------|----------|------|
-| **v1 / v2 (learning + production baseline)** | [`notebooks/01–03_*`](notebooks/) | Unchanged teaching path: EDA → LazyPredict → GBM/TabFM → revenue |
-| **v3 (awesome)** | [`notebooks/v3/`](notebooks/v3/) | New pipelines only: hybrid models, value policies, multi-window RFM, CV/segments |
-| **Tutorials** | [`docs/tutorials/`](docs/tutorials/) | Plain-language *why* for each v3 technique |
+| v1 / v2 learning and production baseline | [`notebooks/01–03_*`](notebooks/) | EDA, LazyPredict, GBM/TabFM, and revenue analysis |
+| v3 | [`notebooks/v3/`](notebooks/v3/) | Hybrid models, value policies, multi-window RFM, CV, and segments |
+| Foundation-model benchmark | [`scripts/run_foundation_benchmarks.py`](scripts/run_foundation_benchmarks.py) | Zero-shot Mitra on the churn datasets and a temporal Retail TimesFM risk backtest |
+| Tutorials | [`docs/tutorials/`](docs/tutorials/) | Explanations for each v3 technique |
 
 **Datasets (same three across generations):**
 
@@ -66,21 +67,21 @@ Each notebook, in order:
 4. Thorough EDA with **dataset-specific** interpretation  
 5. Feature / label engineering (Telco ratios; Retail RFM + log/rate features)  
 6. Stratified **train / validation / test** (60% / 20% / 20%)  
-7. **Part 1 (production classical)** — LazyPredict screen + imbalance-aware GBMs (LGBM/XGB/CatBoost/HistGB), soft-vote & stacking, **threshold moving** on val, optional isotonic calibration  
-8. **Part 2** — Google **TabFM.ensemble()** (crosses, SVD, NNLS, Platt) + val-tuned threshold  
-9. Side-by-side metrics (incl. Brier / log-loss), revenue-at-risk, lift curve, manager summary  
+7. Part 1: LazyPredict screening, imbalance-aware GBMs (LGBM/XGB/CatBoost/HistGB), soft voting and stacking, validation threshold selection, and optional isotonic calibration
+8. Part 2: Google TabFM.ensemble() with crosses, SVD, NNLS, Platt calibration, and a validation-tuned threshold
+9. Metrics side by side, including Brier score and log loss, revenue at risk, lift curves, and a manager summary
 
 Shared library: [`src/churn_revenue/`](src/churn_revenue/) (`metrics`, `threshold`, `modeling`).  
 Jupytext percent-format `.py` sources sit beside each `.ipynb` for script debugging.
 
-### What this is *not*
+### Scope
 
 | Avoided on purpose | Why |
 |--------------------|-----|
-| Chat LLMs / Ollama | No conversational or retrieval stage; tabular classification only |
-| Unsloth / LoRA / QLoRA | Nothing fine-tunes foundation weights; TabFM `.fit()` stores in-context rows |
-| Pre-committed multi-GB CSVs | Data is fetched inside notebooks from official sources |
-| Accuracy-only leaderboards | Imbalanced churn; primary ranking uses F1 / PR-AUC |
+| Chat LLMs / Ollama | The project uses tabular classification without a conversational or retrieval stage |
+| Unsloth / LoRA / QLoRA | It does not fine-tune foundation weights; TabFM `.fit()` stores in-context rows |
+| Pre-committed multi-GB CSVs | Notebooks fetch data from official sources |
+| Accuracy-only leaderboards | Churn is imbalanced, so primary ranking uses F1 and PR-AUC |
 
 ---
 
@@ -89,26 +90,26 @@ Jupytext percent-format `.py` sources sit beside each `.ipynb` for script debugg
 | | **v1** (tutorial baseline) | **v2** (production notebooks `01–03`) | **v3** (new `notebooks/v3/`) |
 |--|----------------------------|----------------------------------------|------------------------------|
 | **Goal** | Teach the full pipeline | Raise F1/recall with production ML hygiene | Optimize **campaign value**, hybrid models, honest uncertainty |
-| **Code** | Early notebook structure | Same files, upgraded in place | **New files only** — does not edit `01–03` |
+| **Code** | Early notebook structure | Same files, upgraded in place | **New files only**; does not edit `01–03` |
 | **Split** | Train/test 80/20 | Train/val/test 60/20/20 | Same 60/20/20 |
 | **Decision rule** | Threshold ≈ 0.5 | Val-tuned F1 threshold | Val-tuned F1 **plus top-K / EV policy** |
 | **Models** | LazyPredict top-3 + plain TabFM | Forced GBMs, soft-vote, stack, TabFM.ensemble | Hybrid meta(GBM, TabFM), TE features, multi-window RFM |
 | **Business output** | Revenue-at-risk sum | Same + better flags | **Net expected value** under budget + segment tables |
 | **Where numbers live** | Tables labeled "v1 baseline (kept)" | Tables labeled "v2 production" | Section [v3 awesome](#v3-awesome-pipeline-new-code-only) |
 
-**How to compare fairly**
+### Comparing results
 
-- Prefer **F1 / PR-AUC / recall** for ranking quality.  
-- Prefer **precision@top-K and net EV** for "would we run this campaign?"  
-- **Revenue-at-risk $** rises when more customers are flagged — that is coverage, not automatically ROI.  
-- v3 TabFM may use a **smaller context** when GPU free memory is low (documented in runs).
+- Use F1, PR-AUC, and recall to compare ranking quality.
+- Use precision at top K and net EV to assess campaign decisions.
+- Revenue at risk rises when more customers are flagged. This measures coverage, not ROI.
+- v3 TabFM may use a smaller context when free GPU memory is low. Runs document the cap.
 
 ---
 
 ## Production upgrade: techniques and results
 
-The project moves from the **v1 tutorial baseline** to a **v2 production-style pipeline** inside `notebooks/01–03_*`.
-The **v1 and v2 numbers remain below**. **v3** adds more techniques in separate notebooks.
+The project moves from the v1 tutorial baseline to a v2 production-style pipeline in `notebooks/01–03_*`.
+The v1 and v2 numbers remain below. v3 adds techniques in separate notebooks.
 
 v2 numbers come from executed runs on this machine (Python 3.13.13, seed 42, CUDA TabFM where available).
 
@@ -117,7 +118,7 @@ v2 numbers come from executed runs on this machine (Python 3.13.13, seed 42, CUD
 | Technique | Why it matters for churn | Where used |
 |-----------|--------------------------|------------|
 | **Train / val / test (60/20/20)** | Thresholds & model selection must not peek at final test | All notebooks |
-| **Class imbalance handling first** | `class_weight='balanced'`, XGB `scale_pos_weight=neg/pos`, CatBoost `auto_class_weights` — preferred over SMOTE for tree models | `src/churn_revenue/modeling.py` |
+| Class imbalance handling first | `class_weight='balanced'`, XGB `scale_pos_weight=neg/pos`, and CatBoost `auto_class_weights` are preferred over SMOTE for tree models | `src/churn_revenue/modeling.py` |
 | **Deeper PR-AUC search** | `RandomizedSearchCV` with larger grids (n_iter≈35), scoring=`average_precision` | Part 1 |
 | **Always train strong GBMs** | LazyPredict shortlists defaults; we still force LGBM + XGB + CatBoost + HistGB | Part 1 |
 | **Soft-vote ensemble** | Average P(churn) across tuned models reduces single-model variance | Part 1 |
@@ -129,15 +130,15 @@ v2 numbers come from executed runs on this machine (Python 3.13.13, seed 42, CUD
 | **Dummy baseline** | Proves we beat "always majority" | All notebooks |
 | **Shared production library** | One implementation of metrics/threshold/modeling for consistency | `src/churn_revenue/` |
 
-These choices follow common applied ML practice:
+The implementation follows common applied ML practice:
 
-- Prefer **class weights + threshold tuning** over resampling for GBMs on tabular churn.  
-- Optimize **ranking** (PR-AUC) during training; choose **operating point** on a held-out validation set.  
-- **Calibrate** if scores feed dollar decisions.  
-- **Ensemble** heterogeneous strong learners (trees + foundation model).  
-- TabFM docs recommend the **ensemble** path for stronger zero-shot tabular results.
+- Prefer class weights and threshold tuning to resampling for tabular-churn GBMs.
+- Optimize PR-AUC during training and choose the operating point on a held-out validation set.
+- Calibrate scores used in dollar decisions.
+- Combine heterogeneous learners, such as trees and a foundation model.
+- TabFM documentation recommends its ensemble path for stronger zero-shot tabular results.
 
-### Why the results improved
+### Sources of improvement
 
 1. **Recall at useful precision (Telco, Iranian classical).**  
    v1 used default 0.5 cutoffs after tuning. v2 moves the threshold on validation (e.g. Iranian calibrated **t=0.35**, Telco XGB **t=0.60**). That alone lifts churn **F1** by catching more true leavers without collapsing precision as badly as a naive low cutoff.
@@ -161,18 +162,18 @@ These choices follow common applied ML practice:
 
 - Same **seed 42**, same public data sources, same project env family.  
 - v2 carves **validation out of the former train portion** (test remains a 20% stratified holdout).  
-- Telco/Retail **add features** in v2 — that is intentional production engineering, not a silent protocol cheat.  
-- Revenue-at-risk changes when **flag count and threshold** change; larger flags ⇒ larger sum (not automatically "better").
+- Telco and Retail add features in v2 as an explicit production-engineering change.
+- Revenue at risk changes with the flag count and threshold. More flags produce a larger sum, which does not by itself mean better performance.
 
 ---
 
 ## Old vs new results (evidence)
 
-> **v1 (baseline):** first full notebook runs — LazyPredict top-3, modest RandomizedSearch, default 0.5 decisions, plain `TabFMClassifier`.  
-> **v2 (production):** techniques in the section above; metrics from executed `notebooks/01–03` runs (2026-07-10, this machine).  
-> **v3 (awesome):** separate new notebooks under `notebooks/v3/` — see next major section for full detail and three-way comparison.
+> v1 (baseline): first full notebook runs with LazyPredict top three, modest RandomizedSearch, default 0.5 decisions, and plain `TabFMClassifier`.
+> v2 (production): the techniques above, with metrics from executed `notebooks/01–03` runs on 2026-07-10 on this machine.
+> v3: separate notebooks under `notebooks/v3/`; the next section gives the detailed three-way comparison.
 
-### Headline scorecard — v1 vs v2 (ranking metrics)
+### Headline scorecard: v1 vs v2 ranking metrics
 
 | Dataset | Metric | v1 Classical | v2 Classical | Δ v1→v2 | v1 TabFM | v2 TabFM.ensemble | Δ v1→v2 |
 |---------|--------|--------------|--------------|---------|----------|-------------------|---------|
@@ -189,9 +190,9 @@ These choices follow common applied ML practice:
 | | ROC-AUC | 0.8330 | 0.8317 | −0.001 | 0.8336 | 0.8325 | −0.001 |
 | | Recall (churn) | 0.9201 | **0.9623** | **+0.042** | 0.8989 | **0.9246** | **+0.026** |
 
-**Takeaway (v1 → v2):** Largest ranking gains on **Telco** and **Iranian classical recall/F1**. Retail was already strong; v2 mainly improves **recall/operating point** and process rigor.
+The largest v1-to-v2 ranking gains are on Telco and Iranian classical recall and F1. Retail was already strong; v2 mainly improves recall, the operating point, and process rigor.
 
-### Headline scorecard — best model across **v1 / v2 / v3**
+### Headline scorecard: best model across **v1 / v2 / v3**
 
 "Best" = highest **F1 (churn)** among classical or hybrid on that generation's test report (TabFM shown separately).
 
@@ -201,7 +202,7 @@ These choices follow common applied ML practice:
 | **Telco** | 0.5932 AdaBoost | **0.6407** XGB | **0.6348** XGB+TE / Hybrid PR-AUC **0.664** | F1 holds v2 gains; **campaign top-5%** (prec **0.86**, +net EV); segments show *where* model works |
 | **Retail** | 0.8502 LGBM | 0.8484 Stack | **0.8536** TabFM / **0.8534** Hybrid | Slight F1/PR-AUC edge + **multi-horizon label truth** + high-value segment gap |
 
-**Summary of the full journey**
+### Summary
 
 1. **v1** proved the end-to-end story works (data → model → revenue number).  
 2. **v2** fixed the decision threshold and imbalance training → **much higher recall** on Telco/Iranian classical.  
@@ -210,7 +211,7 @@ These choices follow common applied ML practice:
 
 ---
 
-### Notebook 1 — Iranian Churn (detail)
+### Notebook 1: Iranian Churn detail
 
 **v1 baseline (kept)**
 
@@ -240,7 +241,7 @@ Revenue-at-risk v2: Calibrated **12,199.54** (109 flags) · TabFM.ensemble **12,
 
 ---
 
-### Notebook 2 — IBM Telco (detail)
+### Notebook 2: IBM Telco detail
 
 **v1 baseline (kept)**
 
@@ -266,13 +267,13 @@ Revenue-at-risk v1: AdaBoost MonthlyCharges **24,278.10** (307 flags) · TabFM *
 | Dummy majority | 0.50 | 0.7346 | 0.0000 | 0.0000 | 0.0000 | 0.5000 | 0.2654 | 0.2654 |
 
 Revenue-at-risk v2: XGB MonthlyCharges **36,162.05** (472 flags) · TabFM.ensemble **37,568.45** (496 flags)  
-*(Higher $ because higher recall / more flags at the chosen operating point — intentional for retention coverage, not "free money.")*
+*The larger dollar figure reflects higher recall and more flags at the chosen operating point. It measures retention coverage, not guaranteed return.*
 
-**Why better:** feature engineering + imbalance-aware XGB/CatBoost + **threshold moving** + TabFM ensemble. Biggest win is **recall of churners** (~+18–21 pts), which is what retention teams usually need.
+Feature engineering, imbalance-aware XGB/CatBoost, validation threshold selection, and the TabFM ensemble improve the result. Recall of churners rises by about 18 to 21 points, which supports retention outreach.
 
 ---
 
-### Notebook 3 — Online Retail II (detail)
+### Notebook 3: Online Retail II detail
 
 **v1 baseline (kept)**
 
@@ -332,15 +333,15 @@ MPLBACKEND=Agg uv run python notebooks/v3/02_telco_v3_awesome.py
 MPLBACKEND=Agg uv run python notebooks/v3/03_retail_v3_awesome.py
 ```
 
-**Hardware note:** v3 TabFM is **VRAM-aware**. If free GPU memory is low (e.g. another process holding ~4GB), it caps context (e.g. 600–800 rows) and uses a light config so hybrid still runs. Full TabFM.ensemble from v2 remains in the learning notebooks when VRAM allows.
+v3 TabFM checks available VRAM. When free GPU memory is low, for example because another process holds about 4 GB, it caps context at roughly 600 to 800 rows and uses a lighter configuration. The v2 learning notebooks retain the full TabFM.ensemble path for systems with enough VRAM.
 
-### v3 vs v1/v2 — side-by-side (same datasets)
+### v3 vs v1/v2: side-by-side on the same datasets
 
-#### Iranian — ranking already excellent; v3 wins on **policy**
+#### Iranian: ranking is already strong; v3 adds policy analysis
 
 | Generation | Best ranking result | Extra that v3 adds |
 |------------|---------------------|--------------------|
-| v1 | TabFM F1 **0.9659**, PR-AUC 0.9963 | — |
+| v1 | TabFM F1 **0.9659**, PR-AUC 0.9963 | No additional note |
 | v2 | Calibrated F1 **0.9135** (recall 0.96); TabFM.ens F1 0.9565, Brier **0.0075** | Val thresholds, calibration |
 | **v3** | TabFM F1 **0.9652**, PR-AUC **0.9973**; Hybrid F1 0.9565, recall **1.0** | **Top-15% contact policy**: prec **0.968**, recall **0.929**, net EV **~2,884** (p_save=0.30, cost=5); CV PR-AUC **0.925±0.012** |
 
@@ -350,14 +351,14 @@ MPLBACKEND=Agg uv run python notebooks/v3/03_retail_v3_awesome.py
 | **TabFM (train-ctx)** | **0.9652** | **0.9973** | **0.9995** | 0.9798 |
 | Hybrid meta | 0.9565 | 0.9941 | 0.9989 | **1.000** |
 
-**Explain:** On this dataset, model ranking was already near the ceiling by v1/v2. v3's win is operational: with only **15%** of customers contacted, hybrid ranking still reaches **~93%** of true churners at **97%** precision among contacts — better campaign economics than "flag everyone above 0.5."
+On this dataset, model ranking was already near the ceiling in v1 and v2. With 15% of customers contacted, the hybrid ranking reaches about 93% of true churners at 97% precision among contacts. That supports a more targeted campaign than flagging every customer above 0.5.
 
-#### Telco — hard problem; v2 fixed recall, v3 adds **ROI + diagnosis**
+#### Telco: v2 improves recall; v3 adds ROI and segment analysis
 
 | Generation | Best F1 | Best PR-AUC | Campaign / extras |
 |------------|---------|-------------|-------------------|
 | v1 | 0.5932 AdaBoost | 0.6585 / TabFM 0.6633 | Revenue sum on flags (~24k MonthlyCharges) |
-| v2 | **0.6407** XGB | TabFM.ens **0.6722** | Much higher recall (0.72–0.74); larger flag lists → higher $ at risk |
+| v2 | **0.6407** XGB | TabFM.ens **0.6722** | Higher recall (0.72 to 0.74); larger flag lists produce more revenue at risk |
 | **v3** | **0.6348** XGB+TE | Hybrid **0.6642** | **Top-5% policy** prec **0.859**, net EV **+195** (p_save=0.25, cost=15); segments by Contract/tenure |
 
 | Model (v3 test) | F1 | PR-AUC | ROC-AUC | Recall |
@@ -370,12 +371,12 @@ MPLBACKEND=Agg uv run python notebooks/v3/03_retail_v3_awesome.py
 
 **Explain:**  
 - **v1 → v2** is the big F1/recall jump (imbalance + threshold).  
-- **v2 → v3** keeps that quality while hybrid edges **PR-AUC** and **top-5%** contacts stay high-precision (good for expensive interventions). Expanding to top-10% can make net EV negative under these cost assumptions — that is a *feature* of the policy analysis, not a failure.  
-- Segments: strong on **Month-to-month** / **tenure 0–12**; weak on **Two year** (rare churn, hard positives).
+- v2 to v3 maintains that quality while the hybrid slightly improves PR-AUC and the top 5% of contacts remain high precision for expensive interventions. Under these cost assumptions, expanding to the top 10% can make net EV negative. The policy analysis makes that tradeoff visible.
+- Segment results are stronger for Month-to-month and tenure 0 to 12, and weaker for Two year contracts, where churn is rare.
 
 Repeated CV (XGB+TE on train matrix): PR-AUC **0.655 ± 0.016**, F1 **0.601 ± 0.038**.
 
-#### Retail — soft label ceiling; v3 improves **features + honesty**
+#### Retail: label limits and v3 feature work
 
 | Generation | Best F1 | Notes |
 |------------|---------|--------|
@@ -389,7 +390,7 @@ Repeated CV (XGB+TE on train matrix): PR-AUC **0.655 ± 0.016**, F1 **0.601 ± 0
 | **TabFM** | **0.8536** | 0.8979 | 0.8285 | 0.9276 |
 | **Hybrid meta** | 0.8534 | **0.8991** | **0.8321** | 0.9216 |
 
-**Label sensitivity (v3 only — why definition matters):**
+**Label sensitivity in v3:**
 
 | Horizon | Churn rate |
 |---------|------------|
@@ -415,15 +416,15 @@ Repeated CV: PR-AUC **0.883 ± 0.013**, F1 **0.847 ± 0.010**.
 
 ### Design thesis
 
-Treat churn as a **decision-support** problem under imbalance, not a pure accuracy contest.
+Treat churn as a decision-support problem under imbalance. Accuracy alone is not enough.
 
-- **Screen widely, then invest compute carefully.** LazyPredict is a shortlist generator with defaults—not the final model.
+- Screen widely, then invest compute carefully. LazyPredict generates a shortlist with defaults; it is not the final model.
 - **Always train a production GBM core** (LGBM/XGB/CatBoost/HistGB) even if LazyPredict ranks weaker models first.
 - **Tune on the metric that matches cost structure.** Hyperparameter search uses `average_precision` (PR-AUC), not accuracy.
-- **Freeze the operating point on validation.** Threshold moving for F1 (or future cost curves) — never on test.
+- Freeze the operating point on validation. Choose F1 thresholds, or future cost curves, before the test set.
 - **Compare apples-to-apples.** Classical models and TabFM share the same stratified holdout test indices.
 - **Dual preprocessing, one split.** TabFM accepts mixed-type frames natively; sklearn models use train-fitted scaling / one-hot.
-- **Revenue is an interpretation layer, not a second loss.** Anchors are summed over predicted-positive customers with explicit non-causal framing.
+- Revenue is an interpretation layer rather than a second loss. The project sums anchors over predicted-positive customers and states the non-causal framing.
 - **Fail loudly on bad engineered labels.** Online Retail stops if engineered churn is near 0% or 100%.
 
 ### Architecture
@@ -491,11 +492,11 @@ Treat churn as a **decision-support** problem under imbalance, not a pure accura
 
 ### What technical reviewers should look for
 
-1. **Imbalance discipline** — PR-AUC / churn F1 emphasized over accuracy (especially Iranian 15.71% churn).  
-2. **Leakage control** — Retail features use only pre-cutoff activity; post window is label-only.  
-3. **Honest dual path** — TabFM vs one-hot sklearn matrices documented, same indices.  
-4. **Evidence over narrative** — Tables below are from executed notebooks on this stack, not blog copy.  
-5. **License hygiene** — MIT for *this* code; TabFM *weights* separately non-commercial; datasets retain upstream terms.
+1. The project emphasizes PR-AUC and churn F1 over accuracy, especially for Iranian churn at 15.71%.
+2. Retail features use only pre-cutoff activity; the post-cutoff window supplies the label.
+3. TabFM and one-hot sklearn paths use the same indices and are documented separately.
+4. The tables below come from executed notebooks on this stack.
+5. The MIT license covers this code. TabFM weights are separately non-commercial, and datasets retain upstream terms.
 
 ### Comparison protocol (fairness)
 
@@ -516,15 +517,17 @@ Cross-notebook metrics are **not** comparable as a single leaderboard (different
 | Component | Observed |
 |-----------|----------|
 | Python | 3.13.13 |
-| pandas | 3.0.3 |
+| pandas | 2.3.3 (pinned below 2.4 for AutoGluon Mitra compatibility) |
 | scikit-learn | 1.9.0 |
 | lazypredict | 0.3.0 |
 | catboost | 1.2.10 |
 | optuna | 4.9.0 (available; search uses RandomizedSearchCV grids) |
 | tabfm | 1.0.1 (git `google-research/tabfm`) |
 | torch | 2.13.0+cu130 · CUDA: True |
+| AutoGluon Tabular | 1.6.4b20260921 (`MITRA`, zero-shot only) |
+| TimesFM | 3.0.2 (`google/timesfm-3.0-pytorch`) |
 | TabFM device | `cuda` |
-| Shared package | `src/churn_revenue` (installed via `uv sync` / hatchling) |
+| Shared package | `src/churn_revenue` (installed via `uv sync` / `uv_build`) |
 
 ### How to interpret "revenue-at-risk" (all notebooks)
 
@@ -565,7 +568,7 @@ uv python install 3.13.13
 uv python pin 3.13.13
 
 # 2) Create env + install lockfile deps (includes tabfm from GitHub)
-uv sync
+uv sync --all-groups
 
 # 3) Register Jupyter kernel → this project's .venv
 uv run python -m ipykernel install --user \
@@ -577,7 +580,28 @@ uv run python -c "import sys,tabfm,torch,lazypredict,sklearn; \
 print(sys.version.split()[0], tabfm.__version__, torch.__version__, torch.cuda.is_available())"
 ```
 
-Expected shape of a healthy install:
+Developer tools are included in the default `dev` group:
+
+```bash
+uv run ruff check src main.py
+uv run ty check src
+```
+
+### Foundation-model benchmark
+
+The benchmark requires the project's locked CUDA Torch build. It uses zero-shot Mitra with a deterministic 500-row stratified context cap on larger training splits.
+
+For the full operating procedure, evaluation protocol, artifact contract, and failure handling, see the [foundation-model benchmark runbook](docs/foundation-model-benchmark.md).
+
+```powershell
+uv run --locked python scripts/run_foundation_benchmarks.py --all --output artifacts/foundation-benchmarks
+```
+
+The command downloads public source data and model weights, keeps model files under ignored `artifacts/`, and writes `metrics.csv` only after all four evaluations complete. Mitra uses the existing 60/20/20 churn protocol. TimesFM tunes at 2011-03-01 and evaluates once at 2011-06-01.
+
+TimesFM forecasts thirteen weeks of per-customer invoice activity. Its negative forecast total ranks churn risk rather than estimating a calibrated churn probability. The report excludes Brier score, log loss, and expected value. No foundation-model score table is published until a complete run creates `metrics.csv`.
+
+Expected output from a healthy installation:
 
 ```text
 3.13.13  1.0.1  2.13.0+cu130  True
@@ -623,7 +647,7 @@ MPLBACKEND=Agg uv run python notebooks/03_online_retail_ii_churn.py
 
 Errors print as normal Python tracebacks (easier than notebook UI while fixing bugs).
 
-#### D. v3 awesome pipelines (new code — does not replace A–C)
+#### D. v3 pipelines (new code; does not replace A to C)
 
 ```bash
 MPLBACKEND=Agg uv run python notebooks/v3/00_improvement_playbook.py
@@ -649,13 +673,15 @@ Optional: place caches under `data/` (gitignored). Notebooks do not require anyt
 | Symptom | Likely cause | Fix |
 |---------|--------------|-----|
 | `FileNotFoundError: ... pytorch_model.bin` | TabFM **1.0.0** from PyPI | Use git source (this repo's `pyproject.toml` already does); `uv sync` |
+| `No models were trained successfully` from Mitra | CUDA/host memory guard rejected the context | Close GPU-heavy apps; the runner caps contexts at 500 rows and clears CUDA cache between fits |
+| TimesFM CUDA OOM | The GPU cannot hold the requested batch | The runner retries one customer at a time; use a larger GPU if that fails |
 | `NameError: safetensors` | Missing dependency | `uv add safetensors` (already in project deps) |
 | TabFM hang / thrashing, high CPU, low GPU mem | Loading weights on **CPU** under RAM pressure | Load with `device="cuda"` (notebooks do this when CUDA is available) |
 | CUDA OOM on TabFM | Large context × model size | Reduce `MAX_TABFM_CONTEXT` in NB3; free other GPU processes |
 | Wrong kernel / missing packages in notebook | Jupyter not using project venv | Select `churn-revenue-project`; reinstall kernel command above |
 | `DatasetNotFoundError` for UCI 502 | Known: not importable via ucimlrepo API | Expected; NB3 falls back to UCI zip automatically |
-| Telco `TotalCharges` type errors on pandas 3 | Assigning int into string dtype | Notebook replaces blanks with `"0"` then `to_numeric` |
-| LazyPredict model name not in zoo | Rare model wins shortlist | Falls back to RandomForest with warning—or add a grid |
+| Dependency conflict mentioning `pandas>=3` | AutoGluon Mitra requires pandas below 2.4 | Keep the project lockfile's `pandas>=2.3,<2.4` constraint |
+| LazyPredict model name not in zoo | A rare model wins the shortlist | The project falls back to RandomForest with a warning, or add a grid |
 | Plots blank in headless run | No display | Set `MPLBACKEND=Agg` (as in runbook) |
 | First TabFM run very slow | HF weight download | One-time; subsequent runs use `~/.cache/huggingface` |
 
@@ -667,7 +693,7 @@ Optional: place caches under `data/` (gitignored). Notebooks do not require anyt
 | Different LazyPredict rank metric | Ranking column selection after `lazy.fit` (try Balanced Accuracy) |
 | Alternate retail churn definition | `CUTOFF` / `POST_DAYS` in NB3 **and** re-check class balance gate |
 | Larger TabFM context | `MAX_TABFM_CONTEXT` in NB3 (watch VRAM) |
-| Cost-sensitive threshold | After `predict_proba`, sweep thresholds for max expected utility (not implemented—natural next step) |
+| Cost-sensitive threshold | After `predict_proba`, sweep thresholds for maximum expected utility (not implemented) |
 | Fourth dataset | Copy notebook skeleton; keep split + dual Part1/Part2 + revenue close |
 | CLI wrapper | Add `src/` entrypoint that shells `uv run python notebooks/...` or parameterizes seeds via env vars |
 
@@ -693,7 +719,7 @@ print('device', dev, 'preds', clf.predict(X), 'proba', clf.predict_proba(X).shap
 
 ## 3. For tutorial learners
 
-This section teaches **why** the pipeline looks the way it does. You do not need prior foundation-model experience, but basic supervised learning helps.
+This section explains why the pipeline is structured this way. Basic supervised-learning knowledge helps, but prior foundation-model experience is unnecessary.
 
 ### Core concepts
 
@@ -716,7 +742,7 @@ In real portfolios, leavers are usually the minority (Iranian **15.71%**, Telco 
 
 - **Stratified split** keeps churn rate similar in train and test.  
 - **Fit on train only** for scalers / one-hot encoders.  
-- **No future information** in features—especially critical in notebook 3, where the label uses a future window.
+- Features contain no future information. This is especially important in notebook 3, where the label uses a future window.
 
 #### LazyPredict → "do it properly"
 
@@ -727,7 +753,7 @@ Workflow taught in every notebook:
 1. Screen many algorithms (LazyPredict).  
 2. Name the top 3 explicitly from *this* run's board.  
 3. Re-implement with `RandomizedSearchCV` + stratified CV.  
-4. Produce confusion matrices, ROC, and PR curves—not only a single score.
+4. Produce confusion matrices, ROC curves, and PR curves rather than a single score.
 
 #### What TabFM is (and is not)
 
@@ -754,16 +780,16 @@ proba = clf.predict_proba(X_test)
 
 #### RFM label engineering (notebook 3 only)
 
-Online Retail II is **line-item transactions**, not a churn table.
+Online Retail II contains line-item transactions rather than a churn table.
 
 1. **Clean:** drop cancellations (`Invoice` starting with `C`), missing customers, non-positive quantity/price.  
 2. **Aggregate** to one row per customer before a cutoff date:  
-   - **R**ecency — days since last purchase before cutoff  
-   - **F**requency — distinct invoices  
-   - **M**onetary — sum(Quantity × Price)  
+   - **R**ecency: days since last purchase before cutoff
+   - **F**requency: distinct invoices
+   - **M**onetary: sum(Quantity × Price)
 3. **Label:** churn if the customer has **no** purchase in the 90 days *after* the cutoff.
 
-That label is a **modeling assumption**. A different cutoff is a different study—not "the" truth.
+That label is a modeling assumption. A different cutoff defines a different study.
 
 #### Revenue-at-risk and lift curves
 
@@ -831,8 +857,8 @@ These connect ML scores to **retention operations**, which is the point of the p
 
 ### Conceptual FAQ
 
-**Q: Why not only use TabFM?**  
-A: Classical models are still strong on many tables (see Telco and Retail). Comparing both is the scientific habit; foundation models are not automatically winners.
+**Q: Why use classical models as well as TabFM?**
+A: Classical models remain strong on many tables, including Telco and Retail. Comparing both keeps the evaluation grounded in the dataset rather than assuming a foundation model will win.
 
 **Q: Why F1 for LazyPredict but PR-AUC for tuning?**  
 A: LazyPredict exposes F1 on its board (easy shortlist). Tuning uses PR-AUC because it better matches imbalanced ranking. Final tables report both families of metrics.
@@ -877,9 +903,11 @@ A: Review the **TabFM Non-Commercial License** for weights yourself. This repo's
 
 | Asset | License / terms |
 |-------|-----------------|
-| This repository (notebooks, scripts, docs) | **MIT** — see [`LICENSE`](LICENSE) |
+| This repository (notebooks, scripts, docs) | **MIT**: see [`LICENSE`](LICENSE) |
 | TabFM Python package code | Apache 2.0 (upstream) |
-| TabFM **weights** (`google/tabfm-1.0.0-pytorch`) | **TabFM Non-Commercial License v1.0** — [model card](https://huggingface.co/google/tabfm-1.0.0-pytorch) |
+| TabFM **weights** (`google/tabfm-1.0.0-pytorch`) | **TabFM Non-Commercial License v1.0**: [model card](https://huggingface.co/google/tabfm-1.0.0-pytorch) |
+| Mitra-v2 classifier code and weights | Apache-2.0: [model card](https://huggingface.co/autogluon/mitra-classifier-2) |
+| TimesFM 3.0 weights | TimesFM Non-Commercial License v1.0; not for commercial or production use. [Upstream notice](https://github.com/google-research/timesfm) |
 | UCI Iranian Churn (563) | CC BY 4.0 (via UCI / ucimlrepo) |
 | UCI Online Retail II (502) | CC BY 4.0 (UCI static zip) |
 | IBM Telco sample | IBM's public GitHub sample distribution |
@@ -890,18 +918,19 @@ Nothing in this README is legal advice.
 
 ## Honest limitations
 
-1. **Single stratified holdout** — Metrics are not nested-CV estimates of generalization error (we do use an internal validation fold for thresholds).  
-2. **Threshold optimizes F1, not dollar utility** — Production teams should re-tune for contact cost × success rate × CLV.  
-3. **No uplift modeling** — We do not estimate treatment effect of retention offers.  
-4. **TabFM context subsample on Retail** — Explicit 3000-row cap; may slightly differ from full-context ICL.  
-5. **Engineered retail label** — 67% churn under 90-day inactivity is a definition, not CRM truth; dummy F1 is already high.  
-6. **Hardware dependence** — v2 TabFM.ensemble is heavier; CUDA strongly recommended.  
-7. **Non-commercial TabFM weights** — Review license before client/commercial use.  
-8. **Package API drift risk** — TabFM is young; pin git source carefully (`max_num_rows` incompatible with NNLS ensemble).  
-9. **Cross-dataset leaderboards are invalid** — Different problems; do not average F1 across notebooks.  
-10. **v1 vs v2 protocol** — v2 adds validation and features; revenue-at-risk is not a pure "accuracy" KPI (flag volume moves the sum).  
-11. **v3 vs v2 protocol** — v3 adds hybrid/policy/multi-window; TabFM context may be capped under low free VRAM; net EV uses assumed `p_save` (not measured uplift).  
-12. **Duplicate rows (Iranian EDA noted 300)** — Left as-is for fidelity to the published table.
+1. **Single stratified holdout:** Metrics are not nested-CV estimates of generalization error; an internal validation fold selects thresholds.
+2. **F1 threshold:** Production teams should retune for contact cost, success rate, and CLV rather than F1 alone.
+3. **No uplift modeling:** The project does not estimate the treatment effect of retention offers.
+4. **Retail TabFM context subsample:** The explicit 3,000-row cap can differ slightly from full-context ICL.
+5. **Engineered retail label:** 67% churn under 90-day inactivity is a definition rather than CRM truth; dummy F1 is already high.
+6. **Hardware dependence:** v2 TabFM.ensemble is heavier, so CUDA is strongly recommended.
+7. **Non-commercial TabFM weights:** Review the license before client or commercial use.
+8. **Package API drift:** TabFM is young; pin the git source carefully because `max_num_rows` is incompatible with the NNLS ensemble.
+9. **Cross-dataset leaderboards:** The problems differ, so do not average F1 across notebooks.
+10. **Foundation-model benchmark:** Mitra is zero-shot only, and TimesFM is an exploratory Retail activity-risk signal rather than a calibrated churn model.
+11. **v1 vs v2 protocol:** v2 adds validation and features; revenue at risk is not a pure accuracy KPI because flag volume changes the sum.
+12. **v3 vs v2 protocol:** v3 adds hybrid, policy, and multi-window work. TabFM context may be capped when free VRAM is low; net EV uses an assumed `p_save`, not measured uplift.
+13. **Duplicate rows:** Iranian EDA noted 300 duplicates, which remain for fidelity to the published table.
 ---
 
 ## Quick start (shortest path)
@@ -918,15 +947,15 @@ uv run jupyter lab
 
 ## Contributing & community
 
-- [Contributing guide](CONTRIBUTING.md) — setup for PRs, notebook norms, verification  
-- [Code of Conduct](CODE_OF_CONDUCT.md) — Contributor Covenant v2.1  
-- [Issue templates](.github/ISSUE_TEMPLATE/) — bug, feature, and question forms on GitHub  
+- [Contributing guide](CONTRIBUTING.md): setup for PRs, notebook norms, and verification
+- [Code of Conduct](CODE_OF_CONDUCT.md): Contributor Covenant v2.1
+- [Issue templates](.github/ISSUE_TEMPLATE/): bug, feature, and question forms on GitHub
 
 ## Acknowledgments
 
-- UCI Machine Learning Repository — Iranian Churn (563), Online Retail II (502)  
-- IBM — Telco Customer Churn sample (public GitHub mirror)  
-- Google Research — [TabFM](https://github.com/google-research/tabfm) and the [TabFM announcement](https://research.google/blog/introducing-tabfm-a-zero-shot-foundation-model-for-tabular-data/)  
+- UCI Machine Learning Repository: Iranian Churn (563), Online Retail II (502)
+- IBM: Telco Customer Churn sample (public GitHub mirror)
+- Google Research: [TabFM](https://github.com/google-research/tabfm) and the [TabFM announcement](https://research.google/blog/introducing-tabfm-a-zero-shot-foundation-model-for-tabular-data/)
 
 ---
 

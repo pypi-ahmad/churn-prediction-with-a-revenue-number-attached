@@ -4,10 +4,10 @@ Thanks for your interest in **Churn Prediction with a Revenue Number Attached**.
 
 ## Ways to contribute
 
-- **Bug reports** — notebook failures, install issues, broken data URLs, or incorrect metrics in the README
-- **Documentation** — clearer setup steps, troubleshooting, or explanations of the concepts
-- **Code / notebooks** — reproducibility fixes, clearer EDA, better tests of assumptions, or performance improvements
-- **Ideas** — open an issue first for larger changes, such as new datasets, label definitions, or CLI wrappers
+- Bug reports for notebook failures, installation issues, broken data URLs, or incorrect README metrics
+- Documentation that clarifies setup, troubleshooting, or concepts
+- Code or notebook changes that improve reproducibility, EDA, assumption checks, or performance
+- Ideas for larger changes. Open an issue first for new datasets, label definitions, or CLI wrappers.
 
 ## Before you start
 
@@ -23,7 +23,7 @@ cd churn-prediction-with-a-revenue-number-attached
 
 uv python install 3.13.13
 uv python pin 3.13.13
-uv sync
+uv sync --all-groups
 
 uv run python -m ipykernel install --user \
   --name churn-revenue-project \
@@ -38,6 +38,24 @@ Prefer the project kernel when running notebooks. A GPU is strongly recommended 
 uv run python -c "import tabfm, torch, lazypredict, sklearn; print(tabfm.__version__, torch.cuda.is_available())"
 ```
 
+Run the project checks before opening a pull request:
+
+```bash
+uv run ruff check src main.py
+uv run ty check src
+```
+
+### Foundation-model smoke
+
+The Mitra and TimesFM runner requires CUDA. Confirm the locked environment before running the full benchmark:
+
+```powershell
+uv run --locked python -c "import torch; print(torch.__version__, torch.version.cuda, torch.cuda.is_available())"
+uv run --locked python scripts/run_foundation_benchmarks.py --all --output artifacts/foundation-benchmarks
+```
+
+Do not add `artifacts/` or model caches to commits. A completed run has `artifacts/foundation-benchmarks/metrics.csv`; do not copy results into docs when that file is absent.
+
 ### Re-run a notebook (optional, after meaningful changes)
 
 ```bash
@@ -50,7 +68,7 @@ MPLBACKEND=Agg uv run jupyter nbconvert --to notebook --execute notebooks/01_ira
   --ExecutePreprocessor.timeout=3600
 ```
 
-If you change modeling logic, update **real numbers** in the README only when you have re-run evidence—do not invent metrics.
+If you change modeling logic, update README metrics only with evidence from a fresh run. Do not invent results.
 
 ## Pull request process
 
@@ -85,16 +103,16 @@ Use the **Bug report** issue template. Include:
 
 ## Suggesting features
 
-Use the **Feature request** template. Explain the user problem, not only the solution. For new datasets or label definitions, describe how evaluation and revenue framing should work.
+Use the Feature request template. Explain the user problem and the proposed solution. For new datasets or label definitions, describe how evaluation and revenue framing should work.
 
 ## License and third-party terms
 
-- Contributions to this repository are offered under the project [MIT License](LICENSE).  
-- **TabFM model weights** remain under the upstream non-commercial license—do not contribute weight files or claim commercial clearance.  
-- Datasets retain UCI / IBM upstream terms; do not commit redistributed bulk data unless licensing is clear and intentional.
+- Contributions to this repository are offered under the project [MIT License](LICENSE).
+- TabFM model weights remain under the upstream non-commercial license. Do not contribute weight files or claim commercial clearance.
+- Datasets retain UCI and IBM upstream terms. Do not commit redistributed bulk data unless its licensing is clear and intentional.
 
 ## Questions
 
 Open a **Question** issue if something in the README or notebooks is unclear. Prefer issues over private DMs so answers help others.
 
-Thanks for helping keep the project accurate, reproducible, and clear about its limitations.
+Thank you for helping keep the project accurate and reproducible.
