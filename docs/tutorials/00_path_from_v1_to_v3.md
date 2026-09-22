@@ -1,12 +1,12 @@
 # Learning path: v1 → v2 → v3
 
-The older notebooks remain as the learning baseline. New work lives under `notebooks/v3/` and `docs/tutorials/`.
+The older notebooks remain the learning baseline. New work is in `notebooks/v3/` and `docs/tutorials/`.
 
 | Stage | Location | Goal |
 |-------|----------|------|
-| **v1 / v2 learning** | `notebooks/01_*.ipynb` … `03_*.ipynb` | EDA, LazyPredict, classical tuning, plain/ensemble TabFM, revenue-at-risk |
-| **v3 awesome** | `notebooks/v3/` | Value policies, hybrid TabFM+GBM, multi-window RFM, nested CV, segments |
-| **Concept tutorials** | `docs/tutorials/` | Why each technique exists (read before or after running code) |
+| v1 / v2 learning | `notebooks/01_*.ipynb` … `03_*.ipynb` | EDA, LazyPredict, classical tuning, plain and ensemble TabFM, revenue-at-risk |
+| v3 | `notebooks/v3/` | Value policies, hybrid TabFM+GBM, multi-window RFM, nested CV, and segments |
+| Concept tutorials | `docs/tutorials/` | Explanations for each technique |
 
 ## Suggested order
 
@@ -18,11 +18,11 @@ The older notebooks remain as the learning baseline. New work lives under `noteb
    - Retail: `v3/03_retail_v3_awesome.py`  
 4. Read `02_hybrid_tabfm_gbm.md` and `03_multiwindow_rfm_survival.md` for more detail
 
-## What we did not do
+## Boundaries
 
-- **Edit or delete** `notebooks/01_*` … `03_*` (they remain the tutorial baseline).  
-- Claim v3 always wins every metric (see README scorecards).  
-- Ship an uplift model without campaign outcome data (we approximate with `p_save`).  
+- The project does not edit or delete `notebooks/01_*` … `03_*`; they remain the tutorial baseline.
+- v3 does not win every metric. See the README scorecards.
+- The project does not include an uplift model because campaign outcome data is unavailable; `p_save` is an approximation.
 
 ## How to re-run v3 only
 

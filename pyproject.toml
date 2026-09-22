@@ -3,8 +3,9 @@ name = "churn-prediction-with-a-revenue-number-attached"
 version = "0.1.0"
 description = "Churn prediction notebooks with LazyPredict, Google TabFM, and revenue-at-risk framing"
 readme = "README.md"
-requires-python = ">=3.13.13"
+requires-python = ">=3.13.13,<3.14"
 dependencies = [
+    "autogluon-tabular[mitra]>=1.6",
     "catboost>=1.2.10",
     "ipykernel>=7.3.0",
     "jupyter>=1.1.1",
@@ -17,22 +18,41 @@ dependencies = [
     "openpyxl>=3.1.5",
     "optuna>=4.9.0",
     "packaging>=26.2",
-    "pandas>=3.0.3",
+    "pandas>=2.3,<2.4",
     "requests>=2.34.2",
     "safetensors>=0.8.0",
     "scikit-learn>=1.9.0",
     "seaborn>=0.13.2",
+    "tabarena>=0.1",
     "tabfm[pytorch]",
+    "timesfm[torch]>=3.0,<3.1",
+    "torch>=2.13,<2.14",
     "ucimlrepo>=0.0.7",
     "xgboost>=3.3.0",
 ]
 
 [build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"
+requires = ["uv_build>=0.12.17,<0.13.0"]
+build-backend = "uv_build"
 
-[tool.hatch.build.targets.wheel]
-packages = ["src/churn_revenue"]
+[tool.uv.build-backend]
+module-name = "churn_revenue"
+
+[tool.uv]
+environments = ["sys_platform == 'win32' and platform_machine == 'AMD64'"]
+prerelease = "allow"
 
 [tool.uv.sources]
 tabfm = { git = "https://github.com/google-research/tabfm.git" }
+torch = { index = "pytorch-cu130" }
+
+[[tool.uv.index]]
+name = "pytorch-cu130"
+url = "https://download.pytorch.org/whl/cu130"
+explicit = true
+
+[dependency-groups]
+dev = [
+    "ruff>=0.16.8",
+    "ty>=0.0.83",
+]

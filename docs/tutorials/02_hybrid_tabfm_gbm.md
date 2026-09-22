@@ -1,13 +1,13 @@
 # Tutorial: Hybrid TabFM + gradient boosting
 
-## Why combine them?
+## Why combine the models?
 
 | Model family | Strengths | Weaknesses |
 |--------------|-----------|------------|
-| **GBM** (XGB/LGBM/CatBoost) | Strong on mixed tabular, fast, feature importance | Can miss subtle interactions; needs tuning |
-| **TabFM** | Zero-shot ICL, strong priors from pretraining, mixed types natively | Memory ∝ context rows; different error modes |
+| GBM (XGB/LGBM/CatBoost) | Strong on mixed tabular data, fast, provides feature importance | Can miss subtle interactions and needs tuning |
+| TabFM | Zero-shot ICL, pretrained priors, native support for mixed types | Memory grows with context rows; has different error modes |
 
-When the two models disagree, a **meta-learner** can combine their probabilities more effectively than either model alone.
+When the models disagree, a meta-learner can combine their probabilities.
 
 ## What we implement
 
@@ -22,20 +22,20 @@ On test:
   hybrid_score = Meta.predict_proba([P_gbm_test, P_tabfm_test, product])
 ```
 
-### Why validation stacking (not full OOF for TabFM)?
+### Why use validation stacking instead of full OOF for TabFM?
 
 True out-of-fold TabFM requires refitting context many times (expensive on GPU).  
 v3 uses **validation stacking**: meta is fit only on the validation fold, then frozen for test.  
 
-This is a practical compromise. For a stricter evaluation, use OOF GBM (`oof_predict_proba`) with multi-fold TabFM when the compute budget allows (`src/churn_revenue/hybrid.py` supports OOF for sklearn models).
+This approach limits repeated GPU fitting. For a stricter evaluation, use OOF GBM (`oof_predict_proba`) with multi-fold TabFM when the compute budget allows. `src/churn_revenue/hybrid.py` supports OOF for sklearn models.
 
 ## Why this improves results
 
-1. **Error diversity** — TabFM and trees mis-rank different customers.  
-2. **Calibration blend** — Meta can down-weight an overconfident model.  
-3. **Interaction term** \(p_g \cdot p_t\) — captures “both agree high risk.”  
+1. TabFM and trees mis-rank different customers.
+2. The meta-learner can down-weight an overconfident model.
+3. The interaction term \(p_g \cdot p_t\) captures cases where both models assign high risk.
 
-Typical pattern on Telco-like data: hybrid matches or exceeds the better parent on PR-AUC / F1@tuned threshold.
+On Telco-like data, the hybrid can match or exceed the stronger parent on PR-AUC or F1 at the tuned threshold.
 
 ## How to read notebook outputs
 

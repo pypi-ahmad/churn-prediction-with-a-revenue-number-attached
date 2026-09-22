@@ -2,13 +2,13 @@
 
 ## The business question
 
-Retention teams usually need a different answer: given a **budget**, whom should they call to save the most revenue?
+Retention teams need to decide whom to contact within a fixed budget to protect the most revenue.
 
 F1 balances precision and recall at **one** threshold. It treats every customer equally. In reality:
 
-- A high-value customer at 40% churn risk may be worth more than a low-value customer at 80% risk.  
-- Call centers can only contact **top K%** of the base.  
-- Contacts cost money; false alarms burn budget.
+- A high-value customer at 40% churn risk may be worth more than a low-value customer at 80% risk.
+- Call centers can contact only the top K% of the customer base.
+- Contacts cost money, and false alarms consume budget.
 
 ## What we do in v3
 
@@ -23,7 +23,7 @@ EV_i = \hat{p}_i \cdot V_i \cdot P(\text{save}\mid\text{contact}) - c
 - \(P(\text{save})\): assumed save rate after contact (placeholder until you have uplift data)  
 - \(c\): cost per contact  
 
-**Contact if \(EV_i > 0\)** (or rank by \(EV_i\)).
+Contact customers with \(EV_i > 0\), or rank customers by \(EV_i\).
 
 ### 2. Top-K budget policy
 
@@ -34,7 +34,7 @@ If you can only contact 10% of customers:
 3. On **validation**, sweep K ∈ {5%, 10%, …} and pick K maximizing **net expected value**.  
 4. Freeze K; evaluate once on **test**.
 
-### 3. Why this can improve campaign decisions without raising F1
+### 3. Campaign decisions can improve even when F1 does not
 
 | Outcome | Meaning |
 |---------|---------|
@@ -46,14 +46,14 @@ If you can only contact 10% of customers:
 
 Look for tables named like:
 
-- `top_k_sweep_val` — validation budget sweep  
-- `policy_test` — test metrics for best K and for EV>0  
+- `top_k_sweep_val`: validation budget sweep
+- `policy_test`: test metrics for best K and for EV>0
 
-Compare to the 0.5-threshold F1 from older notebooks: that is a **different objective**.
+Compare these results with the 0.5-threshold F1 in the older notebooks carefully. They measure different objectives.
 
 ## Limitations
 
-- Constant \(P(\text{save})\) is **not** an uplift model. Real save rates vary by segment.  
+- Constant \(P(\text{save})\) is not an uplift model. Real save rates vary by segment.
 - Value columns are not always pure future CLV.  
 - Still no causal estimate of campaign ROI without randomized pilots.
 

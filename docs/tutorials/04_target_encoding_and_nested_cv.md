@@ -2,12 +2,12 @@
 
 ## Target encoding (Telco)
 
-High-cardinality categoricals (`PaymentMethod`, etc.) explode under one-hot or get weak splits.
+High-cardinality categoricals such as `PaymentMethod` create many one-hot columns and can produce weak splits.
 
-**Target encoding** replaces a category with the mean churn rate of that category.  
-**Danger:** if you compute means on the full train set including the row itself, you **leak** the label.
+Target encoding replaces a category with its mean churn rate.
+If the mean includes the row being encoded, the feature leaks the label.
 
-**Fix — out-of-fold (OOF) encoding:**
+Use out-of-fold (OOF) encoding:
 
 1. Split train into K folds.  
 2. For each fold, encode validation rows using means from the **other** folds only.  
@@ -15,17 +15,17 @@ High-cardinality categoricals (`PaymentMethod`, etc.) explode under one-hot or g
 
 Implemented in `OutOfFoldTargetEncoder` (`src/churn_revenue/target_encoding.py`).
 
-## Nested-style / repeated CV
+## Nested-style and repeated CV
 
 A single 20% test set can be lucky. v3 runs **repeated stratified K-fold** on the modeling matrix and reports:
 
 - mean ± std of PR-AUC, ROC-AUC, F1@inner-threshold  
 
-This does not replace the fixed holdout used for final tables. It shows how stable the model class is across splits.
+The repeated-CV results supplement the fixed holdout used for final tables. They show how stable the model class is across splits.
 
 ## Segment reports
 
-Global F1 can hide failure modes:
+Global F1 can hide weak segments:
 
 - Great on month-to-month, weak on two-year contracts  
 - Great on low-value, weak on high Monetary  

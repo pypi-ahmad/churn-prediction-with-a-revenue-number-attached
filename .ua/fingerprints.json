@@ -1,0 +1,2054 @@
+{
+  "version": "1.0.0",
+  "gitCommitHash": "63e30180665a2d75613395fc969582fbe2d0c35e",
+  "generatedAt": "2026-09-22T07:36:11.030Z",
+  "files": {
+    ".github/ISSUE_TEMPLATE/bug_report.yml": {
+      "filePath": ".github/ISSUE_TEMPLATE/bug_report.yml",
+      "contentHash": "2581c81e4db94ca92dcddc8e7d2012d1e4159edb6d3ccfb4b871cf12350c358e",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 78,
+      "hasStructuralAnalysis": true
+    },
+    ".github/ISSUE_TEMPLATE/config.yml": {
+      "filePath": ".github/ISSUE_TEMPLATE/config.yml",
+      "contentHash": "7ec8da4e08cd919b2168a00a6dfbbc12a9e0a6900ecff2e9169ae09ab3738b21",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 6,
+      "hasStructuralAnalysis": true
+    },
+    ".github/ISSUE_TEMPLATE/feature_request.yml": {
+      "filePath": ".github/ISSUE_TEMPLATE/feature_request.yml",
+      "contentHash": "7da7a1593bbdb9eb958f2bf346f7950bf4abcd0ccc6eee9d82976b61ccc626dd",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 52,
+      "hasStructuralAnalysis": true
+    },
+    ".github/ISSUE_TEMPLATE/question.yml": {
+      "filePath": ".github/ISSUE_TEMPLATE/question.yml",
+      "contentHash": "d25896983f73f044dd60e2027306214ff574f93da82d7129762868a9f09cfaa6",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 35,
+      "hasStructuralAnalysis": true
+    },
+    ".python-version": {
+      "filePath": ".python-version",
+      "contentHash": "a90b1125cee77c2f544b9367fcddabbc1fa7afbfa1806e13f925033f292d9780",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 2,
+      "hasStructuralAnalysis": false
+    },
+    ".ua/.understandignore": {
+      "filePath": ".ua/.understandignore",
+      "contentHash": "8983a619e66aa5f0ca43331d7e6bec8696361fadd414a15bc2d3027617b5efbe",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 84,
+      "hasStructuralAnalysis": false
+    },
+    "CODE_OF_CONDUCT.md": {
+      "filePath": "CODE_OF_CONDUCT.md",
+      "contentHash": "411bc21a97a37818a927f4e05b2f176243767ad7c80ee590921012f5563a6818",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 136,
+      "hasStructuralAnalysis": true
+    },
+    "CONTRIBUTING.md": {
+      "filePath": "CONTRIBUTING.md",
+      "contentHash": "000e8c56c77bf3298023d47fa74bdef1bd93ea90d9dbd4c9d531d553cb46ffd1",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 101,
+      "hasStructuralAnalysis": true
+    },
+    "README.md": {
+      "filePath": "README.md",
+      "contentHash": "6bc88aae76cb143358663155c18509e08801a966dcbeadffa0739ffb96246587",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 936,
+      "hasStructuralAnalysis": true
+    },
+    "data/.gitkeep": {
+      "filePath": "data/.gitkeep",
+      "contentHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 1,
+      "hasStructuralAnalysis": false
+    },
+    "docs/tutorials/00_path_from_v1_to_v3.md": {
+      "filePath": "docs/tutorials/00_path_from_v1_to_v3.md",
+      "contentHash": "28795e50e0e57a95412b774c023f292022b0afda74c267dfff565b10b2de453e",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 36,
+      "hasStructuralAnalysis": true
+    },
+    "docs/tutorials/01_why_not_just_f1.md": {
+      "filePath": "docs/tutorials/01_why_not_just_f1.md",
+      "contentHash": "3732ae94c33b3c418bdd893305707921dafa5f124274f379105c3fbc16b75775",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 65,
+      "hasStructuralAnalysis": true
+    },
+    "docs/tutorials/02_hybrid_tabfm_gbm.md": {
+      "filePath": "docs/tutorials/02_hybrid_tabfm_gbm.md",
+      "contentHash": "eab90f96b158bb16adfd18c89a40994814cfc86ac602313c97ddb4ffa5902d28",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 50,
+      "hasStructuralAnalysis": true
+    },
+    "docs/tutorials/03_multiwindow_rfm_survival.md": {
+      "filePath": "docs/tutorials/03_multiwindow_rfm_survival.md",
+      "contentHash": "cafcc590c4dfbbc3d1c2db9ac2fb2f6772ac1cf77836efb56d34023cf6da3380",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 60,
+      "hasStructuralAnalysis": true
+    },
+    "docs/tutorials/04_target_encoding_and_nested_cv.md": {
+      "filePath": "docs/tutorials/04_target_encoding_and_nested_cv.md",
+      "contentHash": "35d95c3d75ebc8cee3c1c54e958ad58df0f84f04a035db37d1aba1c382f82be3",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 41,
+      "hasStructuralAnalysis": true
+    },
+    "main.py": {
+      "filePath": "main.py",
+      "contentHash": "412f8d612529215578a396536b496017916508da34f62e0869e0adef631820c3",
+      "functions": [
+        {
+          "name": "main",
+          "params": [],
+          "exported": true,
+          "lineCount": 2
+        }
+      ],
+      "classes": [],
+      "imports": [],
+      "exports": [
+        "main"
+      ],
+      "totalLines": 7,
+      "hasStructuralAnalysis": true
+    },
+    "notebooks/01_iranian_churn.ipynb": {
+      "filePath": "notebooks/01_iranian_churn.ipynb",
+      "contentHash": "c9b2d99cdc4108c621e65d7301299c44468b887bd2a3b1f9a7a8accbc3d85fcb",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 3847,
+      "hasStructuralAnalysis": false
+    },
+    "notebooks/01_iranian_churn.py": {
+      "filePath": "notebooks/01_iranian_churn.py",
+      "contentHash": "f62dfd1619946117088e9d6958c1a00848c036ea21d49186a7ee72dba60de1ee",
+      "functions": [
+        {
+          "name": "get_test_proba",
+          "params": [
+            "name"
+          ],
+          "returnType": "np.ndarray",
+          "exported": true,
+          "lineCount": 5
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "sys",
+          "specifiers": [
+            "sys"
+          ]
+        },
+        {
+          "source": "warnings",
+          "specifiers": [
+            "warnings"
+          ]
+        },
+        {
+          "source": "numpy",
+          "specifiers": [
+            "np"
+          ]
+        },
+        {
+          "source": "pandas",
+          "specifiers": [
+            "pd"
+          ]
+        },
+        {
+          "source": "matplotlib.pyplot",
+          "specifiers": [
+            "plt"
+          ]
+        },
+        {
+          "source": "seaborn",
+          "specifiers": [
+            "sns"
+          ]
+        },
+        {
+          "source": "sklearn",
+          "specifiers": [
+            "sklearn"
+          ]
+        },
+        {
+          "source": "lazypredict",
+          "specifiers": [
+            "lazypredict"
+          ]
+        },
+        {
+          "source": "tabfm",
+          "specifiers": [
+            "tabfm"
+          ]
+        },
+        {
+          "source": "torch",
+          "specifiers": [
+            "torch"
+          ]
+        },
+        {
+          "source": "ucimlrepo",
+          "specifiers": [
+            "fetch_ucirepo"
+          ]
+        },
+        {
+          "source": "lazypredict.Supervised",
+          "specifiers": [
+            "LazyClassifier"
+          ]
+        },
+        {
+          "source": "sklearn.model_selection",
+          "specifiers": [
+            "train_test_split"
+          ]
+        },
+        {
+          "source": "sklearn.dummy",
+          "specifiers": [
+            "DummyClassifier"
+          ]
+        },
+        {
+          "source": "sklearn.base",
+          "specifiers": [
+            "clone"
+          ]
+        },
+        {
+          "source": "churn_revenue.metrics",
+          "specifiers": [
+            "classification_bundle",
+            "evaluate_scores",
+            "lift_revenue_curve"
+          ]
+        },
+        {
+          "source": "churn_revenue.threshold",
+          "specifiers": [
+            "tune_threshold_f1",
+            "apply_threshold"
+          ]
+        },
+        {
+          "source": "churn_revenue.modeling",
+          "specifiers": [
+            "RANDOM_STATE",
+            "build_boosting_candidates",
+            "resolve_model",
+            "tune_model",
+            "soft_vote_proba",
+            "fit_calibrated_isotonic",
+            "production_classical_stack",
+            "predict_proba_matrix"
+          ]
+        },
+        {
+          "source": "tabfm",
+          "specifiers": [
+            "TabFMClassifier",
+            "tabfm_v1_0_0"
+          ]
+        },
+        {
+          "source": "sklearn.metrics",
+          "specifiers": [
+            "average_precision_score"
+          ]
+        }
+      ],
+      "exports": [
+        "get_test_proba"
+      ],
+      "totalLines": 378,
+      "hasStructuralAnalysis": true
+    },
+    "notebooks/02_telco_churn.ipynb": {
+      "filePath": "notebooks/02_telco_churn.ipynb",
+      "contentHash": "7cc98de1e4602f3042e58f667aae8be1676b521ec5d03b45f1442ee60e77a464",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 3454,
+      "hasStructuralAnalysis": false
+    },
+    "notebooks/02_telco_churn.py": {
+      "filePath": "notebooks/02_telco_churn.py",
+      "contentHash": "16fbea3d8daf456ec0f8c904b91aed7e59dcfaaf367a1ef4370c185100587526",
+      "functions": [
+        {
+          "name": "test_score",
+          "params": [
+            "name"
+          ],
+          "returnType": "np.ndarray",
+          "exported": true,
+          "lineCount": 5
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "sys",
+          "specifiers": [
+            "sys"
+          ]
+        },
+        {
+          "source": "warnings",
+          "specifiers": [
+            "warnings"
+          ]
+        },
+        {
+          "source": "numpy",
+          "specifiers": [
+            "np"
+          ]
+        },
+        {
+          "source": "pandas",
+          "specifiers": [
+            "pd"
+          ]
+        },
+        {
+          "source": "matplotlib.pyplot",
+          "specifiers": [
+            "plt"
+          ]
+        },
+        {
+          "source": "seaborn",
+          "specifiers": [
+            "sns"
+          ]
+        },
+        {
+          "source": "sklearn",
+          "specifiers": [
+            "sklearn"
+          ]
+        },
+        {
+          "source": "lazypredict",
+          "specifiers": [
+            "lazypredict"
+          ]
+        },
+        {
+          "source": "tabfm",
+          "specifiers": [
+            "tabfm"
+          ]
+        },
+        {
+          "source": "torch",
+          "specifiers": [
+            "torch"
+          ]
+        },
+        {
+          "source": "lazypredict.Supervised",
+          "specifiers": [
+            "LazyClassifier"
+          ]
+        },
+        {
+          "source": "sklearn.model_selection",
+          "specifiers": [
+            "train_test_split"
+          ]
+        },
+        {
+          "source": "sklearn.dummy",
+          "specifiers": [
+            "DummyClassifier"
+          ]
+        },
+        {
+          "source": "sklearn.base",
+          "specifiers": [
+            "clone"
+          ]
+        },
+        {
+          "source": "sklearn.preprocessing",
+          "specifiers": [
+            "StandardScaler",
+            "OneHotEncoder"
+          ]
+        },
+        {
+          "source": "sklearn.compose",
+          "specifiers": [
+            "ColumnTransformer"
+          ]
+        },
+        {
+          "source": "sklearn.metrics",
+          "specifiers": [
+            "average_precision_score"
+          ]
+        },
+        {
+          "source": "churn_revenue.metrics",
+          "specifiers": [
+            "classification_bundle",
+            "lift_revenue_curve"
+          ]
+        },
+        {
+          "source": "churn_revenue.threshold",
+          "specifiers": [
+            "tune_threshold_f1",
+            "apply_threshold"
+          ]
+        },
+        {
+          "source": "churn_revenue.modeling",
+          "specifiers": [
+            "RANDOM_STATE",
+            "build_boosting_candidates",
+            "resolve_model",
+            "tune_model",
+            "soft_vote_proba",
+            "fit_calibrated_isotonic",
+            "production_classical_stack",
+            "predict_proba_matrix"
+          ]
+        },
+        {
+          "source": "tabfm",
+          "specifiers": [
+            "TabFMClassifier",
+            "tabfm_v1_0_0"
+          ]
+        }
+      ],
+      "exports": [
+        "test_score"
+      ],
+      "totalLines": 340,
+      "hasStructuralAnalysis": true
+    },
+    "notebooks/03_online_retail_ii_churn.ipynb": {
+      "filePath": "notebooks/03_online_retail_ii_churn.ipynb",
+      "contentHash": "4df3c8f426a9bb47f0288d37f72813cf77bd6fe41d13b21d9063acee56b922bf",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 3387,
+      "hasStructuralAnalysis": false
+    },
+    "notebooks/03_online_retail_ii_churn.py": {
+      "filePath": "notebooks/03_online_retail_ii_churn.py",
+      "contentHash": "bc2c27a4153f946f7f405a08d98638967ec3dd4047c0e8fee0f4c76fc3bf8121",
+      "functions": [
+        {
+          "name": "test_score",
+          "params": [
+            "name"
+          ],
+          "returnType": "np.ndarray",
+          "exported": true,
+          "lineCount": 5
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "io",
+          "specifiers": [
+            "io"
+          ]
+        },
+        {
+          "source": "sys",
+          "specifiers": [
+            "sys"
+          ]
+        },
+        {
+          "source": "zipfile",
+          "specifiers": [
+            "zipfile"
+          ]
+        },
+        {
+          "source": "warnings",
+          "specifiers": [
+            "warnings"
+          ]
+        },
+        {
+          "source": "numpy",
+          "specifiers": [
+            "np"
+          ]
+        },
+        {
+          "source": "pandas",
+          "specifiers": [
+            "pd"
+          ]
+        },
+        {
+          "source": "matplotlib.pyplot",
+          "specifiers": [
+            "plt"
+          ]
+        },
+        {
+          "source": "seaborn",
+          "specifiers": [
+            "sns"
+          ]
+        },
+        {
+          "source": "requests",
+          "specifiers": [
+            "requests"
+          ]
+        },
+        {
+          "source": "sklearn",
+          "specifiers": [
+            "sklearn"
+          ]
+        },
+        {
+          "source": "lazypredict",
+          "specifiers": [
+            "lazypredict"
+          ]
+        },
+        {
+          "source": "tabfm",
+          "specifiers": [
+            "tabfm"
+          ]
+        },
+        {
+          "source": "torch",
+          "specifiers": [
+            "torch"
+          ]
+        },
+        {
+          "source": "lazypredict.Supervised",
+          "specifiers": [
+            "LazyClassifier"
+          ]
+        },
+        {
+          "source": "sklearn.model_selection",
+          "specifiers": [
+            "train_test_split"
+          ]
+        },
+        {
+          "source": "sklearn.dummy",
+          "specifiers": [
+            "DummyClassifier"
+          ]
+        },
+        {
+          "source": "sklearn.base",
+          "specifiers": [
+            "clone"
+          ]
+        },
+        {
+          "source": "sklearn.preprocessing",
+          "specifiers": [
+            "StandardScaler",
+            "OneHotEncoder"
+          ]
+        },
+        {
+          "source": "sklearn.compose",
+          "specifiers": [
+            "ColumnTransformer"
+          ]
+        },
+        {
+          "source": "sklearn.metrics",
+          "specifiers": [
+            "average_precision_score"
+          ]
+        },
+        {
+          "source": "churn_revenue.metrics",
+          "specifiers": [
+            "classification_bundle",
+            "lift_revenue_curve"
+          ]
+        },
+        {
+          "source": "churn_revenue.threshold",
+          "specifiers": [
+            "tune_threshold_f1",
+            "apply_threshold"
+          ]
+        },
+        {
+          "source": "churn_revenue.modeling",
+          "specifiers": [
+            "RANDOM_STATE",
+            "build_boosting_candidates",
+            "resolve_model",
+            "tune_model",
+            "soft_vote_proba",
+            "fit_calibrated_isotonic",
+            "production_classical_stack",
+            "predict_proba_matrix"
+          ]
+        },
+        {
+          "source": "tabfm",
+          "specifiers": [
+            "TabFMClassifier",
+            "tabfm_v1_0_0"
+          ]
+        }
+      ],
+      "exports": [
+        "test_score"
+      ],
+      "totalLines": 398,
+      "hasStructuralAnalysis": true
+    },
+    "notebooks/v3/00_improvement_playbook.ipynb": {
+      "filePath": "notebooks/v3/00_improvement_playbook.ipynb",
+      "contentHash": "ad483fcac01652cd0dbcc82a159d571b3250173d488400cad598aa41c15f459e",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 77,
+      "hasStructuralAnalysis": false
+    },
+    "notebooks/v3/00_improvement_playbook.py": {
+      "filePath": "notebooks/v3/00_improvement_playbook.py",
+      "contentHash": "fc5918c69853bee2429664bf5af011485de889eeebe70c56bbeab788c6600530",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "pathlib",
+          "specifiers": [
+            "Path"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 63,
+      "hasStructuralAnalysis": true
+    },
+    "notebooks/v3/01_iranian_v3_awesome.ipynb": {
+      "filePath": "notebooks/v3/01_iranian_v3_awesome.ipynb",
+      "contentHash": "972c6c0540e1a0f3533001d867455c4e7eb36b3c1bcebaeef0d16cecf14d6a1e",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 361,
+      "hasStructuralAnalysis": false
+    },
+    "notebooks/v3/01_iranian_v3_awesome.py": {
+      "filePath": "notebooks/v3/01_iranian_v3_awesome.py",
+      "contentHash": "a03d9f26c15adcd1095b57ad22c4db09ef8591b48fd1a6bdc53c57e7c072cbd5",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "warnings",
+          "specifiers": [
+            "warnings"
+          ]
+        },
+        {
+          "source": "numpy",
+          "specifiers": [
+            "np"
+          ]
+        },
+        {
+          "source": "pandas",
+          "specifiers": [
+            "pd"
+          ]
+        },
+        {
+          "source": "matplotlib.pyplot",
+          "specifiers": [
+            "plt"
+          ]
+        },
+        {
+          "source": "torch",
+          "specifiers": [
+            "torch"
+          ]
+        },
+        {
+          "source": "ucimlrepo",
+          "specifiers": [
+            "fetch_ucirepo"
+          ]
+        },
+        {
+          "source": "sklearn.model_selection",
+          "specifiers": [
+            "train_test_split"
+          ]
+        },
+        {
+          "source": "sklearn.base",
+          "specifiers": [
+            "clone"
+          ]
+        },
+        {
+          "source": "sklearn.metrics",
+          "specifiers": [
+            "average_precision_score"
+          ]
+        },
+        {
+          "source": "lightgbm",
+          "specifiers": [
+            "LGBMClassifier"
+          ]
+        },
+        {
+          "source": "xgboost",
+          "specifiers": [
+            "XGBClassifier"
+          ]
+        },
+        {
+          "source": "churn_revenue.modeling",
+          "specifiers": [
+            "RANDOM_STATE",
+            "tune_model",
+            "predict_proba_matrix",
+            "build_boosting_candidates"
+          ]
+        },
+        {
+          "source": "churn_revenue.threshold",
+          "specifiers": [
+            "tune_threshold_f1",
+            "apply_threshold"
+          ]
+        },
+        {
+          "source": "churn_revenue.metrics",
+          "specifiers": [
+            "evaluate_scores",
+            "classification_bundle",
+            "lift_revenue_curve"
+          ]
+        },
+        {
+          "source": "churn_revenue.value_policy",
+          "specifiers": [
+            "best_top_k_on_validation",
+            "policy_top_k_fraction",
+            "evaluate_policy",
+            "policy_contact_if_positive_ev"
+          ]
+        },
+        {
+          "source": "churn_revenue.hybrid",
+          "specifiers": [
+            "fit_hybrid_meta",
+            "hybrid_predict_proba"
+          ]
+        },
+        {
+          "source": "churn_revenue.nested_cv",
+          "specifiers": [
+            "repeated_stratified_metrics",
+            "summarize_cv"
+          ]
+        },
+        {
+          "source": "churn_revenue.segment_report",
+          "specifiers": [
+            "segment_metrics"
+          ]
+        },
+        {
+          "source": "tabfm",
+          "specifiers": [
+            "TabFMClassifier",
+            "tabfm_v1_0_0"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 251,
+      "hasStructuralAnalysis": true
+    },
+    "notebooks/v3/02_telco_v3_awesome.ipynb": {
+      "filePath": "notebooks/v3/02_telco_v3_awesome.ipynb",
+      "contentHash": "0d0448ac4435b57297c6fee60edf0f8eb516f0c72e927812b37354cb2de3a1c9",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 450,
+      "hasStructuralAnalysis": false
+    },
+    "notebooks/v3/02_telco_v3_awesome.py": {
+      "filePath": "notebooks/v3/02_telco_v3_awesome.py",
+      "contentHash": "2b0e5a9d328e6b9286cd94637a0ae17a40233300a53c90971639cf8b1bf645c7",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "warnings",
+          "specifiers": [
+            "warnings"
+          ]
+        },
+        {
+          "source": "numpy",
+          "specifiers": [
+            "np"
+          ]
+        },
+        {
+          "source": "pandas",
+          "specifiers": [
+            "pd"
+          ]
+        },
+        {
+          "source": "torch",
+          "specifiers": [
+            "torch"
+          ]
+        },
+        {
+          "source": "sklearn.model_selection",
+          "specifiers": [
+            "train_test_split"
+          ]
+        },
+        {
+          "source": "sklearn.preprocessing",
+          "specifiers": [
+            "StandardScaler"
+          ]
+        },
+        {
+          "source": "sklearn.compose",
+          "specifiers": [
+            "ColumnTransformer"
+          ]
+        },
+        {
+          "source": "sklearn.pipeline",
+          "specifiers": [
+            "Pipeline"
+          ]
+        },
+        {
+          "source": "sklearn.metrics",
+          "specifiers": [
+            "average_precision_score"
+          ]
+        },
+        {
+          "source": "xgboost",
+          "specifiers": [
+            "XGBClassifier"
+          ]
+        },
+        {
+          "source": "catboost",
+          "specifiers": [
+            "CatBoostClassifier"
+          ]
+        },
+        {
+          "source": "churn_revenue.modeling",
+          "specifiers": [
+            "RANDOM_STATE",
+            "tune_model",
+            "predict_proba_matrix"
+          ]
+        },
+        {
+          "source": "churn_revenue.threshold",
+          "specifiers": [
+            "tune_threshold_f1"
+          ]
+        },
+        {
+          "source": "churn_revenue.metrics",
+          "specifiers": [
+            "evaluate_scores",
+            "lift_revenue_curve"
+          ]
+        },
+        {
+          "source": "churn_revenue.target_encoding",
+          "specifiers": [
+            "OutOfFoldTargetEncoder"
+          ]
+        },
+        {
+          "source": "churn_revenue.hybrid",
+          "specifiers": [
+            "fit_hybrid_meta",
+            "hybrid_predict_proba"
+          ]
+        },
+        {
+          "source": "churn_revenue.value_policy",
+          "specifiers": [
+            "best_top_k_on_validation",
+            "policy_top_k_fraction",
+            "evaluate_policy"
+          ]
+        },
+        {
+          "source": "churn_revenue.nested_cv",
+          "specifiers": [
+            "repeated_stratified_metrics",
+            "summarize_cv"
+          ]
+        },
+        {
+          "source": "churn_revenue.segment_report",
+          "specifiers": [
+            "segment_metrics"
+          ]
+        },
+        {
+          "source": "tabfm",
+          "specifiers": [
+            "TabFMClassifier",
+            "tabfm_v1_0_0"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 352,
+      "hasStructuralAnalysis": true
+    },
+    "notebooks/v3/03_retail_v3_awesome.ipynb": {
+      "filePath": "notebooks/v3/03_retail_v3_awesome.ipynb",
+      "contentHash": "854db4dd5b9f4038ef9b1d1b67abe1299c9e8719c073e7acefc2cccd0e4a3f08",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 350,
+      "hasStructuralAnalysis": false
+    },
+    "notebooks/v3/03_retail_v3_awesome.py": {
+      "filePath": "notebooks/v3/03_retail_v3_awesome.py",
+      "contentHash": "089f2a953056f27cff96a6e7429e581177787b7b927b887cf635d6a3575e5a44",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "io",
+          "specifiers": [
+            "io"
+          ]
+        },
+        {
+          "source": "zipfile",
+          "specifiers": [
+            "zipfile"
+          ]
+        },
+        {
+          "source": "warnings",
+          "specifiers": [
+            "warnings"
+          ]
+        },
+        {
+          "source": "numpy",
+          "specifiers": [
+            "np"
+          ]
+        },
+        {
+          "source": "pandas",
+          "specifiers": [
+            "pd"
+          ]
+        },
+        {
+          "source": "requests",
+          "specifiers": [
+            "requests"
+          ]
+        },
+        {
+          "source": "torch",
+          "specifiers": [
+            "torch"
+          ]
+        },
+        {
+          "source": "sklearn.model_selection",
+          "specifiers": [
+            "train_test_split"
+          ]
+        },
+        {
+          "source": "sklearn.preprocessing",
+          "specifiers": [
+            "StandardScaler",
+            "OneHotEncoder"
+          ]
+        },
+        {
+          "source": "sklearn.compose",
+          "specifiers": [
+            "ColumnTransformer"
+          ]
+        },
+        {
+          "source": "sklearn.metrics",
+          "specifiers": [
+            "average_precision_score"
+          ]
+        },
+        {
+          "source": "xgboost",
+          "specifiers": [
+            "XGBClassifier"
+          ]
+        },
+        {
+          "source": "churn_revenue.modeling",
+          "specifiers": [
+            "RANDOM_STATE",
+            "tune_model",
+            "predict_proba_matrix"
+          ]
+        },
+        {
+          "source": "churn_revenue.threshold",
+          "specifiers": [
+            "tune_threshold_f1"
+          ]
+        },
+        {
+          "source": "churn_revenue.metrics",
+          "specifiers": [
+            "evaluate_scores",
+            "lift_revenue_curve"
+          ]
+        },
+        {
+          "source": "churn_revenue.multiwindow_rfm",
+          "specifiers": [
+            "build_customer_features",
+            "hazard_churn_label",
+            "multi_horizon_labels"
+          ]
+        },
+        {
+          "source": "churn_revenue.hybrid",
+          "specifiers": [
+            "fit_hybrid_meta",
+            "hybrid_predict_proba"
+          ]
+        },
+        {
+          "source": "churn_revenue.value_policy",
+          "specifiers": [
+            "best_top_k_on_validation",
+            "policy_top_k_fraction",
+            "evaluate_policy"
+          ]
+        },
+        {
+          "source": "churn_revenue.nested_cv",
+          "specifiers": [
+            "repeated_stratified_metrics",
+            "summarize_cv"
+          ]
+        },
+        {
+          "source": "churn_revenue.segment_report",
+          "specifiers": [
+            "segment_metrics"
+          ]
+        },
+        {
+          "source": "tabfm",
+          "specifiers": [
+            "TabFMClassifier",
+            "tabfm_v1_0_0"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 264,
+      "hasStructuralAnalysis": true
+    },
+    "pyproject.toml": {
+      "filePath": "pyproject.toml",
+      "contentHash": "f0cb7e06599c59e359243b4ed7e4e8a015bd5db79277c1f722d3d1bb9a2cbe8b",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 39,
+      "hasStructuralAnalysis": true
+    },
+    "src/churn_revenue/__init__.py": {
+      "filePath": "src/churn_revenue/__init__.py",
+      "contentHash": "fac1d65372e5baf9c34747f570da7c6bde530011912a5954ccf07eabdc7bc396",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "churn_revenue.metrics",
+          "specifiers": [
+            "classification_bundle",
+            "evaluate_scores",
+            "lift_revenue_curve"
+          ]
+        },
+        {
+          "source": "churn_revenue.threshold",
+          "specifiers": [
+            "tune_threshold_f1",
+            "apply_threshold"
+          ]
+        },
+        {
+          "source": "churn_revenue.modeling",
+          "specifiers": [
+            "RANDOM_STATE",
+            "build_boosting_candidates",
+            "tune_model",
+            "soft_vote_proba",
+            "fit_calibrated_isotonic",
+            "production_classical_stack",
+            "predict_proba_matrix"
+          ]
+        },
+        {
+          "source": "churn_revenue.value_policy",
+          "specifiers": [
+            "expected_contact_value",
+            "policy_top_k_fraction",
+            "evaluate_policy",
+            "sweep_top_k",
+            "best_top_k_on_validation"
+          ]
+        },
+        {
+          "source": "churn_revenue.hybrid",
+          "specifiers": [
+            "oof_predict_proba",
+            "fit_hybrid_meta",
+            "hybrid_predict_proba"
+          ]
+        },
+        {
+          "source": "churn_revenue.target_encoding",
+          "specifiers": [
+            "OutOfFoldTargetEncoder"
+          ]
+        },
+        {
+          "source": "churn_revenue.nested_cv",
+          "specifiers": [
+            "repeated_stratified_metrics",
+            "summarize_cv"
+          ]
+        },
+        {
+          "source": "churn_revenue.segment_report",
+          "specifiers": [
+            "segment_metrics"
+          ]
+        },
+        {
+          "source": "churn_revenue.multiwindow_rfm",
+          "specifiers": [
+            "build_customer_features",
+            "hazard_churn_label",
+            "multi_horizon_labels"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 60,
+      "hasStructuralAnalysis": true
+    },
+    "src/churn_revenue/hybrid.py": {
+      "filePath": "src/churn_revenue/hybrid.py",
+      "contentHash": "5dfd1b6550c5e34835af6e29e6648c3064b2e707fa5aac5e008a8d8c06806b25",
+      "functions": [
+        {
+          "name": "oof_predict_proba",
+          "params": [
+            "estimator",
+            "X",
+            "y",
+            "n_splits",
+            "random_state"
+          ],
+          "returnType": "np.ndarray",
+          "exported": true,
+          "lineCount": 24
+        },
+        {
+          "name": "fit_hybrid_meta",
+          "params": [
+            "p_gbm_oof",
+            "p_tabfm_oof",
+            "y",
+            "random_state"
+          ],
+          "returnType": "LogisticRegression",
+          "exported": true,
+          "lineCount": 22
+        },
+        {
+          "name": "hybrid_predict_proba",
+          "params": [
+            "meta",
+            "p_gbm",
+            "p_tabfm"
+          ],
+          "returnType": "np.ndarray",
+          "exported": true,
+          "lineCount": 14
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "typing",
+          "specifiers": [
+            "Any"
+          ]
+        },
+        {
+          "source": "numpy",
+          "specifiers": [
+            "np"
+          ]
+        },
+        {
+          "source": "sklearn.linear_model",
+          "specifiers": [
+            "LogisticRegression"
+          ]
+        },
+        {
+          "source": "sklearn.model_selection",
+          "specifiers": [
+            "StratifiedKFold"
+          ]
+        },
+        {
+          "source": "sklearn.base",
+          "specifiers": [
+            "clone"
+          ]
+        }
+      ],
+      "exports": [
+        "oof_predict_proba",
+        "fit_hybrid_meta",
+        "hybrid_predict_proba"
+      ],
+      "totalLines": 82,
+      "hasStructuralAnalysis": true
+    },
+    "src/churn_revenue/metrics.py": {
+      "filePath": "src/churn_revenue/metrics.py",
+      "contentHash": "49cf8d78e6957b2d88c5798019a360696b5d01fbaccea36d4a330b8d7c5fe9ef",
+      "functions": [
+        {
+          "name": "evaluate_scores",
+          "params": [
+            "y_true",
+            "y_score",
+            "threshold",
+            "title"
+          ],
+          "returnType": "dict[str, float | str]",
+          "exported": true,
+          "lineCount": 35
+        },
+        {
+          "name": "classification_bundle",
+          "params": [
+            "y_true",
+            "y_pred",
+            "y_proba",
+            "title",
+            "show_plots"
+          ],
+          "returnType": "dict[str, float | str]",
+          "exported": true,
+          "lineCount": 48
+        },
+        {
+          "name": "lift_revenue_curve",
+          "params": [
+            "y_true",
+            "y_score",
+            "revenue",
+            "title",
+            "ylabel",
+            "n_bins"
+          ],
+          "returnType": "float",
+          "exported": true,
+          "lineCount": 35
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "typing",
+          "specifiers": [
+            "Any"
+          ]
+        },
+        {
+          "source": "matplotlib.pyplot",
+          "specifiers": [
+            "plt"
+          ]
+        },
+        {
+          "source": "numpy",
+          "specifiers": [
+            "np"
+          ]
+        },
+        {
+          "source": "seaborn",
+          "specifiers": [
+            "sns"
+          ]
+        },
+        {
+          "source": "sklearn.metrics",
+          "specifiers": [
+            "accuracy_score",
+            "average_precision_score",
+            "brier_score_loss",
+            "classification_report",
+            "confusion_matrix",
+            "f1_score",
+            "log_loss",
+            "precision_score",
+            "recall_score",
+            "roc_auc_score",
+            "PrecisionRecallDisplay",
+            "RocCurveDisplay"
+          ]
+        }
+      ],
+      "exports": [
+        "evaluate_scores",
+        "classification_bundle",
+        "lift_revenue_curve"
+      ],
+      "totalLines": 148,
+      "hasStructuralAnalysis": true
+    },
+    "src/churn_revenue/modeling.py": {
+      "filePath": "src/churn_revenue/modeling.py",
+      "contentHash": "ace3875d38cc14598fff06c6b372670108c6b200d55ee64204fe9d2deecd4c8e",
+      "functions": [
+        {
+          "name": "_pos_weight",
+          "params": [
+            "y"
+          ],
+          "returnType": "float",
+          "exported": true,
+          "lineCount": 5
+        },
+        {
+          "name": "build_boosting_candidates",
+          "params": [
+            "y_train"
+          ],
+          "returnType": "dict[str, tuple[Any, dict[str, Any]]]",
+          "exported": true,
+          "lineCount": 124
+        },
+        {
+          "name": "resolve_model",
+          "params": [
+            "name",
+            "y_train",
+            "zoo"
+          ],
+          "returnType": "tuple[str, Any, dict[str, Any]]",
+          "exported": true,
+          "lineCount": 26
+        },
+        {
+          "name": "tune_model",
+          "params": [
+            "estimator",
+            "param_grid",
+            "X_train",
+            "y_train",
+            "n_iter",
+            "cv_splits",
+            "scoring",
+            "n_jobs"
+          ],
+          "returnType": "Any",
+          "exported": true,
+          "lineCount": 34
+        },
+        {
+          "name": "soft_vote_proba",
+          "params": [
+            "models",
+            "X"
+          ],
+          "returnType": "np.ndarray",
+          "exported": true,
+          "lineCount": 16
+        },
+        {
+          "name": "fit_calibrated_isotonic",
+          "params": [
+            "base_estimator",
+            "X_train",
+            "y_train",
+            "cv"
+          ],
+          "returnType": "Any",
+          "exported": true,
+          "lineCount": 12
+        },
+        {
+          "name": "production_classical_stack",
+          "params": [
+            "base_estimators",
+            "X_train",
+            "y_train"
+          ],
+          "returnType": "Any",
+          "exported": true,
+          "lineCount": 20
+        },
+        {
+          "name": "predict_proba_matrix",
+          "params": [
+            "model",
+            "X"
+          ],
+          "returnType": "np.ndarray",
+          "exported": true,
+          "lineCount": 15
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "typing",
+          "specifiers": [
+            "Any",
+            "Callable"
+          ]
+        },
+        {
+          "source": "numpy",
+          "specifiers": [
+            "np"
+          ]
+        },
+        {
+          "source": "sklearn.calibration",
+          "specifiers": [
+            "CalibratedClassifierCV"
+          ]
+        },
+        {
+          "source": "sklearn.ensemble",
+          "specifiers": [
+            "ExtraTreesClassifier",
+            "HistGradientBoostingClassifier",
+            "RandomForestClassifier",
+            "StackingClassifier"
+          ]
+        },
+        {
+          "source": "sklearn.linear_model",
+          "specifiers": [
+            "LogisticRegression"
+          ]
+        },
+        {
+          "source": "sklearn.model_selection",
+          "specifiers": [
+            "RandomizedSearchCV",
+            "StratifiedKFold"
+          ]
+        },
+        {
+          "source": "sklearn.pipeline",
+          "specifiers": [
+            "Pipeline"
+          ]
+        },
+        {
+          "source": "sklearn.preprocessing",
+          "specifiers": [
+            "StandardScaler"
+          ]
+        },
+        {
+          "source": "lightgbm",
+          "specifiers": [
+            "LGBMClassifier"
+          ]
+        },
+        {
+          "source": "xgboost",
+          "specifiers": [
+            "XGBClassifier"
+          ]
+        }
+      ],
+      "exports": [
+        "_pos_weight",
+        "build_boosting_candidates",
+        "resolve_model",
+        "tune_model",
+        "soft_vote_proba",
+        "fit_calibrated_isotonic",
+        "production_classical_stack",
+        "predict_proba_matrix"
+      ],
+      "totalLines": 307,
+      "hasStructuralAnalysis": true
+    },
+    "src/churn_revenue/multiwindow_rfm.py": {
+      "filePath": "src/churn_revenue/multiwindow_rfm.py",
+      "contentHash": "8afc03075625f6790bf6f581f7a4e9604f07551b494f8d0ac5e2eac5a21b7500",
+      "functions": [
+        {
+          "name": "build_customer_features",
+          "params": [
+            "tx",
+            "cutoff",
+            "customer_col",
+            "date_col",
+            "invoice_col",
+            "stock_col",
+            "qty_col",
+            "revenue_col",
+            "country_col",
+            "windows_days"
+          ],
+          "returnType": "pd.DataFrame",
+          "exported": true,
+          "lineCount": 80
+        },
+        {
+          "name": "hazard_churn_label",
+          "params": [
+            "tx",
+            "customers",
+            "cutoff",
+            "horizon_days",
+            "customer_col",
+            "date_col"
+          ],
+          "returnType": "pd.Series",
+          "exported": true,
+          "lineCount": 19
+        },
+        {
+          "name": "multi_horizon_labels",
+          "params": [
+            "tx",
+            "customers",
+            "cutoff",
+            "horizons",
+            "customer_col",
+            "date_col"
+          ],
+          "returnType": "pd.DataFrame",
+          "exported": true,
+          "lineCount": 21
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "numpy",
+          "specifiers": [
+            "np"
+          ]
+        },
+        {
+          "source": "pandas",
+          "specifiers": [
+            "pd"
+          ]
+        }
+      ],
+      "exports": [
+        "build_customer_features",
+        "hazard_churn_label",
+        "multi_horizon_labels"
+      ],
+      "totalLines": 138,
+      "hasStructuralAnalysis": true
+    },
+    "src/churn_revenue/nested_cv.py": {
+      "filePath": "src/churn_revenue/nested_cv.py",
+      "contentHash": "54f202b26466a5dfaed84e86732c9d35ecbaba42e5c82309d9d6fd19b94d27e3",
+      "functions": [
+        {
+          "name": "repeated_stratified_metrics",
+          "params": [
+            "estimator",
+            "X",
+            "y",
+            "n_splits",
+            "n_repeats",
+            "random_state",
+            "tune_threshold"
+          ],
+          "returnType": "pd.DataFrame",
+          "exported": true,
+          "lineCount": 62
+        },
+        {
+          "name": "summarize_cv",
+          "params": [
+            "df"
+          ],
+          "returnType": "pd.DataFrame",
+          "exported": true,
+          "lineCount": 15
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "typing",
+          "specifiers": [
+            "Any",
+            "Callable"
+          ]
+        },
+        {
+          "source": "numpy",
+          "specifiers": [
+            "np"
+          ]
+        },
+        {
+          "source": "pandas",
+          "specifiers": [
+            "pd"
+          ]
+        },
+        {
+          "source": "sklearn.base",
+          "specifiers": [
+            "clone"
+          ]
+        },
+        {
+          "source": "sklearn.metrics",
+          "specifiers": [
+            "average_precision_score",
+            "f1_score",
+            "roc_auc_score"
+          ]
+        },
+        {
+          "source": "sklearn.model_selection",
+          "specifiers": [
+            "StratifiedKFold"
+          ]
+        },
+        {
+          "source": "churn_revenue.threshold",
+          "specifiers": [
+            "tune_threshold_f1",
+            "apply_threshold"
+          ]
+        }
+      ],
+      "exports": [
+        "repeated_stratified_metrics",
+        "summarize_cv"
+      ],
+      "totalLines": 99,
+      "hasStructuralAnalysis": true
+    },
+    "src/churn_revenue/segment_report.py": {
+      "filePath": "src/churn_revenue/segment_report.py",
+      "contentHash": "dba71df1822fd2db548702bd22042bba70d5835c546a6c718df4e0c3ec4a6374",
+      "functions": [
+        {
+          "name": "segment_metrics",
+          "params": [
+            "y_true",
+            "y_score",
+            "segments",
+            "threshold",
+            "min_count"
+          ],
+          "returnType": "pd.DataFrame",
+          "exported": true,
+          "lineCount": 34
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "numpy",
+          "specifiers": [
+            "np"
+          ]
+        },
+        {
+          "source": "pandas",
+          "specifiers": [
+            "pd"
+          ]
+        },
+        {
+          "source": "sklearn.metrics",
+          "specifiers": [
+            "f1_score",
+            "average_precision_score",
+            "recall_score"
+          ]
+        }
+      ],
+      "exports": [
+        "segment_metrics"
+      ],
+      "totalLines": 44,
+      "hasStructuralAnalysis": true
+    },
+    "src/churn_revenue/target_encoding.py": {
+      "filePath": "src/churn_revenue/target_encoding.py",
+      "contentHash": "9feb3201f6585cddc6ef1c1cb740161be6836dffdb1e4d2cae351e414970d37b",
+      "functions": [],
+      "classes": [
+        {
+          "name": "OutOfFoldTargetEncoder",
+          "methods": [
+            "__init__",
+            "fit",
+            "transform",
+            "fit_transform_oof"
+          ],
+          "properties": [],
+          "exported": true,
+          "lineCount": 92
+        }
+      ],
+      "imports": [
+        {
+          "source": "typing",
+          "specifiers": [
+            "Any"
+          ]
+        },
+        {
+          "source": "numpy",
+          "specifiers": [
+            "np"
+          ]
+        },
+        {
+          "source": "pandas",
+          "specifiers": [
+            "pd"
+          ]
+        },
+        {
+          "source": "sklearn.base",
+          "specifiers": [
+            "BaseEstimator",
+            "TransformerMixin"
+          ]
+        },
+        {
+          "source": "sklearn.model_selection",
+          "specifiers": [
+            "StratifiedKFold"
+          ]
+        }
+      ],
+      "exports": [
+        "OutOfFoldTargetEncoder"
+      ],
+      "totalLines": 110,
+      "hasStructuralAnalysis": true
+    },
+    "src/churn_revenue/threshold.py": {
+      "filePath": "src/churn_revenue/threshold.py",
+      "contentHash": "48f5714cc34558eb4f8e3af3fd3fddc1e0de96c48a51a0743901cda6f450d5fe",
+      "functions": [
+        {
+          "name": "apply_threshold",
+          "params": [
+            "y_score",
+            "threshold"
+          ],
+          "returnType": "np.ndarray",
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "tune_threshold_f1",
+          "params": [
+            "y_true",
+            "y_score",
+            "grid"
+          ],
+          "returnType": "tuple[float, dict[str, float]]",
+          "exported": true,
+          "lineCount": 48
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "typing",
+          "specifiers": [
+            "Any"
+          ]
+        },
+        {
+          "source": "numpy",
+          "specifiers": [
+            "np"
+          ]
+        },
+        {
+          "source": "sklearn.metrics",
+          "specifiers": [
+            "f1_score",
+            "precision_score",
+            "recall_score"
+          ]
+        }
+      ],
+      "exports": [
+        "apply_threshold",
+        "tune_threshold_f1"
+      ],
+      "totalLines": 67,
+      "hasStructuralAnalysis": true
+    },
+    "src/churn_revenue/value_policy.py": {
+      "filePath": "src/churn_revenue/value_policy.py",
+      "contentHash": "bd1091c67d2414bced5c80f61ee079993682745bee50bcfa5e03812f8ddc4a65",
+      "functions": [
+        {
+          "name": "expected_contact_value",
+          "params": [
+            "p_churn",
+            "customer_value",
+            "p_save",
+            "contact_cost"
+          ],
+          "returnType": "np.ndarray",
+          "exported": true,
+          "lineCount": 18
+        },
+        {
+          "name": "policy_contact_if_positive_ev",
+          "params": [
+            "p_churn",
+            "customer_value",
+            "p_save",
+            "contact_cost"
+          ],
+          "returnType": "tuple[np.ndarray, np.ndarray]",
+          "exported": true,
+          "lineCount": 12
+        },
+        {
+          "name": "policy_top_k_fraction",
+          "params": [
+            "scores",
+            "k_fraction"
+          ],
+          "returnType": "np.ndarray",
+          "exported": true,
+          "lineCount": 13
+        },
+        {
+          "name": "evaluate_policy",
+          "params": [
+            "y_true",
+            "contact_mask",
+            "customer_value",
+            "p_save",
+            "contact_cost"
+          ],
+          "returnType": "dict[str, float]",
+          "exported": true,
+          "lineCount": 31
+        },
+        {
+          "name": "sweep_top_k",
+          "params": [
+            "y_true",
+            "scores",
+            "customer_value",
+            "fractions",
+            "p_save",
+            "contact_cost"
+          ],
+          "returnType": "pd.DataFrame",
+          "exported": true,
+          "lineCount": 21
+        },
+        {
+          "name": "best_top_k_on_validation",
+          "params": [
+            "y_val",
+            "scores_val",
+            "value_val",
+            "p_save",
+            "contact_cost"
+          ],
+          "returnType": "tuple[float, pd.DataFrame]",
+          "exported": true,
+          "lineCount": 18
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "typing",
+          "specifiers": [
+            "Any"
+          ]
+        },
+        {
+          "source": "numpy",
+          "specifiers": [
+            "np"
+          ]
+        },
+        {
+          "source": "pandas",
+          "specifiers": [
+            "pd"
+          ]
+        }
+      ],
+      "exports": [
+        "expected_contact_value",
+        "policy_contact_if_positive_ev",
+        "policy_top_k_fraction",
+        "evaluate_policy",
+        "sweep_top_k",
+        "best_top_k_on_validation"
+      ],
+      "totalLines": 139,
+      "hasStructuralAnalysis": true
+    }
+  }
+}

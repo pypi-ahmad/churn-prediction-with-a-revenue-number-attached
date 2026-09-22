@@ -40,3 +40,4 @@ data/**
 
 # CatBoost local training artifacts
 catboost_info/
+artifacts/

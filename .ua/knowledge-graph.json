@@ -1,0 +1,1199 @@
+{
+  "version": "1.0.0",
+  "project": {
+    "name": "churn-prediction-with-a-revenue-number-attached",
+    "languages": [
+      "ipynb",
+      "markdown",
+      "python",
+      "toml",
+      "unknown",
+      "yaml"
+    ],
+    "frameworks": [
+      "scikit-learn",
+      "CatBoost",
+      "XGBoost",
+      "LightGBM"
+    ],
+    "description": "A Python project for churn prediction that attaches customer value and revenue-oriented decision analysis to model outputs.",
+    "analyzedAt": "2026-09-22T07:36:10.507Z",
+    "gitCommitHash": "63e30180665a2d75613395fc969582fbe2d0c35e"
+  },
+  "nodes": [
+    {
+      "id": "config:.github/ISSUE_TEMPLATE/bug_report.yml",
+      "type": "config",
+      "name": "bug_report.yml",
+      "filePath": ".github/ISSUE_TEMPLATE/bug_report.yml",
+      "summary": "config file (yaml, 77 lines).",
+      "tags": [
+        "config",
+        "yaml"
+      ]
+    },
+    {
+      "id": "config:.github/ISSUE_TEMPLATE/config.yml",
+      "type": "config",
+      "name": "config.yml",
+      "filePath": ".github/ISSUE_TEMPLATE/config.yml",
+      "summary": "config file (yaml, 5 lines).",
+      "tags": [
+        "config",
+        "yaml"
+      ]
+    },
+    {
+      "id": "config:.github/ISSUE_TEMPLATE/feature_request.yml",
+      "type": "config",
+      "name": "feature_request.yml",
+      "filePath": ".github/ISSUE_TEMPLATE/feature_request.yml",
+      "summary": "config file (yaml, 51 lines).",
+      "tags": [
+        "config",
+        "yaml"
+      ]
+    },
+    {
+      "id": "config:.github/ISSUE_TEMPLATE/question.yml",
+      "type": "config",
+      "name": "question.yml",
+      "filePath": ".github/ISSUE_TEMPLATE/question.yml",
+      "summary": "config file (yaml, 34 lines).",
+      "tags": [
+        "config",
+        "yaml"
+      ]
+    },
+    {
+      "id": "file:.python-version",
+      "type": "file",
+      "name": ".python-version",
+      "filePath": ".python-version",
+      "summary": "code file (unknown, 1 lines).",
+      "tags": [
+        "code",
+        "unknown"
+      ]
+    },
+    {
+      "id": "file:.ua/.understandignore",
+      "type": "file",
+      "name": ".understandignore",
+      "filePath": ".ua/.understandignore",
+      "summary": "code file (unknown, 83 lines).",
+      "tags": [
+        "code",
+        "unknown"
+      ]
+    },
+    {
+      "id": "document:CODE_OF_CONDUCT.md",
+      "type": "document",
+      "name": "CODE_OF_CONDUCT.md",
+      "filePath": "CODE_OF_CONDUCT.md",
+      "summary": "docs file (markdown, 135 lines).",
+      "tags": [
+        "docs",
+        "markdown"
+      ]
+    },
+    {
+      "id": "document:CONTRIBUTING.md",
+      "type": "document",
+      "name": "CONTRIBUTING.md",
+      "filePath": "CONTRIBUTING.md",
+      "summary": "docs file (markdown, 100 lines).",
+      "tags": [
+        "docs",
+        "markdown"
+      ]
+    },
+    {
+      "id": "document:README.md",
+      "type": "document",
+      "name": "README.md",
+      "filePath": "README.md",
+      "summary": "docs file (markdown, 935 lines).",
+      "tags": [
+        "docs",
+        "markdown"
+      ]
+    },
+    {
+      "id": "file:data/.gitkeep",
+      "type": "file",
+      "name": ".gitkeep",
+      "filePath": "data/.gitkeep",
+      "summary": "code file (unknown, 0 lines).",
+      "tags": [
+        "code",
+        "unknown"
+      ]
+    },
+    {
+      "id": "document:docs/tutorials/00_path_from_v1_to_v3.md",
+      "type": "document",
+      "name": "00_path_from_v1_to_v3.md",
+      "filePath": "docs/tutorials/00_path_from_v1_to_v3.md",
+      "summary": "docs file (markdown, 35 lines).",
+      "tags": [
+        "docs",
+        "markdown"
+      ]
+    },
+    {
+      "id": "document:docs/tutorials/01_why_not_just_f1.md",
+      "type": "document",
+      "name": "01_why_not_just_f1.md",
+      "filePath": "docs/tutorials/01_why_not_just_f1.md",
+      "summary": "docs file (markdown, 64 lines).",
+      "tags": [
+        "docs",
+        "markdown"
+      ]
+    },
+    {
+      "id": "document:docs/tutorials/02_hybrid_tabfm_gbm.md",
+      "type": "document",
+      "name": "02_hybrid_tabfm_gbm.md",
+      "filePath": "docs/tutorials/02_hybrid_tabfm_gbm.md",
+      "summary": "docs file (markdown, 49 lines).",
+      "tags": [
+        "docs",
+        "markdown"
+      ]
+    },
+    {
+      "id": "document:docs/tutorials/03_multiwindow_rfm_survival.md",
+      "type": "document",
+      "name": "03_multiwindow_rfm_survival.md",
+      "filePath": "docs/tutorials/03_multiwindow_rfm_survival.md",
+      "summary": "docs file (markdown, 59 lines).",
+      "tags": [
+        "docs",
+        "markdown"
+      ]
+    },
+    {
+      "id": "document:docs/tutorials/04_target_encoding_and_nested_cv.md",
+      "type": "document",
+      "name": "04_target_encoding_and_nested_cv.md",
+      "filePath": "docs/tutorials/04_target_encoding_and_nested_cv.md",
+      "summary": "docs file (markdown, 40 lines).",
+      "tags": [
+        "docs",
+        "markdown"
+      ]
+    },
+    {
+      "id": "file:main.py",
+      "type": "file",
+      "name": "main.py",
+      "filePath": "main.py",
+      "summary": "code file (python, 6 lines).",
+      "tags": [
+        "code",
+        "python"
+      ]
+    },
+    {
+      "id": "file:notebooks/01_iranian_churn.ipynb",
+      "type": "file",
+      "name": "01_iranian_churn.ipynb",
+      "filePath": "notebooks/01_iranian_churn.ipynb",
+      "summary": "code file (ipynb, 3846 lines).",
+      "tags": [
+        "code",
+        "ipynb"
+      ]
+    },
+    {
+      "id": "file:notebooks/01_iranian_churn.py",
+      "type": "file",
+      "name": "01_iranian_churn.py",
+      "filePath": "notebooks/01_iranian_churn.py",
+      "summary": "code file (python, 377 lines).",
+      "tags": [
+        "code",
+        "python"
+      ]
+    },
+    {
+      "id": "file:notebooks/02_telco_churn.ipynb",
+      "type": "file",
+      "name": "02_telco_churn.ipynb",
+      "filePath": "notebooks/02_telco_churn.ipynb",
+      "summary": "code file (ipynb, 3453 lines).",
+      "tags": [
+        "code",
+        "ipynb"
+      ]
+    },
+    {
+      "id": "file:notebooks/02_telco_churn.py",
+      "type": "file",
+      "name": "02_telco_churn.py",
+      "filePath": "notebooks/02_telco_churn.py",
+      "summary": "code file (python, 339 lines).",
+      "tags": [
+        "code",
+        "python"
+      ]
+    },
+    {
+      "id": "file:notebooks/03_online_retail_ii_churn.ipynb",
+      "type": "file",
+      "name": "03_online_retail_ii_churn.ipynb",
+      "filePath": "notebooks/03_online_retail_ii_churn.ipynb",
+      "summary": "code file (ipynb, 3386 lines).",
+      "tags": [
+        "code",
+        "ipynb"
+      ]
+    },
+    {
+      "id": "file:notebooks/03_online_retail_ii_churn.py",
+      "type": "file",
+      "name": "03_online_retail_ii_churn.py",
+      "filePath": "notebooks/03_online_retail_ii_churn.py",
+      "summary": "code file (python, 397 lines).",
+      "tags": [
+        "code",
+        "python"
+      ]
+    },
+    {
+      "id": "file:notebooks/v3/00_improvement_playbook.ipynb",
+      "type": "file",
+      "name": "00_improvement_playbook.ipynb",
+      "filePath": "notebooks/v3/00_improvement_playbook.ipynb",
+      "summary": "code file (ipynb, 76 lines).",
+      "tags": [
+        "code",
+        "ipynb"
+      ]
+    },
+    {
+      "id": "file:notebooks/v3/00_improvement_playbook.py",
+      "type": "file",
+      "name": "00_improvement_playbook.py",
+      "filePath": "notebooks/v3/00_improvement_playbook.py",
+      "summary": "code file (python, 62 lines).",
+      "tags": [
+        "code",
+        "python"
+      ]
+    },
+    {
+      "id": "file:notebooks/v3/01_iranian_v3_awesome.ipynb",
+      "type": "file",
+      "name": "01_iranian_v3_awesome.ipynb",
+      "filePath": "notebooks/v3/01_iranian_v3_awesome.ipynb",
+      "summary": "code file (ipynb, 360 lines).",
+      "tags": [
+        "code",
+        "ipynb"
+      ]
+    },
+    {
+      "id": "file:notebooks/v3/01_iranian_v3_awesome.py",
+      "type": "file",
+      "name": "01_iranian_v3_awesome.py",
+      "filePath": "notebooks/v3/01_iranian_v3_awesome.py",
+      "summary": "code file (python, 250 lines).",
+      "tags": [
+        "code",
+        "python"
+      ]
+    },
+    {
+      "id": "file:notebooks/v3/02_telco_v3_awesome.ipynb",
+      "type": "file",
+      "name": "02_telco_v3_awesome.ipynb",
+      "filePath": "notebooks/v3/02_telco_v3_awesome.ipynb",
+      "summary": "code file (ipynb, 449 lines).",
+      "tags": [
+        "code",
+        "ipynb"
+      ]
+    },
+    {
+      "id": "file:notebooks/v3/02_telco_v3_awesome.py",
+      "type": "file",
+      "name": "02_telco_v3_awesome.py",
+      "filePath": "notebooks/v3/02_telco_v3_awesome.py",
+      "summary": "code file (python, 351 lines).",
+      "tags": [
+        "code",
+        "python"
+      ]
+    },
+    {
+      "id": "file:notebooks/v3/03_retail_v3_awesome.ipynb",
+      "type": "file",
+      "name": "03_retail_v3_awesome.ipynb",
+      "filePath": "notebooks/v3/03_retail_v3_awesome.ipynb",
+      "summary": "code file (ipynb, 349 lines).",
+      "tags": [
+        "code",
+        "ipynb"
+      ]
+    },
+    {
+      "id": "file:notebooks/v3/03_retail_v3_awesome.py",
+      "type": "file",
+      "name": "03_retail_v3_awesome.py",
+      "filePath": "notebooks/v3/03_retail_v3_awesome.py",
+      "summary": "code file (python, 263 lines).",
+      "tags": [
+        "code",
+        "python"
+      ]
+    },
+    {
+      "id": "config:pyproject.toml",
+      "type": "config",
+      "name": "pyproject.toml",
+      "filePath": "pyproject.toml",
+      "summary": "config file (toml, 38 lines).",
+      "tags": [
+        "config",
+        "toml"
+      ]
+    },
+    {
+      "id": "file:src/churn_revenue/__init__.py",
+      "type": "file",
+      "name": "__init__.py",
+      "filePath": "src/churn_revenue/__init__.py",
+      "summary": "code file (python, 59 lines).",
+      "tags": [
+        "code",
+        "python"
+      ]
+    },
+    {
+      "id": "file:src/churn_revenue/hybrid.py",
+      "type": "file",
+      "name": "hybrid.py",
+      "filePath": "src/churn_revenue/hybrid.py",
+      "summary": "code file (python, 81 lines).",
+      "tags": [
+        "code",
+        "python"
+      ]
+    },
+    {
+      "id": "file:src/churn_revenue/metrics.py",
+      "type": "file",
+      "name": "metrics.py",
+      "filePath": "src/churn_revenue/metrics.py",
+      "summary": "code file (python, 147 lines).",
+      "tags": [
+        "code",
+        "python"
+      ]
+    },
+    {
+      "id": "file:src/churn_revenue/modeling.py",
+      "type": "file",
+      "name": "modeling.py",
+      "filePath": "src/churn_revenue/modeling.py",
+      "summary": "code file (python, 306 lines).",
+      "tags": [
+        "code",
+        "python"
+      ]
+    },
+    {
+      "id": "file:src/churn_revenue/multiwindow_rfm.py",
+      "type": "file",
+      "name": "multiwindow_rfm.py",
+      "filePath": "src/churn_revenue/multiwindow_rfm.py",
+      "summary": "code file (python, 137 lines).",
+      "tags": [
+        "code",
+        "python"
+      ]
+    },
+    {
+      "id": "file:src/churn_revenue/nested_cv.py",
+      "type": "file",
+      "name": "nested_cv.py",
+      "filePath": "src/churn_revenue/nested_cv.py",
+      "summary": "code file (python, 98 lines).",
+      "tags": [
+        "code",
+        "python"
+      ]
+    },
+    {
+      "id": "file:src/churn_revenue/segment_report.py",
+      "type": "file",
+      "name": "segment_report.py",
+      "filePath": "src/churn_revenue/segment_report.py",
+      "summary": "code file (python, 43 lines).",
+      "tags": [
+        "code",
+        "python"
+      ]
+    },
+    {
+      "id": "file:src/churn_revenue/target_encoding.py",
+      "type": "file",
+      "name": "target_encoding.py",
+      "filePath": "src/churn_revenue/target_encoding.py",
+      "summary": "code file (python, 109 lines).",
+      "tags": [
+        "code",
+        "python"
+      ]
+    },
+    {
+      "id": "file:src/churn_revenue/threshold.py",
+      "type": "file",
+      "name": "threshold.py",
+      "filePath": "src/churn_revenue/threshold.py",
+      "summary": "code file (python, 66 lines).",
+      "tags": [
+        "code",
+        "python"
+      ]
+    },
+    {
+      "id": "file:src/churn_revenue/value_policy.py",
+      "type": "file",
+      "name": "value_policy.py",
+      "filePath": "src/churn_revenue/value_policy.py",
+      "summary": "code file (python, 138 lines).",
+      "tags": [
+        "code",
+        "python"
+      ]
+    },
+    {
+      "id": "function:main.py:main",
+      "type": "function",
+      "name": "main",
+      "filePath": "main.py",
+      "summary": "Function main defined in main.py.",
+      "tags": [
+        "function",
+        "python"
+      ]
+    },
+    {
+      "id": "function:notebooks/01_iranian_churn.py:get_test_proba",
+      "type": "function",
+      "name": "get_test_proba",
+      "filePath": "notebooks/01_iranian_churn.py",
+      "summary": "Function get_test_proba defined in notebooks/01_iranian_churn.py.",
+      "tags": [
+        "function",
+        "python"
+      ]
+    },
+    {
+      "id": "function:notebooks/02_telco_churn.py:test_score",
+      "type": "function",
+      "name": "test_score",
+      "filePath": "notebooks/02_telco_churn.py",
+      "summary": "Function test_score defined in notebooks/02_telco_churn.py.",
+      "tags": [
+        "function",
+        "python"
+      ]
+    },
+    {
+      "id": "function:notebooks/03_online_retail_ii_churn.py:test_score",
+      "type": "function",
+      "name": "test_score",
+      "filePath": "notebooks/03_online_retail_ii_churn.py",
+      "summary": "Function test_score defined in notebooks/03_online_retail_ii_churn.py.",
+      "tags": [
+        "function",
+        "python"
+      ]
+    },
+    {
+      "id": "function:src/churn_revenue/hybrid.py:oof_predict_proba",
+      "type": "function",
+      "name": "oof_predict_proba",
+      "filePath": "src/churn_revenue/hybrid.py",
+      "summary": "Function oof_predict_proba defined in src/churn_revenue/hybrid.py.",
+      "tags": [
+        "function",
+        "python"
+      ]
+    },
+    {
+      "id": "function:src/churn_revenue/hybrid.py:fit_hybrid_meta",
+      "type": "function",
+      "name": "fit_hybrid_meta",
+      "filePath": "src/churn_revenue/hybrid.py",
+      "summary": "Function fit_hybrid_meta defined in src/churn_revenue/hybrid.py.",
+      "tags": [
+        "function",
+        "python"
+      ]
+    },
+    {
+      "id": "function:src/churn_revenue/hybrid.py:hybrid_predict_proba",
+      "type": "function",
+      "name": "hybrid_predict_proba",
+      "filePath": "src/churn_revenue/hybrid.py",
+      "summary": "Function hybrid_predict_proba defined in src/churn_revenue/hybrid.py.",
+      "tags": [
+        "function",
+        "python"
+      ]
+    },
+    {
+      "id": "function:src/churn_revenue/metrics.py:evaluate_scores",
+      "type": "function",
+      "name": "evaluate_scores",
+      "filePath": "src/churn_revenue/metrics.py",
+      "summary": "Function evaluate_scores defined in src/churn_revenue/metrics.py.",
+      "tags": [
+        "function",
+        "python"
+      ]
+    },
+    {
+      "id": "function:src/churn_revenue/metrics.py:classification_bundle",
+      "type": "function",
+      "name": "classification_bundle",
+      "filePath": "src/churn_revenue/metrics.py",
+      "summary": "Function classification_bundle defined in src/churn_revenue/metrics.py.",
+      "tags": [
+        "function",
+        "python"
+      ]
+    },
+    {
+      "id": "function:src/churn_revenue/metrics.py:lift_revenue_curve",
+      "type": "function",
+      "name": "lift_revenue_curve",
+      "filePath": "src/churn_revenue/metrics.py",
+      "summary": "Function lift_revenue_curve defined in src/churn_revenue/metrics.py.",
+      "tags": [
+        "function",
+        "python"
+      ]
+    },
+    {
+      "id": "function:src/churn_revenue/modeling.py:_pos_weight",
+      "type": "function",
+      "name": "_pos_weight",
+      "filePath": "src/churn_revenue/modeling.py",
+      "summary": "Function _pos_weight defined in src/churn_revenue/modeling.py.",
+      "tags": [
+        "function",
+        "python"
+      ]
+    },
+    {
+      "id": "function:src/churn_revenue/modeling.py:build_boosting_candidates",
+      "type": "function",
+      "name": "build_boosting_candidates",
+      "filePath": "src/churn_revenue/modeling.py",
+      "summary": "Function build_boosting_candidates defined in src/churn_revenue/modeling.py.",
+      "tags": [
+        "function",
+        "python"
+      ]
+    },
+    {
+      "id": "function:src/churn_revenue/modeling.py:resolve_model",
+      "type": "function",
+      "name": "resolve_model",
+      "filePath": "src/churn_revenue/modeling.py",
+      "summary": "Function resolve_model defined in src/churn_revenue/modeling.py.",
+      "tags": [
+        "function",
+        "python"
+      ]
+    },
+    {
+      "id": "function:src/churn_revenue/modeling.py:tune_model",
+      "type": "function",
+      "name": "tune_model",
+      "filePath": "src/churn_revenue/modeling.py",
+      "summary": "Function tune_model defined in src/churn_revenue/modeling.py.",
+      "tags": [
+        "function",
+        "python"
+      ]
+    },
+    {
+      "id": "function:src/churn_revenue/modeling.py:soft_vote_proba",
+      "type": "function",
+      "name": "soft_vote_proba",
+      "filePath": "src/churn_revenue/modeling.py",
+      "summary": "Function soft_vote_proba defined in src/churn_revenue/modeling.py.",
+      "tags": [
+        "function",
+        "python"
+      ]
+    },
+    {
+      "id": "function:src/churn_revenue/modeling.py:fit_calibrated_isotonic",
+      "type": "function",
+      "name": "fit_calibrated_isotonic",
+      "filePath": "src/churn_revenue/modeling.py",
+      "summary": "Function fit_calibrated_isotonic defined in src/churn_revenue/modeling.py.",
+      "tags": [
+        "function",
+        "python"
+      ]
+    },
+    {
+      "id": "function:src/churn_revenue/modeling.py:production_classical_stack",
+      "type": "function",
+      "name": "production_classical_stack",
+      "filePath": "src/churn_revenue/modeling.py",
+      "summary": "Function production_classical_stack defined in src/churn_revenue/modeling.py.",
+      "tags": [
+        "function",
+        "python"
+      ]
+    },
+    {
+      "id": "function:src/churn_revenue/modeling.py:predict_proba_matrix",
+      "type": "function",
+      "name": "predict_proba_matrix",
+      "filePath": "src/churn_revenue/modeling.py",
+      "summary": "Function predict_proba_matrix defined in src/churn_revenue/modeling.py.",
+      "tags": [
+        "function",
+        "python"
+      ]
+    },
+    {
+      "id": "function:src/churn_revenue/multiwindow_rfm.py:build_customer_features",
+      "type": "function",
+      "name": "build_customer_features",
+      "filePath": "src/churn_revenue/multiwindow_rfm.py",
+      "summary": "Function build_customer_features defined in src/churn_revenue/multiwindow_rfm.py.",
+      "tags": [
+        "function",
+        "python"
+      ]
+    },
+    {
+      "id": "function:src/churn_revenue/multiwindow_rfm.py:hazard_churn_label",
+      "type": "function",
+      "name": "hazard_churn_label",
+      "filePath": "src/churn_revenue/multiwindow_rfm.py",
+      "summary": "Function hazard_churn_label defined in src/churn_revenue/multiwindow_rfm.py.",
+      "tags": [
+        "function",
+        "python"
+      ]
+    },
+    {
+      "id": "function:src/churn_revenue/multiwindow_rfm.py:multi_horizon_labels",
+      "type": "function",
+      "name": "multi_horizon_labels",
+      "filePath": "src/churn_revenue/multiwindow_rfm.py",
+      "summary": "Function multi_horizon_labels defined in src/churn_revenue/multiwindow_rfm.py.",
+      "tags": [
+        "function",
+        "python"
+      ]
+    },
+    {
+      "id": "function:src/churn_revenue/nested_cv.py:repeated_stratified_metrics",
+      "type": "function",
+      "name": "repeated_stratified_metrics",
+      "filePath": "src/churn_revenue/nested_cv.py",
+      "summary": "Function repeated_stratified_metrics defined in src/churn_revenue/nested_cv.py.",
+      "tags": [
+        "function",
+        "python"
+      ]
+    },
+    {
+      "id": "function:src/churn_revenue/nested_cv.py:summarize_cv",
+      "type": "function",
+      "name": "summarize_cv",
+      "filePath": "src/churn_revenue/nested_cv.py",
+      "summary": "Function summarize_cv defined in src/churn_revenue/nested_cv.py.",
+      "tags": [
+        "function",
+        "python"
+      ]
+    },
+    {
+      "id": "function:src/churn_revenue/segment_report.py:segment_metrics",
+      "type": "function",
+      "name": "segment_metrics",
+      "filePath": "src/churn_revenue/segment_report.py",
+      "summary": "Function segment_metrics defined in src/churn_revenue/segment_report.py.",
+      "tags": [
+        "function",
+        "python"
+      ]
+    },
+    {
+      "id": "function:src/churn_revenue/threshold.py:apply_threshold",
+      "type": "function",
+      "name": "apply_threshold",
+      "filePath": "src/churn_revenue/threshold.py",
+      "summary": "Function apply_threshold defined in src/churn_revenue/threshold.py.",
+      "tags": [
+        "function",
+        "python"
+      ]
+    },
+    {
+      "id": "function:src/churn_revenue/threshold.py:tune_threshold_f1",
+      "type": "function",
+      "name": "tune_threshold_f1",
+      "filePath": "src/churn_revenue/threshold.py",
+      "summary": "Function tune_threshold_f1 defined in src/churn_revenue/threshold.py.",
+      "tags": [
+        "function",
+        "python"
+      ]
+    },
+    {
+      "id": "function:src/churn_revenue/value_policy.py:expected_contact_value",
+      "type": "function",
+      "name": "expected_contact_value",
+      "filePath": "src/churn_revenue/value_policy.py",
+      "summary": "Function expected_contact_value defined in src/churn_revenue/value_policy.py.",
+      "tags": [
+        "function",
+        "python"
+      ]
+    },
+    {
+      "id": "function:src/churn_revenue/value_policy.py:policy_contact_if_positive_ev",
+      "type": "function",
+      "name": "policy_contact_if_positive_ev",
+      "filePath": "src/churn_revenue/value_policy.py",
+      "summary": "Function policy_contact_if_positive_ev defined in src/churn_revenue/value_policy.py.",
+      "tags": [
+        "function",
+        "python"
+      ]
+    },
+    {
+      "id": "function:src/churn_revenue/value_policy.py:policy_top_k_fraction",
+      "type": "function",
+      "name": "policy_top_k_fraction",
+      "filePath": "src/churn_revenue/value_policy.py",
+      "summary": "Function policy_top_k_fraction defined in src/churn_revenue/value_policy.py.",
+      "tags": [
+        "function",
+        "python"
+      ]
+    },
+    {
+      "id": "function:src/churn_revenue/value_policy.py:evaluate_policy",
+      "type": "function",
+      "name": "evaluate_policy",
+      "filePath": "src/churn_revenue/value_policy.py",
+      "summary": "Function evaluate_policy defined in src/churn_revenue/value_policy.py.",
+      "tags": [
+        "function",
+        "python"
+      ]
+    },
+    {
+      "id": "function:src/churn_revenue/value_policy.py:sweep_top_k",
+      "type": "function",
+      "name": "sweep_top_k",
+      "filePath": "src/churn_revenue/value_policy.py",
+      "summary": "Function sweep_top_k defined in src/churn_revenue/value_policy.py.",
+      "tags": [
+        "function",
+        "python"
+      ]
+    },
+    {
+      "id": "function:src/churn_revenue/value_policy.py:best_top_k_on_validation",
+      "type": "function",
+      "name": "best_top_k_on_validation",
+      "filePath": "src/churn_revenue/value_policy.py",
+      "summary": "Function best_top_k_on_validation defined in src/churn_revenue/value_policy.py.",
+      "tags": [
+        "function",
+        "python"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:src/churn_revenue/__init__.py",
+      "target": "file:src/churn_revenue/hybrid.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/churn_revenue/__init__.py",
+      "target": "file:src/churn_revenue/metrics.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/churn_revenue/__init__.py",
+      "target": "file:src/churn_revenue/modeling.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/churn_revenue/__init__.py",
+      "target": "file:src/churn_revenue/multiwindow_rfm.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/churn_revenue/__init__.py",
+      "target": "file:src/churn_revenue/nested_cv.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/churn_revenue/__init__.py",
+      "target": "file:src/churn_revenue/segment_report.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/churn_revenue/__init__.py",
+      "target": "file:src/churn_revenue/target_encoding.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/churn_revenue/__init__.py",
+      "target": "file:src/churn_revenue/threshold.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/churn_revenue/__init__.py",
+      "target": "file:src/churn_revenue/value_policy.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/churn_revenue/nested_cv.py",
+      "target": "file:src/churn_revenue/threshold.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:main.py",
+      "target": "function:main.py:main",
+      "type": "contains",
+      "weight": 1
+    },
+    {
+      "source": "file:notebooks/01_iranian_churn.py",
+      "target": "function:notebooks/01_iranian_churn.py:get_test_proba",
+      "type": "contains",
+      "weight": 1
+    },
+    {
+      "source": "file:notebooks/02_telco_churn.py",
+      "target": "function:notebooks/02_telco_churn.py:test_score",
+      "type": "contains",
+      "weight": 1
+    },
+    {
+      "source": "file:notebooks/03_online_retail_ii_churn.py",
+      "target": "function:notebooks/03_online_retail_ii_churn.py:test_score",
+      "type": "contains",
+      "weight": 1
+    },
+    {
+      "source": "file:src/churn_revenue/hybrid.py",
+      "target": "function:src/churn_revenue/hybrid.py:oof_predict_proba",
+      "type": "contains",
+      "weight": 1
+    },
+    {
+      "source": "file:src/churn_revenue/hybrid.py",
+      "target": "function:src/churn_revenue/hybrid.py:fit_hybrid_meta",
+      "type": "contains",
+      "weight": 1
+    },
+    {
+      "source": "file:src/churn_revenue/hybrid.py",
+      "target": "function:src/churn_revenue/hybrid.py:hybrid_predict_proba",
+      "type": "contains",
+      "weight": 1
+    },
+    {
+      "source": "file:src/churn_revenue/metrics.py",
+      "target": "function:src/churn_revenue/metrics.py:evaluate_scores",
+      "type": "contains",
+      "weight": 1
+    },
+    {
+      "source": "file:src/churn_revenue/metrics.py",
+      "target": "function:src/churn_revenue/metrics.py:classification_bundle",
+      "type": "contains",
+      "weight": 1
+    },
+    {
+      "source": "file:src/churn_revenue/metrics.py",
+      "target": "function:src/churn_revenue/metrics.py:lift_revenue_curve",
+      "type": "contains",
+      "weight": 1
+    },
+    {
+      "source": "file:src/churn_revenue/modeling.py",
+      "target": "function:src/churn_revenue/modeling.py:_pos_weight",
+      "type": "contains",
+      "weight": 1
+    },
+    {
+      "source": "file:src/churn_revenue/modeling.py",
+      "target": "function:src/churn_revenue/modeling.py:build_boosting_candidates",
+      "type": "contains",
+      "weight": 1
+    },
+    {
+      "source": "file:src/churn_revenue/modeling.py",
+      "target": "function:src/churn_revenue/modeling.py:resolve_model",
+      "type": "contains",
+      "weight": 1
+    },
+    {
+      "source": "file:src/churn_revenue/modeling.py",
+      "target": "function:src/churn_revenue/modeling.py:tune_model",
+      "type": "contains",
+      "weight": 1
+    },
+    {
+      "source": "file:src/churn_revenue/modeling.py",
+      "target": "function:src/churn_revenue/modeling.py:soft_vote_proba",
+      "type": "contains",
+      "weight": 1
+    },
+    {
+      "source": "file:src/churn_revenue/modeling.py",
+      "target": "function:src/churn_revenue/modeling.py:fit_calibrated_isotonic",
+      "type": "contains",
+      "weight": 1
+    },
+    {
+      "source": "file:src/churn_revenue/modeling.py",
+      "target": "function:src/churn_revenue/modeling.py:production_classical_stack",
+      "type": "contains",
+      "weight": 1
+    },
+    {
+      "source": "file:src/churn_revenue/modeling.py",
+      "target": "function:src/churn_revenue/modeling.py:predict_proba_matrix",
+      "type": "contains",
+      "weight": 1
+    },
+    {
+      "source": "file:src/churn_revenue/multiwindow_rfm.py",
+      "target": "function:src/churn_revenue/multiwindow_rfm.py:build_customer_features",
+      "type": "contains",
+      "weight": 1
+    },
+    {
+      "source": "file:src/churn_revenue/multiwindow_rfm.py",
+      "target": "function:src/churn_revenue/multiwindow_rfm.py:hazard_churn_label",
+      "type": "contains",
+      "weight": 1
+    },
+    {
+      "source": "file:src/churn_revenue/multiwindow_rfm.py",
+      "target": "function:src/churn_revenue/multiwindow_rfm.py:multi_horizon_labels",
+      "type": "contains",
+      "weight": 1
+    },
+    {
+      "source": "file:src/churn_revenue/nested_cv.py",
+      "target": "function:src/churn_revenue/nested_cv.py:repeated_stratified_metrics",
+      "type": "contains",
+      "weight": 1
+    },
+    {
+      "source": "file:src/churn_revenue/nested_cv.py",
+      "target": "function:src/churn_revenue/nested_cv.py:summarize_cv",
+      "type": "contains",
+      "weight": 1
+    },
+    {
+      "source": "file:src/churn_revenue/segment_report.py",
+      "target": "function:src/churn_revenue/segment_report.py:segment_metrics",
+      "type": "contains",
+      "weight": 1
+    },
+    {
+      "source": "file:src/churn_revenue/threshold.py",
+      "target": "function:src/churn_revenue/threshold.py:apply_threshold",
+      "type": "contains",
+      "weight": 1
+    },
+    {
+      "source": "file:src/churn_revenue/threshold.py",
+      "target": "function:src/churn_revenue/threshold.py:tune_threshold_f1",
+      "type": "contains",
+      "weight": 1
+    },
+    {
+      "source": "file:src/churn_revenue/value_policy.py",
+      "target": "function:src/churn_revenue/value_policy.py:expected_contact_value",
+      "type": "contains",
+      "weight": 1
+    },
+    {
+      "source": "file:src/churn_revenue/value_policy.py",
+      "target": "function:src/churn_revenue/value_policy.py:policy_contact_if_positive_ev",
+      "type": "contains",
+      "weight": 1
+    },
+    {
+      "source": "file:src/churn_revenue/value_policy.py",
+      "target": "function:src/churn_revenue/value_policy.py:policy_top_k_fraction",
+      "type": "contains",
+      "weight": 1
+    },
+    {
+      "source": "file:src/churn_revenue/value_policy.py",
+      "target": "function:src/churn_revenue/value_policy.py:evaluate_policy",
+      "type": "contains",
+      "weight": 1
+    },
+    {
+      "source": "file:src/churn_revenue/value_policy.py",
+      "target": "function:src/churn_revenue/value_policy.py:sweep_top_k",
+      "type": "contains",
+      "weight": 1
+    },
+    {
+      "source": "file:src/churn_revenue/value_policy.py",
+      "target": "function:src/churn_revenue/value_policy.py:best_top_k_on_validation",
+      "type": "contains",
+      "weight": 1
+    }
+  ],
+  "layers": [
+    {
+      "id": "layer:documentation",
+      "name": "Documentation",
+      "description": "Project README, contribution guidance, and tutorials.",
+      "nodeIds": [
+        "document:CODE_OF_CONDUCT.md",
+        "document:CONTRIBUTING.md",
+        "document:README.md",
+        "document:docs/tutorials/00_path_from_v1_to_v3.md",
+        "document:docs/tutorials/01_why_not_just_f1.md",
+        "document:docs/tutorials/02_hybrid_tabfm_gbm.md",
+        "document:docs/tutorials/03_multiwindow_rfm_survival.md",
+        "document:docs/tutorials/04_target_encoding_and_nested_cv.md"
+      ]
+    },
+    {
+      "id": "layer:configuration",
+      "name": "Configuration",
+      "description": "Project and workflow configuration files.",
+      "nodeIds": [
+        "config:.github/ISSUE_TEMPLATE/bug_report.yml",
+        "config:.github/ISSUE_TEMPLATE/config.yml",
+        "config:.github/ISSUE_TEMPLATE/feature_request.yml",
+        "config:.github/ISSUE_TEMPLATE/question.yml",
+        "config:pyproject.toml"
+      ]
+    },
+    {
+      "id": "layer:application",
+      "name": "Application and analysis",
+      "description": "Python source code and notebooks implementing churn and revenue analysis.",
+      "nodeIds": [
+        "file:.python-version",
+        "file:.ua/.understandignore",
+        "file:data/.gitkeep",
+        "file:main.py",
+        "file:notebooks/01_iranian_churn.ipynb",
+        "file:notebooks/01_iranian_churn.py",
+        "file:notebooks/02_telco_churn.ipynb",
+        "file:notebooks/02_telco_churn.py",
+        "file:notebooks/03_online_retail_ii_churn.ipynb",
+        "file:notebooks/03_online_retail_ii_churn.py",
+        "file:notebooks/v3/00_improvement_playbook.ipynb",
+        "file:notebooks/v3/00_improvement_playbook.py",
+        "file:notebooks/v3/01_iranian_v3_awesome.ipynb",
+        "file:notebooks/v3/01_iranian_v3_awesome.py",
+        "file:notebooks/v3/02_telco_v3_awesome.ipynb",
+        "file:notebooks/v3/02_telco_v3_awesome.py",
+        "file:notebooks/v3/03_retail_v3_awesome.ipynb",
+        "file:notebooks/v3/03_retail_v3_awesome.py",
+        "file:src/churn_revenue/__init__.py",
+        "file:src/churn_revenue/hybrid.py",
+        "file:src/churn_revenue/metrics.py",
+        "file:src/churn_revenue/modeling.py",
+        "file:src/churn_revenue/multiwindow_rfm.py",
+        "file:src/churn_revenue/nested_cv.py",
+        "file:src/churn_revenue/segment_report.py",
+        "file:src/churn_revenue/target_encoding.py",
+        "file:src/churn_revenue/threshold.py",
+        "file:src/churn_revenue/value_policy.py"
+      ]
+    }
+  ],
+  "tour": [
+    {
+      "order": 1,
+      "title": "Project Overview",
+      "description": "Start with the README to understand the churn and revenue analysis goals.",
+      "nodeIds": [
+        "document:README.md"
+      ]
+    },
+    {
+      "order": 2,
+      "title": "Core Python Package",
+      "description": "Inspect the source package for metrics, modeling, feature engineering, and value policy logic.",
+      "nodeIds": [
+        "file:src/churn_revenue/__init__.py",
+        "file:src/churn_revenue/hybrid.py",
+        "file:src/churn_revenue/metrics.py",
+        "file:src/churn_revenue/modeling.py",
+        "file:src/churn_revenue/multiwindow_rfm.py",
+        "file:src/churn_revenue/nested_cv.py",
+        "file:src/churn_revenue/segment_report.py",
+        "file:src/churn_revenue/target_encoding.py",
+        "file:src/churn_revenue/threshold.py",
+        "file:src/churn_revenue/value_policy.py"
+      ]
+    },
+    {
+      "order": 3,
+      "title": "Experiments and Tutorials",
+      "description": "Review notebooks and tutorial documents for dataset-specific workflows and methodology.",
+      "nodeIds": [
+        "document:docs/tutorials/00_path_from_v1_to_v3.md",
+        "document:docs/tutorials/01_why_not_just_f1.md",
+        "document:docs/tutorials/02_hybrid_tabfm_gbm.md",
+        "document:docs/tutorials/03_multiwindow_rfm_survival.md",
+        "document:docs/tutorials/04_target_encoding_and_nested_cv.md",
+        "file:notebooks/01_iranian_churn.ipynb",
+        "file:notebooks/01_iranian_churn.py",
+        "file:notebooks/02_telco_churn.ipynb",
+        "file:notebooks/02_telco_churn.py",
+        "file:notebooks/03_online_retail_ii_churn.ipynb",
+        "file:notebooks/03_online_retail_ii_churn.py",
+        "file:notebooks/v3/00_improvement_playbook.ipynb",
+        "file:notebooks/v3/00_improvement_playbook.py",
+        "file:notebooks/v3/01_iranian_v3_awesome.ipynb",
+        "file:notebooks/v3/01_iranian_v3_awesome.py",
+        "file:notebooks/v3/02_telco_v3_awesome.ipynb",
+        "file:notebooks/v3/02_telco_v3_awesome.py",
+        "file:notebooks/v3/03_retail_v3_awesome.ipynb",
+        "file:notebooks/v3/03_retail_v3_awesome.py"
+      ]
+    }
+  ]
+}

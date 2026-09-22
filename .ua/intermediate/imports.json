@@ -1,0 +1,63 @@
+{
+  "scriptCompleted": true,
+  "stats": {
+    "filesScanned": 41,
+    "filesWithImports": 2,
+    "totalEdges": 10
+  },
+  "importMap": {
+    ".github/ISSUE_TEMPLATE/bug_report.yml": [],
+    ".github/ISSUE_TEMPLATE/config.yml": [],
+    ".github/ISSUE_TEMPLATE/feature_request.yml": [],
+    ".github/ISSUE_TEMPLATE/question.yml": [],
+    ".python-version": [],
+    ".ua/.understandignore": [],
+    "CODE_OF_CONDUCT.md": [],
+    "CONTRIBUTING.md": [],
+    "README.md": [],
+    "data/.gitkeep": [],
+    "docs/tutorials/00_path_from_v1_to_v3.md": [],
+    "docs/tutorials/01_why_not_just_f1.md": [],
+    "docs/tutorials/02_hybrid_tabfm_gbm.md": [],
+    "docs/tutorials/03_multiwindow_rfm_survival.md": [],
+    "docs/tutorials/04_target_encoding_and_nested_cv.md": [],
+    "main.py": [],
+    "notebooks/01_iranian_churn.ipynb": [],
+    "notebooks/01_iranian_churn.py": [],
+    "notebooks/02_telco_churn.ipynb": [],
+    "notebooks/02_telco_churn.py": [],
+    "notebooks/03_online_retail_ii_churn.ipynb": [],
+    "notebooks/03_online_retail_ii_churn.py": [],
+    "notebooks/v3/00_improvement_playbook.ipynb": [],
+    "notebooks/v3/00_improvement_playbook.py": [],
+    "notebooks/v3/01_iranian_v3_awesome.ipynb": [],
+    "notebooks/v3/01_iranian_v3_awesome.py": [],
+    "notebooks/v3/02_telco_v3_awesome.ipynb": [],
+    "notebooks/v3/02_telco_v3_awesome.py": [],
+    "notebooks/v3/03_retail_v3_awesome.ipynb": [],
+    "notebooks/v3/03_retail_v3_awesome.py": [],
+    "pyproject.toml": [],
+    "src/churn_revenue/__init__.py": [
+      "src/churn_revenue/hybrid.py",
+      "src/churn_revenue/metrics.py",
+      "src/churn_revenue/modeling.py",
+      "src/churn_revenue/multiwindow_rfm.py",
+      "src/churn_revenue/nested_cv.py",
+      "src/churn_revenue/segment_report.py",
+      "src/churn_revenue/target_encoding.py",
+      "src/churn_revenue/threshold.py",
+      "src/churn_revenue/value_policy.py"
+    ],
+    "src/churn_revenue/hybrid.py": [],
+    "src/churn_revenue/metrics.py": [],
+    "src/churn_revenue/modeling.py": [],
+    "src/churn_revenue/multiwindow_rfm.py": [],
+    "src/churn_revenue/nested_cv.py": [
+      "src/churn_revenue/threshold.py"
+    ],
+    "src/churn_revenue/segment_report.py": [],
+    "src/churn_revenue/target_encoding.py": [],
+    "src/churn_revenue/threshold.py": [],
+    "src/churn_revenue/value_policy.py": []
+  }
+}
