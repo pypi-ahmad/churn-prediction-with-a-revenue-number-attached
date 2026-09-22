@@ -1,0 +1,210 @@
+{
+  "projectRoot": "D:\\AI\\Github\\churn-prediction-with-a-revenue-number-attached",
+  "files": [
+    {
+      "path": ".github/ISSUE_TEMPLATE/bug_report.yml",
+      "language": "yaml",
+      "fileCategory": "config"
+    },
+    {
+      "path": ".github/ISSUE_TEMPLATE/config.yml",
+      "language": "yaml",
+      "fileCategory": "config"
+    },
+    {
+      "path": ".github/ISSUE_TEMPLATE/feature_request.yml",
+      "language": "yaml",
+      "fileCategory": "config"
+    },
+    {
+      "path": ".github/ISSUE_TEMPLATE/question.yml",
+      "language": "yaml",
+      "fileCategory": "config"
+    },
+    {
+      "path": ".python-version",
+      "language": "unknown",
+      "fileCategory": "code"
+    },
+    {
+      "path": ".ua/.understandignore",
+      "language": "unknown",
+      "fileCategory": "code"
+    },
+    {
+      "path": "CODE_OF_CONDUCT.md",
+      "language": "markdown",
+      "fileCategory": "docs"
+    },
+    {
+      "path": "CONTRIBUTING.md",
+      "language": "markdown",
+      "fileCategory": "docs"
+    },
+    {
+      "path": "README.md",
+      "language": "markdown",
+      "fileCategory": "docs"
+    },
+    {
+      "path": "data/.gitkeep",
+      "language": "unknown",
+      "fileCategory": "code"
+    },
+    {
+      "path": "docs/tutorials/00_path_from_v1_to_v3.md",
+      "language": "markdown",
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/tutorials/01_why_not_just_f1.md",
+      "language": "markdown",
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/tutorials/02_hybrid_tabfm_gbm.md",
+      "language": "markdown",
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/tutorials/03_multiwindow_rfm_survival.md",
+      "language": "markdown",
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/tutorials/04_target_encoding_and_nested_cv.md",
+      "language": "markdown",
+      "fileCategory": "docs"
+    },
+    {
+      "path": "main.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "notebooks/01_iranian_churn.ipynb",
+      "language": "ipynb",
+      "fileCategory": "code"
+    },
+    {
+      "path": "notebooks/01_iranian_churn.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "notebooks/02_telco_churn.ipynb",
+      "language": "ipynb",
+      "fileCategory": "code"
+    },
+    {
+      "path": "notebooks/02_telco_churn.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "notebooks/03_online_retail_ii_churn.ipynb",
+      "language": "ipynb",
+      "fileCategory": "code"
+    },
+    {
+      "path": "notebooks/03_online_retail_ii_churn.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "notebooks/v3/00_improvement_playbook.ipynb",
+      "language": "ipynb",
+      "fileCategory": "code"
+    },
+    {
+      "path": "notebooks/v3/00_improvement_playbook.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "notebooks/v3/01_iranian_v3_awesome.ipynb",
+      "language": "ipynb",
+      "fileCategory": "code"
+    },
+    {
+      "path": "notebooks/v3/01_iranian_v3_awesome.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "notebooks/v3/02_telco_v3_awesome.ipynb",
+      "language": "ipynb",
+      "fileCategory": "code"
+    },
+    {
+      "path": "notebooks/v3/02_telco_v3_awesome.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "notebooks/v3/03_retail_v3_awesome.ipynb",
+      "language": "ipynb",
+      "fileCategory": "code"
+    },
+    {
+      "path": "notebooks/v3/03_retail_v3_awesome.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "pyproject.toml",
+      "language": "toml",
+      "fileCategory": "config"
+    },
+    {
+      "path": "src/churn_revenue/__init__.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/churn_revenue/hybrid.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/churn_revenue/metrics.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/churn_revenue/modeling.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/churn_revenue/multiwindow_rfm.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/churn_revenue/nested_cv.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/churn_revenue/segment_report.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/churn_revenue/target_encoding.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/churn_revenue/threshold.py",
+      "language": "python",
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/churn_revenue/value_policy.py",
+      "language": "python",
+      "fileCategory": "code"
+    }
+  ]
+}
