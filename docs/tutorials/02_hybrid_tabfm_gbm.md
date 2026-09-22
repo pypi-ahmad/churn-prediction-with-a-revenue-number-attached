@@ -7,7 +7,7 @@
 | **GBM** (XGB/LGBM/CatBoost) | Strong on mixed tabular, fast, feature importance | Can miss subtle interactions; needs tuning |
 | **TabFM** | Zero-shot ICL, strong priors from pretraining, mixed types natively | Memory ∝ context rows; different error modes |
 
-When two strong models disagree, a **meta-learner** on their probabilities often beats both.
+When the two models disagree, a **meta-learner** can combine their probabilities more effectively than either model alone.
 
 ## What we implement
 
@@ -27,7 +27,7 @@ On test:
 True out-of-fold TabFM requires refitting context many times (expensive on GPU).  
 v3 uses **validation stacking**: meta is fit only on the validation fold, then frozen for test.  
 
-This is a standard practical compromise. For research-grade purity, use OOF GBM (`oof_predict_proba`) + multi-fold TabFM when budget allows (`src/churn_revenue/hybrid.py` supports OOF for sklearn models).
+This is a practical compromise. For a stricter evaluation, use OOF GBM (`oof_predict_proba`) with multi-fold TabFM when the compute budget allows (`src/churn_revenue/hybrid.py` supports OOF for sklearn models).
 
 ## Why this improves results
 

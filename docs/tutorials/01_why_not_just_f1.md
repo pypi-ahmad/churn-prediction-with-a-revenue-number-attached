@@ -2,8 +2,7 @@
 
 ## The business question
 
-Retention teams do not ask: “What is your F1?”  
-They ask: “Given a **budget**, whom do we call so we save the most revenue?”
+Retention teams usually need a different answer: given a **budget**, whom should they call to save the most revenue?
 
 F1 balances precision and recall at **one** threshold. It treats every customer equally. In reality:
 
@@ -35,7 +34,7 @@ If you can only contact 10% of customers:
 3. On **validation**, sweep K ∈ {5%, 10%, …} and pick K maximizing **net expected value**.  
 4. Freeze K; evaluate once on **test**.
 
-### 3. Why this improves “awesome” without always raising F1
+### 3. Why this can improve campaign decisions without raising F1
 
 | Outcome | Meaning |
 |---------|---------|
@@ -52,7 +51,7 @@ Look for tables named like:
 
 Compare to the 0.5-threshold F1 from older notebooks: that is a **different objective**.
 
-## Limitations (honest)
+## Limitations
 
 - Constant \(P(\text{save})\) is **not** an uplift model. Real save rates vary by segment.  
 - Value columns are not always pure future CLV.  

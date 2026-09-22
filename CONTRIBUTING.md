@@ -1,13 +1,13 @@
 # Contributing
 
-Thanks for your interest in **Churn Prediction with a Revenue Number Attached**. This is a tutorial / portfolio project: three Jupyter notebooks that predict churn, compare classical models with Google TabFM, and attach a revenue figure to at-risk customers.
+Thanks for your interest in **Churn Prediction with a Revenue Number Attached**. This tutorial and portfolio project uses three Jupyter notebooks to predict churn, compare classical models with Google TabFM, and attach a revenue figure to at-risk customers.
 
 ## Ways to contribute
 
-- **Bug reports** — notebook failures, install issues, broken data URLs, wrong metrics in the README  
-- **Documentation** — clearer setup steps, troubleshooting, conceptual explanations  
-- **Code / notebooks** — reproducibility fixes, clearer EDA, better tests of assumptions, performance improvements  
-- **Ideas** — open an issue first for larger changes (new datasets, different label definitions, CLI wrappers)
+- **Bug reports** — notebook failures, install issues, broken data URLs, or incorrect metrics in the README
+- **Documentation** — clearer setup steps, troubleshooting, or explanations of the concepts
+- **Code / notebooks** — reproducibility fixes, clearer EDA, better tests of assumptions, or performance improvements
+- **Ideas** — open an issue first for larger changes, such as new datasets, label definitions, or CLI wrappers
 
 ## Before you start
 
@@ -97,4 +97,4 @@ Use the **Feature request** template. Explain the user problem, not only the sol
 
 Open a **Question** issue if something in the README or notebooks is unclear. Prefer issues over private DMs so answers help others.
 
-Thanks for helping keep this project accurate, reproducible, and honest about limitations.
+Thanks for helping keep the project accurate, reproducible, and clear about its limitations.

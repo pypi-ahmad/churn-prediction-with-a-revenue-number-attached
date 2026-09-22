@@ -2,12 +2,12 @@
 
 ## The problem with a single RFM snapshot
 
-Classic RFM uses one Recency, one Frequency, one Monetary over the whole history before a cutoff. That **throws away dynamics**:
+Classic RFM uses one Recency, one Frequency, and one Monetary value over the full history before a cutoff. That loses changes over time:
 
 - A customer active every week for 2 years who went silent for 20 days  
 - vs someone who bought once 20 days ago  
 
-…can share similar Recency but very different risk.
+These customers can have similar Recency values but very different risk.
 
 ## Multi-window features
 
@@ -51,7 +51,7 @@ A full survival model (Cox, Weibull AFT) is a natural extension; multi-window RF
 | Gap statistics | Encodes regularity of buying |
 | Multi-horizon tables | Shows label sensitivity (honest science) |
 
-If 30d and 120d rates differ wildly, you learn the business definition matters more than the model class.
+Large differences between the 30d and 120d rates show how much the business definition affects the result.
 
 ## Code map
 

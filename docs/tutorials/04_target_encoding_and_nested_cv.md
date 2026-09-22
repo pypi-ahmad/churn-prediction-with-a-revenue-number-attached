@@ -15,14 +15,13 @@ High-cardinality categoricals (`PaymentMethod`, etc.) explode under one-hot or g
 
 Implemented in `OutOfFoldTargetEncoder` (`src/churn_revenue/target_encoding.py`).
 
-## Nested / repeated CV
+## Nested-style / repeated CV
 
 A single 20% test set can be lucky. v3 runs **repeated stratified K-fold** on the modeling matrix and reports:
 
 - mean ± std of PR-AUC, ROC-AUC, F1@inner-threshold  
 
-This does not replace the fixed holdout used for final tables; it answers:  
-“How stable is this model class?”
+This does not replace the fixed holdout used for final tables. It shows how stable the model class is across splits.
 
 ## Segment reports
 
@@ -32,7 +31,7 @@ Global F1 can hide failure modes:
 - Great on low-value, weak on high Monetary  
 
 v3 prints metrics by segment (Contract, tenure band, value quartile).  
-**Action:** if high-value segment recall is low, lower threshold or add features for that segment.
+If recall is low for a high-value segment, lower the threshold or add features for that segment.
 
 ## Code map
 
