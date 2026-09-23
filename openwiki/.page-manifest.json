@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "pages": {
+    "/openwiki/architecture/repository-systems.md": {
+      "pageVersion": "sha256:9779174bf1882a68e01bb14fd531313dfffc7315ce5308712a6b624760600eb1",
+      "completedBy": "codex",
+      "completedRunId": "92ea10ec-33a4-402b-bc1a-cac4e7ca9622",
+      "gitHead": "fc4c0f2cf510dbbb81b7d0f8dc2d20247798447b",
+      "sourceFingerprint": "sha256:d3ad227b16e6911a665994294b1951dacc69f60879e4bd1df4a5c46c9b2c32bf"
+    },
+    "/openwiki/architecture/shared-churn-primitives.md": {
+      "pageVersion": "sha256:3d3e97082bd0462fbe8ea1076e6549ff40256ad11b73608cab180399edb20fbd",
+      "completedBy": "codex",
+      "completedRunId": "92ea10ec-33a4-402b-bc1a-cac4e7ca9622",
+      "gitHead": "fc4c0f2cf510dbbb81b7d0f8dc2d20247798447b",
+      "sourceFingerprint": "sha256:d3ad227b16e6911a665994294b1951dacc69f60879e4bd1df4a5c46c9b2c32bf"
+    },
+    "/openwiki/operations/development-verification.md": {
+      "pageVersion": "sha256:8b9ef62e2490b212f7e939342a2f993db4c35743b757c359eaf8772c749a5edd",
+      "completedBy": "codex",
+      "completedRunId": "92ea10ec-33a4-402b-bc1a-cac4e7ca9622",
+      "gitHead": "fc4c0f2cf510dbbb81b7d0f8dc2d20247798447b",
+      "sourceFingerprint": "sha256:d3ad227b16e6911a665994294b1951dacc69f60879e4bd1df4a5c46c9b2c32bf"
+    },
+    "/openwiki/quickstart.md": {
+      "pageVersion": "sha256:4d0ea7c43aa8ad40f9160ee7ee880e131ad8989661ec3179990d0eb946fadea5",
+      "completedBy": "codex",
+      "completedRunId": "92ea10ec-33a4-402b-bc1a-cac4e7ca9622",
+      "gitHead": "fc4c0f2cf510dbbb81b7d0f8dc2d20247798447b",
+      "sourceFingerprint": "sha256:d3ad227b16e6911a665994294b1951dacc69f60879e4bd1df4a5c46c9b2c32bf"
+    },
+    "/openwiki/workflows/foundation-model-benchmark.md": {
+      "pageVersion": "sha256:4392b57c035d2b130d0a1680111b20b43f73ce88e187e28eda4abe291aebb04e",
+      "completedBy": "codex",
+      "completedRunId": "92ea10ec-33a4-402b-bc1a-cac4e7ca9622",
+      "gitHead": "fc4c0f2cf510dbbb81b7d0f8dc2d20247798447b",
+      "sourceFingerprint": "sha256:d3ad227b16e6911a665994294b1951dacc69f60879e4bd1df4a5c46c9b2c32bf"
+    },
+    "/openwiki/workflows/notebook-generations.md": {
+      "pageVersion": "sha256:06db1f748ff8bb71ed73078862080e07cd06d4670106a932d8ad41943eac6e8c",
+      "completedBy": "codex",
+      "completedRunId": "92ea10ec-33a4-402b-bc1a-cac4e7ca9622",
+      "gitHead": "fc4c0f2cf510dbbb81b7d0f8dc2d20247798447b",
+      "sourceFingerprint": "sha256:d3ad227b16e6911a665994294b1951dacc69f60879e4bd1df4a5c46c9b2c32bf"
+    }
+  }
+}

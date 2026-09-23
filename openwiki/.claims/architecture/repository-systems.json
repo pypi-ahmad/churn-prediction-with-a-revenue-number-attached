@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:9779174bf1882a68e01bb14fd531313dfffc7315ce5308712a6b624760600eb1",
+  "claims": [
+    {
+      "id": "claim_50e5368b5ee342a7a761ae93f20caa24",
+      "statement": "The repository's primary churn experiments are notebook workflows: the README groups learning/production baselines under notebooks, v3 under notebooks/v3, and the benchmark under scripts, while root main.py only prints a greeting.",
+      "evidence": [
+        {
+          "resource": "repo://README.md#L43-L53",
+          "version": "repo-lines-v1:sha256:b1caab3795fd2477ed2ed60bca1a784d42115def21c607c6a7480efce97bb2a0:eyJzZWxlY3RlZExpbmVDb3VudCI6MTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjJmMWFkYzMxYjk1ZTllMGIzMWM2ZGYxZWNkZDg0NTI3ZmY0ZTQ4NzhmZWZhYjE1ZDNjMjllNmFhMThmMTkwNTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjdlYjcwMjU3NTkzZGEwNmY2ODJhM2RkZGE1NGE5ZDI2MGQ0ZmM1MTRmNjQ1MjM3ZjVjYTc0YjA4ZjhkYTYxYTYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjgwZjE2ZjNmYmY3YjRiMWI1OTgxZGYwYjEzYjU5Y2E3YTM2OWYyOTc4ZGFjNWY2MjJhZDdjZWNmOGY1NzE4YzUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjFmMzY5NzI1OGU3OWNiMGQyNWU4ODM1NDdkN2U2MjA3ODgyNTc5MzU5NjQ3OWVjNWNiYThlZGYyNjVmZTc4MTQifQ"
+        },
+        {
+          "resource": "repo://main.py#L1-L6",
+          "version": "repo-lines-v1:sha256:412f8d612529215578a396536b496017916508da34f62e0869e0adef631820c3:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiY2M1Yjk0ODQ3YzEwNTNhNmYwZGRiMjAwNzY3ZmEwMDY0MmFlZGUxNGYxZTBmMGE0MjJmMmZhYzg0YzZkMjZmMSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMDVlNWRlZjZjYzY3YzgyN2RmODM2MDYyMWQ0MWFiZGU2NzQxOWE1MGJiMjAxZjU4MTM4ZWVhOGYxYWE2OWNlMSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjAsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_89cc73cd93fc42d1821718f7621c5c30",
+      "statement": "The churn_revenue package initializer exposes shared APIs across classical modeling, evaluation and thresholds, value policies, hybrid scores, target encoding, repeated CV, segment reports, and retail feature/label construction.",
+      "evidence": [
+        {
+          "resource": "repo://src/churn_revenue/__init__.py#L1-L29",
+          "version": "repo-lines-v1:sha256:643df9aee3620ae6a7f75f59319adba01ba0cb905a32c520bcdac6301dc1f2da:eyJzZWxlY3RlZExpbmVDb3VudCI6MjksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVmMDE1YzNjMTdkNWNkMjMwYThjYjU0ZTJlZTdiMjIzYjdiYzRjNDUzMjc3MGFmOTUzMmM2OTM5ZDM5ZWE1N2YiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjliMzllMDIyZTBkODU0MTIwMDAzZDc5MGMyOGI3NTk2MmVkZDMwMzc1NmQ1MTMzM2RmNzQ1Y2ZiODZlYTExY2UiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjE2YjRhYmIyMGViYWQ1YTE5YWViMDJhYTBkNGU0YzEyM2M2ZWNmOTBhYWFhOGI1ODliOTlkMGEyYTQ4YjgzNTMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_55732e3273394d30a036753605b257f1",
+      "statement": "The v3 workflows are additive: the README says the earlier notebooks remain intact and places v3 work in notebooks/v3, tutorials, and extra shared modules.",
+      "evidence": [
+        {
+          "resource": "repo://README.md#L307-L334",
+          "version": "repo-lines-v1:sha256:28151f2e6d19e39426ac61fe31518ededf2d0826a318711ad0efdacedc4448fe:eyJzZWxlY3RlZExpbmVDb3VudCI6MjgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImM3ZWE1ZjNjMDQwNjkyODI0MmJlOWExZDM4NDc0ZGVjNzNlZjNmZTRmNmYwYjY0NTI1NDBmNjgzM2U5ZWRhMmQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjdlYzU2OGVhZGRjYzQ4NDAyNmYxZTMyYWYyMmM3NWYzODUzNjJjZjJjNWMxZGQ5NjhjMDU5MmY1NzE5NTgzMzAiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjgzZTBkZWY4NzU1MDBhNGNkZDJmZjE5ZmY4NzE4ZWY3MjBlMWY3YjE0OWExNDRiNmJiMWQ3ZDI0MTZiZmUzODciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImJjYjhiNGVlOTUwYjU3MmE5ZjQ5ZTg4OTMwOTYyMGIyODViZjhmZGY4YTYwMjE5NDA4YzU5ZWE1NTA3N2NkZGEifQ"
+        },
+        {
+          "resource": "repo://notebooks/v3/01_iranian_v3_awesome.py#L14-L29",
+          "version": "repo-lines-v1:sha256:ba781972a876bf3dfe876ad98f913236c35ca721c26a9d1a892344eae0fe5a3d:eyJzZWxlY3RlZExpbmVDb3VudCI6MTYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjlmYjBiNDgyNTZkNjgzMWRkODIxNTQ2ZGQ4NGQyYzUyYmM2NTM5ZmVmYTgzZWE5ZjMwOWExMmJhMWUzZWNlN2UiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjdlYjcwMjU3NTkzZGEwNmY2ODJhM2RkZGE1NGE5ZDI2MGQ0ZmM1MTRmNjQ1MjM3ZjVjYTc0YjA4ZjhkYTYxYTYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjkzYmFiMGZhZjZjYzBkYzA2ZjNhNzYyYWQxMjZiZDBmNzZlZjUwZTJmNmFlOWNjN2NlZThiN2I5YTM2MjBjZTMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImU0MjkxMGRjNjgyM2U1NTVjYTMzODViYmUzZjY4M2E5NTFhODRmYjQ4NzEyNWUxNjI5ZWUzYWU1YTAxMjVkODgifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_26042e626a6a40518bbe5d4b7232c5a0",
+      "statement": "The foundation-model benchmark is a separate CLI workflow that requires --all, accepts an output directory, and writes its completed metrics and run metadata after its evaluation phases.",
+      "evidence": [
+        {
+          "resource": "repo://docs/foundation-model-benchmark.md#L19-L29",
+          "version": "repo-lines-v1:sha256:0314b222f44c2cd1dc58e2be32ff30cfabd02939e64f60cc8784826b9f49450d:eyJzZWxlY3RlZExpbmVDb3VudCI6MTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjY4OTNlNDQ5YjY4YjFlZDc3MjQ5Yjc5YjA2NmQwZjVmZTM2OGMwNDZmYmQwNWM5MThmNGEyMDkxZmQ5MTRiNzAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjY0M2Q1OGE0MTQ1YzVjODkxNDNjZjVlYjVkNWU5OTczZTlhZjQ2YWU3MmIxYWE1MmExNTExYjg1NzEzNmI2Y2YiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjM0MjU5ZWUzYTQ0YmIzZWU2MmVjZmJiMzJlYWM2NDg2M2Q4NGExNWIwMmNiZDkwYzA5NWIxZjRlNWYwNGZkMjgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjVkYzlhNzM1MmM2ZGI1NzcxNmRiZmU0Yzg1NDJlNjQyODAyM2JmMWUzZTQ5ZjIxYjgzNGI2MDZhMzgxMWIyYWUifQ"
+        },
+        {
+          "resource": "repo://docs/foundation-model-benchmark.md#L54-L65",
+          "version": "repo-lines-v1:sha256:77aa5c40b79f49f24b6c774f0ae372bd010b58d2be46a9a56b6d0df5910d7bed:eyJzZWxlY3RlZExpbmVDb3VudCI6MTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImM4Yzg3MTJlZDUxMWE5MjgwMTVmY2Y0OWMwNWIyMjMxZjU5ZDc3ZDZlMTRlMjRlMzE0NmIwY2I0MjI3MDExZTYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijg0NDc4NWI2Y2I5MTcyOWU1M2RmMWM5MWViMWRhZjkzOWJkMWQ1NWE2YzY0YjZjM2NjZWFiZTQ4ZjM3Mzg0YzkiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjI2MDFmNjk1NTU0OWEyODdiODRmY2ZkMjM4MWIyNWI2MDA2NTE1ODc5YjYxNjA2N2UxNDI4MmZjZGY0YzcwMDYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjBjNjk1M2FlMmMyYzVmZDMzMTc4ODg5N2IyNDU5NGI5MDA4OThhYThmYWQ4NjFiZTFkY2FhOGI4YzRhMDVkZTEifQ"
+        },
+        {
+          "resource": "repo://scripts/run_foundation_benchmarks.py#L101-L131",
+          "version": "repo-lines-v1:sha256:c9b0cf1403da20ca424fc323a08d79f8561245084368143582d02211842b58d7:eyJzZWxlY3RlZExpbmVDb3VudCI6MzEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjU3NTg1M2VjNmExYzc1ZjdmYjc1M2I5ODQ0NTc4NDgyMmFjZThjMDZiOGU1MjQ2MWJhZDk4MWI0Njk1NzY0MmMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjA1ZTVkZWY2Y2M2N2M4MjdkZjgzNjA2MjFkNDFhYmRlNjc0MTlhNTBiYjIwMWY1ODEzOGVlYThmMWFhNjljZTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjE3ZTY2NDgzMmE2NzQwNGEzMjEzNzBhN2EwNWVhZmNlMTQ0ZGI4OWQ1ZWZiYzEzZTdmNGUwNWYyMGQ2MzQ3ZjAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.5.2",
+    "at": "2026-09-23T14:20:45.468Z"
+  }
+}

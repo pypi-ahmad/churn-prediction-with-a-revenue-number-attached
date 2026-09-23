@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:06db1f748ff8bb71ed73078862080e07cd06d4670106a932d8ad41943eac6e8c",
+  "claims": [
+    {
+      "id": "claim_6f9babd699ca4decb630f5260d2b2cc0",
+      "statement": "The README pairs Jupytext percent-format Python sources with the neighboring executed notebooks and identifies the Python files as useful for script debugging.",
+      "evidence": [
+        {
+          "resource": "repo://README.md#L75-L75",
+          "version": "repo-lines-v1:sha256:15bc3a101faa591e3c42f27e0e2d8a971d07666f01087d503fbd868100e743dc:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMTViYzNhMTAxZmFhNTkxZTNjNDJmMjdlMGUyZDhhOTcxZDA3NjY2ZjAxMDg3ZDUwM2ZiZDg2ODEwMGU3NDNkYyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMTViYzNhMTAxZmFhNTkxZTNjNDJmMjdlMGUyZDhhOTcxZDA3NjY2ZjAxMDg3ZDUwM2ZiZDg2ODEwMGU3NDNkYyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMzIxYjc5MDE2MGEyMWUxYzhjNzM5YWU5MWZkMTgwODJhMTM4ZDM3MThkMGVmMmU5Y2Y0OTZkN2NiYWM5MjcwMyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNTQ3YmRkNTY0NDhjZWRhMTIzODE0Y2ViYmY2OThiODJiZDczNDRmNzEyZDdlZTg4Y2ZkZWQzYmNmM2VjMmRkYiJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_43e152140eba4379886500cbb21e4ed4",
+      "statement": "The three notebook datasets are Iranian Telecom (UCI 563, supplied Churn, Customer Value), IBM Telco (supplied target, MonthlyCharges), and Online Retail II (engineered RFM churn, Monetary).",
+      "evidence": [
+        {
+          "resource": "repo://README.md#L56-L60",
+          "version": "repo-lines-v1:sha256:4bd5fc18296c18581751c38bf6a57715e6a61e2a98a6a9e6f1a28aaccbb13bda:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMGY2NjhmZWQxYjRkNGJjMzQ3YmJlNDM2NWQwY2IyMmY1NjE1YzUwYzkzMDQxOTEwNWU3MDhmZjQxNzdjMWUwMiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMzY3OGEyNTdjY2EzNjdjNmZhYTU3ZTdiZmNhNTg2N2JlM2I4Njc3OTBjMmM1NGQwMTFjOTNkNTg4NWMxNjkzNiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNzcwZjMyOTY0Yjc0NWRhNTQxYTgzNjI2Y2Y5OGYzNmYxMzUyZTMwZmI1MjhjMjQxM2ZhMTA0MmQ4MTRlOGYxMCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZDZhYWY3ODc2NjVkMDU0MGI5NjI1NDA0OGNiMDIxMGRhYzU3OTk4ZWUwZDk4NWQ4ZjI3Y2FkZWNjNmI0OTZiNiJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_8f17c13ee8dd4a758de1ea64e7be6774",
+      "statement": "The Iranian baseline stratifies a 60/20/20 train/validation/test split and explicitly reserves validation for threshold decisions rather than tuning on the final test set.",
+      "evidence": [
+        {
+          "resource": "repo://notebooks/01_iranian_churn.py#L123-L142",
+          "version": "repo-lines-v1:sha256:f59e6711c59d09885f91c28d830a4b87d40e36508689f706b4f68df325d695d8:eyJzZWxlY3RlZExpbmVDb3VudCI6MjAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImExYTM5NDBhZTIzOTBjMDYwNWFhNjhhMWM4N2EzZjEzYTJlOWEzMjljMWRmMjYxY2U5NThjOTVhNGRlZTZhODciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRjMmQ3YTM4ZDZjNmRmMjBkZGJiOGNlMDhkNGJjMzlhYTFhZTQ4N2U0OGQ4MmZjYTQyOTczODExMjQ3MTljY2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImQxOWJmMmI5ODI3NDZlNWYwODk0YjFlM2IxYzAwZmQxNTA3M2E4MDhlNDIyZWIyODJiYzIzN2Y4NjQ5YmNjMDIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjBiYWIwMDc3MGMxMTdmODI1ZWViZmMyMDI5ZDQ5ZmQzZjU2Y2Q5Mjk1OTc0YTA3MGY4ODc1NmY4MTFhYTY4ZDYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_197f2cfb2b29401a8374811a785ad239",
+      "statement": "The Telco notebook repairs blank TotalCharges and derives tenure/charge ratios and service features before modeling, while retaining MonthlyCharges as the revenue-at-risk measure.",
+      "evidence": [
+        {
+          "resource": "repo://notebooks/02_telco_churn.py#L320-L335",
+          "version": "repo-lines-v1:sha256:dab59d33cda1c06800971a40554bc7f2021210400aceb8da6c6b39d9f0622a10:eyJzZWxlY3RlZExpbmVDb3VudCI6MTYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk2MmJlMDIxNjJlOWVlNDNlOGFhZmM2NTgxZWY5MjgyOTI2YjJkZGFlZGJjOTRkYzhkMmFlZGM1ZTkxZTA5ZjEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjhhODBiMzE1ZTJjMTMwNGU4NWRiYzI2YTJkMjM0NGRhOGQxNWNlZjcxMTEyNmE2NzQ0NTMwYmE4ZDc5MTE5N2UiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImJlYzFiNDg3NGIxYmM3YzgyMGI4ZmJhMDkzZDUzOGMxYzI2MGMxNTIyN2FhMWVlNGU2NWQ0MGM0ZTNkMDc1YWUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImY5ZjFiZDhhY2EwNmMzYTQ3ZWY3MTFkYTQzZDdkNDExYjk1MjY3Nzk4MjU1NjAyODFlMmM3YmQ4NDVmNjRkNTMifQ"
+        },
+        {
+          "resource": "repo://notebooks/02_telco_churn.py#L78-L116",
+          "version": "repo-lines-v1:sha256:ade6dbee1e5dd11c421276ebb962d8d993635be997a791541f1274f459daba83:eyJzZWxlY3RlZExpbmVDb3VudCI6MzksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZDhhMzcwMTVjNGU3NmYwNTNlM2VhZjNkYjAyMDU0OGUyZjUxM2JmYzZiNjNhMzcxYTViYmY2OWIzMDEzNGMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImM0ZmViYWQwODZjN2U0MDliNTM3NTkyN2ZiOGRlZjM4ZWI5NGE2MjQ1OTFiZWM3YTc4OWVmMGY5NmQwZWVhZWUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjhjODUyYzIwMTBjOTg2YjFjODU4NzNlM2RjMWE2MmEwNGE5YmY0MGRjOTk2ODc1NDRjZTMyYzMzMmVjY2JlOTIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjI4MzFkNmM1ZTI0ZjM4ZTQxYzE5ZjM0NGQ4OGJlY2ZhMGJkNjc0MjYyMWFkMTc5MDc2MTE0NGM5NDZjNzlhZjQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_9bb6d7212e14474bb9fde721cc3884b7",
+      "statement": "The baseline Retail notebook engineers churn as no purchase during the 90 days after the 2011-06-01 cutoff and computes RFM features from pre-cutoff transactions.",
+      "evidence": [
+        {
+          "resource": "repo://notebooks/03_online_retail_ii_churn.py#L113-L148",
+          "version": "repo-lines-v1:sha256:427ed36393199af8198879462c87ea3f867a375f05c75ad6776fa5421de7037f:eyJzZWxlY3RlZExpbmVDb3VudCI6MzYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijc0NTM0MmUzZTM2NWQyMzAzYWMzNzE1OWI2MjIyYmMyZDE3MGJkZThiNzk3NGMzNTBkNzE0NTg4MmYxMmM1YTYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImZjOWRiYWNjMTk4NzgzNzg3MDFkYTJkZDYzYjU5OTQwNTkzYjg5M2NmZGQyM2I4YjRjMGI2ZmE5ZGIzNDY2NjAiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImNkMDc1MjA5MWI1NzM2ZjI4ZTM3MWRlYTFkNzA1NTRmMTU0N2EyY2M3M2I1YmU5NzQ2MzQyMmE1NWEzODdlYjEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjcyZTg1YTBkMzcxYjIzNjRkYTE4YzdiOGMxYThmMzk4ZDY3Mzg3N2FlNjk4YjRmZmExYzQ2NjFmODExYTQ1MTEifQ"
+        },
+        {
+          "resource": "repo://notebooks/03_online_retail_ii_churn.py#L15-L24",
+          "version": "repo-lines-v1:sha256:3dad2ba1e296a903a02ba564fc503077503e821b3ddba5b864000144c76598c6:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImZjMzVhNmJiN2Y4MzIyZmE4YmYyZDZlZGQyNTFiMzE5MThlOTBhMWFkZjRiMzQ3M2YzODY2ZDQ1MzUyMzc5NDYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjY5MzgyYTQxOTk5ZGZlZjEyMmRkYmY0OTFhNjdlZWMzM2I3YWU5MmU1NmFmMzU5OGFiZDJhNTc2ZjczNWI2NGYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjkzYmFiMGZhZjZjYzBkYzA2ZjNhNzYyYWQxMjZiZDBmNzZlZjUwZTJmNmFlOWNjN2NlZThiN2I5YTM2MjBjZTMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImViNmZlZWQ2OTFmYmUzNmU1MDYwNjBjZDNhYzEwZjc0N2Y4ZjBlM2Y3ZjcwYmU3ZjYyYzE1ZGMxODc0MDkyMzYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_303714cb6c8c4591abc10501430dc34d",
+      "statement": "V3 is additive to the earlier notebooks and adds value policies, hybrid GBM/TabFM scoring, repeated CV, and segment views; its Retail workflow also compares multiple feature windows and label horizons.",
+      "evidence": [
+        {
+          "resource": "repo://README.md#L307-L334",
+          "version": "repo-lines-v1:sha256:28151f2e6d19e39426ac61fe31518ededf2d0826a318711ad0efdacedc4448fe:eyJzZWxlY3RlZExpbmVDb3VudCI6MjgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImM3ZWE1ZjNjMDQwNjkyODI0MmJlOWExZDM4NDc0ZGVjNzNlZjNmZTRmNmYwYjY0NTI1NDBmNjgzM2U5ZWRhMmQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjdlYzU2OGVhZGRjYzQ4NDAyNmYxZTMyYWYyMmM3NWYzODUzNjJjZjJjNWMxZGQ5NjhjMDU5MmY1NzE5NTgzMzAiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjgzZTBkZWY4NzU1MDBhNGNkZDJmZjE5ZmY4NzE4ZWY3MjBlMWY3YjE0OWExNDRiNmJiMWQ3ZDI0MTZiZmUzODciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImJjYjhiNGVlOTUwYjU3MmE5ZjQ5ZTg4OTMwOTYyMGIyODViZjhmZGY4YTYwMjE5NDA4YzU5ZWE1NTA3N2NkZGEifQ"
+        },
+        {
+          "resource": "repo://notebooks/v3/00_improvement_playbook.py#L14-L27",
+          "version": "repo-lines-v1:sha256:a744d2bd3e98bb2d9df9abc86cb84cd743c78591d5fe8f55930b0e142f243af8:eyJzZWxlY3RlZExpbmVDb3VudCI6MTQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNhMzA3ZGY5YWYxYjg0ZDk4MTBmZGU5MDg3YzIwYmIyYjg0NzVkZTExNTQ0YWM2ODBlMGVhYWRhYmI0YTFiYWUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM4MWUwY2ZhNzljNTUzNTdlMjUzYWYwMzZjMTI0YTA4ZDQ0ODU4M2Q3OTFiN2Q3YjU3MTM1ZThjZWM4YjgxNGUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjkzYmFiMGZhZjZjYzBkYzA2ZjNhNzYyYWQxMjZiZDBmNzZlZjUwZTJmNmFlOWNjN2NlZThiN2I5YTM2MjBjZTMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjgzZDYyOGIwZThiNjAxZWY3YzE3NDNhNTRmNjk3ZTBlZjk0OGRiYmE4ZjdiNzY1ZWU3ZDlkYTliNzU3MmY0ZjUifQ"
+        },
+        {
+          "resource": "repo://notebooks/v3/03_retail_v3_awesome.py#L87-L96",
+          "version": "repo-lines-v1:sha256:8dbd2d5c5f12eb9bb489a7ae4aacdc8fa47113bfe1ff7b3d61896dd5822ca72c:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImYzYWEwYjY1YzdkZDk3NTBiZDdlNWE5NTM3ZGEzYTVmZjBhMmFlZmQxMWNhZjdlOWNkNjU2Y2EwNGRhNzY0OGEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImZkYTAwNmNjNGQwOWM0ZGI3MTIzZTU0MWJkYTUyYjdiM2JlNDA3Zjg2NDAzNDM2Y2M4ZDJkZWE5ODlkOWU3Y2YiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImU2N2Q5NTU1NjFhMmU2MGMxMzJjNWY5OWQ0NjY1ZmRiYWRhZGE4M2NmODQ1YjM3ZjExYzUzMzFjNTA1ZmUxODciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImE5NTFmMWQwZGNmMGM4YjI0M2Y3N2Y2YWIxZDY1NjVlNTZiMWRlOWVmMzllODdmNTUzNTVlMjZlMDM2NTY2YzMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_bf6d38b2397a4881a90cb76b9e59ff02",
+      "statement": "Revenue-at-risk in the baseline notebooks represents value associated with flagged customers and is explicitly distinguished from proven lost cash or campaign ROI.",
+      "evidence": [
+        {
+          "resource": "repo://notebooks/01_iranian_churn.py#L356-L372",
+          "version": "repo-lines-v1:sha256:b67333acc4898e58bfbaa9c31d95d667a9f09620d7b31c3e5111e5793b00823c:eyJzZWxlY3RlZExpbmVDb3VudCI6MTcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjA0OGQyYmRjNmRmNDY2ODMyMGZmZTE3OGZiMWMwMzkxZGU3ZjA0MzgwOGRiYTI1ZWJiYTM5NGY3MDNiYTM5MDciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjFmNmVmMjJhYWI1M2Q0ZjA0ZWNjNjk1YzBhZGU0ZTE5N2U5ZDI3YWY5ZTY4NTVhZjkyMzhlMWY3YzIzZDk4MWEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImMwMDE2ZmZjNzkyN2ZlNTUxMWE2MmJkNDFkNjcwZDQyMDQ1ODkyOTY3YjhhMzcyNDg0ZTllMjQxMzViZDI4NTIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjhmZmQ4N2RiYWQzNWYxZDZkZmE5MjcwNmUzZDVkNWU2NzgyZGI3NDk2Nzk5NzBjZmE4ZWQ2NjYyN2RhZTA5ZDYifQ"
+        },
+        {
+          "resource": "repo://notebooks/02_telco_churn.py#L320-L335",
+          "version": "repo-lines-v1:sha256:dab59d33cda1c06800971a40554bc7f2021210400aceb8da6c6b39d9f0622a10:eyJzZWxlY3RlZExpbmVDb3VudCI6MTYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk2MmJlMDIxNjJlOWVlNDNlOGFhZmM2NTgxZWY5MjgyOTI2YjJkZGFlZGJjOTRkYzhkMmFlZGM1ZTkxZTA5ZjEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjhhODBiMzE1ZTJjMTMwNGU4NWRiYzI2YTJkMjM0NGRhOGQxNWNlZjcxMTEyNmE2NzQ0NTMwYmE4ZDc5MTE5N2UiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImJlYzFiNDg3NGIxYmM3YzgyMGI4ZmJhMDkzZDUzOGMxYzI2MGMxNTIyN2FhMWVlNGU2NWQ0MGM0ZTNkMDc1YWUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImY5ZjFiZDhhY2EwNmMzYTQ3ZWY3MTFkYTQzZDdkNDExYjk1MjY3Nzk4MjU1NjAyODFlMmM3YmQ4NDVmNjRkNTMifQ"
+        },
+        {
+          "resource": "repo://notebooks/03_online_retail_ii_churn.py#L378-L392",
+          "version": "repo-lines-v1:sha256:8c85af09480e86dc42426dc60306bcb85dc38a8f45307aa0f63033709981843e:eyJzZWxlY3RlZExpbmVDb3VudCI6MTUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk2MmJlMDIxNjJlOWVlNDNlOGFhZmM2NTgxZWY5MjgyOTI2YjJkZGFlZGJjOTRkYzhkMmFlZGM1ZTkxZTA5ZjEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImYwOTQ2OTAwMWJkZTMwNzljMTU5YmY1NmM0NDU2MmQ3NjBjMDQzYzljMmQ1YWM3MjdiNzRmNTNiN2I0YjdhZDIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjIwNmQ2ODAyZmQzMWNiZmE4YzE1ODBhOWU5MjhhZjVhZTgyMzBjZTI2ZWQxMGQ5MmExOTY3ZGVmZGIyOGE2OTAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImYzOTM0NzhjM2YwODg2NWU0NGVjMTA3MDQwZjE0ZjZlYzg2NTljNDBjM2VkNTVlN2M2M2NjM2Q2OGIxZmNiMzMifQ"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.5.2",
+    "at": "2026-09-23T14:20:45.468Z"
+  }
+}

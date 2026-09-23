@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:4d0ea7c43aa8ad40f9160ee7ee880e131ad8989661ec3179990d0eb946fadea5",
+  "claims": [
+    {
+      "id": "claim_0248b3d75b994426a234e9e72ba1de61",
+      "statement": "The contributor setup pins Python 3.13.13, syncs all uv groups, and registers the named churn-revenue-project Jupyter kernel before notebook use.",
+      "evidence": [
+        {
+          "resource": "repo://CONTRIBUTING.md#L20-L33",
+          "version": "repo-lines-v1:sha256:d73737a969a4e42d6fbe9605c878d6e16bd23c8c433e3d792227fe714183f41c:eyJzZWxlY3RlZExpbmVDb3VudCI6MTQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjZiZWNkYmVmNmRjYmFhOGJlNWVlYTBhZDFkOTE2ZjY2NzFjMTlkNDJhNzc0OTJjYjBhOTlkNWM3YTA4ZDM2YzUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQyM2VlMWI1YmZiNGVkZDAyMzJlMWQ3YzI4MmE5NDg4YmI3NjNkNDU1ZjAwNGJhYjE3YTVmMGE4ZjNhYTlhNTQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImRhOWMzODk1Y2ZjOTk1ZmM3NzgyNTgyM2IwNDM3NjEyM2Y2MGFlOGRlOGJlODIwNGVmNjEwZDU3NjQ0MzdmZWUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjM0M2M1YmRmMjE5YjkwYzMxMzcyMWYxNmJmYmQ2OWFmNzg4OWU1ZThhYjkyOTMyMDdmYTFjNzYxYzg1OGZjOWYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_1fa22012b81a4756bf0b481b0afbe09e",
+      "statement": "The README presents notebooks/01–03 as the retained learning/production baseline and notebooks/v3 as a separate set adding hybrid, value-policy, multi-window, CV, and segment work.",
+      "evidence": [
+        {
+          "resource": "repo://README.md#L307-L334",
+          "version": "repo-lines-v1:sha256:28151f2e6d19e39426ac61fe31518ededf2d0826a318711ad0efdacedc4448fe:eyJzZWxlY3RlZExpbmVDb3VudCI6MjgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImM3ZWE1ZjNjMDQwNjkyODI0MmJlOWExZDM4NDc0ZGVjNzNlZjNmZTRmNmYwYjY0NTI1NDBmNjgzM2U5ZWRhMmQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjdlYzU2OGVhZGRjYzQ4NDAyNmYxZTMyYWYyMmM3NWYzODUzNjJjZjJjNWMxZGQ5NjhjMDU5MmY1NzE5NTgzMzAiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjgzZTBkZWY4NzU1MDBhNGNkZDJmZjE5ZmY4NzE4ZWY3MjBlMWY3YjE0OWExNDRiNmJiMWQ3ZDI0MTZiZmUzODciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImJjYjhiNGVlOTUwYjU3MmE5ZjQ5ZTg4OTMwOTYyMGIyODViZjhmZGY4YTYwMjE5NDA4YzU5ZWE1NTA3N2NkZGEifQ"
+        },
+        {
+          "resource": "repo://README.md#L43-L60",
+          "version": "repo-lines-v1:sha256:2d6695727c8f7202b68d53962167faf31c8a6af96f6585e88a4ea284c68e8f71:eyJzZWxlY3RlZExpbmVDb3VudCI6MTgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjJmMWFkYzMxYjk1ZTllMGIzMWM2ZGYxZWNkZDg0NTI3ZmY0ZTQ4NzhmZWZhYjE1ZDNjMjllNmFhMThmMTkwNTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM2NzhhMjU3Y2NhMzY3YzZmYWE1N2U3YmZjYTU4NjdiZTNiODY3NzkwYzJjNTRkMDExYzkzZDU4ODVjMTY5MzYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjgwZjE2ZjNmYmY3YjRiMWI1OTgxZGYwYjEzYjU5Y2E3YTM2OWYyOTc4ZGFjNWY2MjJhZDdjZWNmOGY1NzE4YzUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImQ2YWFmNzg3NjY1ZDA1NDBiOTYyNTQwNDhjYjAyMTBkYWM1Nzk5OGVlMGQ5ODVkOGYyN2NhZGVjYzZiNDk2YjYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_38d62aed0c3745759d32d4043506a785",
+      "statement": "The churn_revenue initializer is the reusable shared package surface for model, score, policy, hybrid, target-encoding, CV, segment, and retail feature helpers.",
+      "evidence": [
+        {
+          "resource": "repo://src/churn_revenue/__init__.py#L1-L29",
+          "version": "repo-lines-v1:sha256:643df9aee3620ae6a7f75f59319adba01ba0cb905a32c520bcdac6301dc1f2da:eyJzZWxlY3RlZExpbmVDb3VudCI6MjksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVmMDE1YzNjMTdkNWNkMjMwYThjYjU0ZTJlZTdiMjIzYjdiYzRjNDUzMjc3MGFmOTUzMmM2OTM5ZDM5ZWE1N2YiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjliMzllMDIyZTBkODU0MTIwMDAzZDc5MGMyOGI3NTk2MmVkZDMwMzc1NmQ1MTMzM2RmNzQ1Y2ZiODZlYTExY2UiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjE2YjRhYmIyMGViYWQ1YTE5YWViMDJhYTBkNGU0YzEyM2M2ZWNmOTBhYWFhOGI1ODliOTlkMGEyYTQ4YjgzNTMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_90643f0ffcf4463ba0b9b87ccb018381",
+      "statement": "The contributor guide's named static checks are Ruff over src and main.py plus ty over src, and it describes optional script or executed-notebook reruns after meaningful changes.",
+      "evidence": [
+        {
+          "resource": "repo://CONTRIBUTING.md#L41-L46",
+          "version": "repo-lines-v1:sha256:c8a03f70c0bfb67cde064cd9ea765aa69bf78400829e8e2ac9ea760c233136ed:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiY2YwNmE0OWE5ODYxMjlkYmI5YjYxZGE3NzlkYzIxZWE0NmU4MjQ5YjZlOTdhN2YwYjU2NWJiNzc5NWQ4NmRmMCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiN2VjNTY4ZWFkZGNjNDg0MDI2ZjFlMzJhZjIyYzc1ZjM4NTM2MmNmMmM1YzFkZDk2OGMwNTkyZjU3MTk1ODMzMCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOWQ1YTg5NjcwZDM5OWNmZDNkNjQ2NmY4Y2VmMzEwMDk2MzU3MzZlNGE5MTdjM2UxNzJkZmI1MTZjNGI2ZDMyMyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZDAyOWJiZDVjYzg2NDU1MThkMmU1MjUxNTdmOWM3NDc2OTU0MTJiYmQzNzkzNDBjY2EzMGIxZTkxY2U4MzhmZSJ9"
+        },
+        {
+          "resource": "repo://CONTRIBUTING.md#L59-L71",
+          "version": "repo-lines-v1:sha256:9d732c4b240f7a3156628667843a33d5e08f50ce76e3a69e691f4572c7025bff:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjlmYjI5ZGE4YjllZDQ4NmJlMDJjYzRmZTBhMzYzNTUxZmYyMDg4NmZmMDZkNGEzYmRkMTM5YmEzODI4NWQ2MmQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImRiMWExMWNlYmFkNTU3ZWU0ZDBjY2JjMWE3MDY5NjNmMjMwMTEwMzI3MTkwYWFjM2U3NmVkNDU4ZTU1OTc0ODciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjAxZDgyNWYzNDMxNWM3M2M2ZTMyMTA2NWY1ZjQ2OWRiNTZlMmIzYjdmOGI1Yjk0MzBlODFjNDdmZjRjNWJlZjciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjdiYjBlYjBjZDI1OGE3MGQ2NjNjM2RmZTczZmQ5NDU5MmIwZTliMTRiMDFjOTcxNGQwNjJmNzE3ZDQ4OWNlYTMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_21f7575c23b6404bbe8b9ca8a6ed14aa",
+      "statement": "The benchmark's standard invocation uses --all and defaults its artifacts to artifacts/foundation-benchmarks unless --output selects another path.",
+      "evidence": [
+        {
+          "resource": "repo://docs/foundation-model-benchmark.md#L54-L65",
+          "version": "repo-lines-v1:sha256:77aa5c40b79f49f24b6c774f0ae372bd010b58d2be46a9a56b6d0df5910d7bed:eyJzZWxlY3RlZExpbmVDb3VudCI6MTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImM4Yzg3MTJlZDUxMWE5MjgwMTVmY2Y0OWMwNWIyMjMxZjU5ZDc3ZDZlMTRlMjRlMzE0NmIwY2I0MjI3MDExZTYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijg0NDc4NWI2Y2I5MTcyOWU1M2RmMWM5MWViMWRhZjkzOWJkMWQ1NWE2YzY0YjZjM2NjZWFiZTQ4ZjM3Mzg0YzkiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjI2MDFmNjk1NTU0OWEyODdiODRmY2ZkMjM4MWIyNWI2MDA2NTE1ODc5YjYxNjA2N2UxNDI4MmZjZGY0YzcwMDYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjBjNjk1M2FlMmMyYzVmZDMzMTc4ODg5N2IyNDU5NGI5MDA4OThhYThmYWQ4NjFiZTFkY2FhOGI4YzRhMDVkZTEifQ"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.5.2",
+    "at": "2026-09-23T14:20:45.468Z"
+  }
+}

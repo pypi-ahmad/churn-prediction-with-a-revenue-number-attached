@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:8b9ef62e2490b212f7e939342a2f993db4c35743b757c359eaf8772c749a5edd",
+  "claims": [
+    {
+      "id": "claim_6dfd48139db84f569c21513bf068ea41",
+      "statement": "The project requires Python >=3.13.13 and <3.14, constrains its uv environment to Windows AMD64, and keeps Ruff and ty in the dev dependency group.",
+      "evidence": [
+        {
+          "resource": "repo://pyproject.toml#L1-L6",
+          "version": "repo-lines-v1:sha256:c67c1d1fc1e9edef5cdf2d002135348ada2d6ae23ab6852a2408cf91533224cd:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMjU5N2Q5NzNkNDk4YWMxOGIwZjRhN2FmZDA0N2RiNGQwMmYwNjJhNjM5M2UzOGEzYjkxNmZiZTA4YzcxOGE2OSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMmM3ZWMzYmE5YjBhYWYxOGY1MDRlMDMwZjIwZWYzZWEwYjI0NzkxOTg3OTc2MmRiZTVlNzFkMWYyYzU4ZjM4YyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjAsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiM2RmOTE2ZTI2NDk4MmE2MWM0N2IyMThmMDkzMzZhZmYyMjRhM2RlODRmMjU3ZmJiNWQ3YzJiN2I3MzFiOWQxZiJ9"
+        },
+        {
+          "resource": "repo://pyproject.toml#L41-L58",
+          "version": "repo-lines-v1:sha256:0651988cbd3151efa56547f7f71c7390daa7ca52a13f7c39d1fafcf52116726b:eyJzZWxlY3RlZExpbmVDb3VudCI6MTgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjY1ZjU1N2I4OWJkZmRiNThkYzZlM2VmZTNhOGI5YTg1YmQ0NGZhZmE5ZjI4MjM3OWY5ZTA2ZGQxMjEwMmM5MjQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImZkM2I2YzViOTQ0MjJhN2MwNGYwMDkzMzgxYmY4ZDE3MDdlNmVjY2E2Zjc4NzMyMWE2Nzk0ZWEzZGYxNjQ1MmQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImYxM2ExODVlZmI2ZTE5ZjRhOGFmZGI1YmEyZWUxMjI1MjI2OTcxYjI1N2NkM2RkODkzMjM4NmY0YjY1YjMzZDMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_616290b7d471436497d43cfc0b460893",
+      "statement": "The contributor guide documents Ruff and ty as the project checks and offers optional notebook script or Jupyter execution for meaningful notebook changes.",
+      "evidence": [
+        {
+          "resource": "repo://CONTRIBUTING.md#L41-L46",
+          "version": "repo-lines-v1:sha256:c8a03f70c0bfb67cde064cd9ea765aa69bf78400829e8e2ac9ea760c233136ed:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiY2YwNmE0OWE5ODYxMjlkYmI5YjYxZGE3NzlkYzIxZWE0NmU4MjQ5YjZlOTdhN2YwYjU2NWJiNzc5NWQ4NmRmMCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiN2VjNTY4ZWFkZGNjNDg0MDI2ZjFlMzJhZjIyYzc1ZjM4NTM2MmNmMmM1YzFkZDk2OGMwNTkyZjU3MTk1ODMzMCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOWQ1YTg5NjcwZDM5OWNmZDNkNjQ2NmY4Y2VmMzEwMDk2MzU3MzZlNGE5MTdjM2UxNzJkZmI1MTZjNGI2ZDMyMyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZDAyOWJiZDVjYzg2NDU1MThkMmU1MjUxNTdmOWM3NDc2OTU0MTJiYmQzNzkzNDBjY2EzMGIxZTkxY2U4MzhmZSJ9"
+        },
+        {
+          "resource": "repo://CONTRIBUTING.md#L59-L71",
+          "version": "repo-lines-v1:sha256:9d732c4b240f7a3156628667843a33d5e08f50ce76e3a69e691f4572c7025bff:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjlmYjI5ZGE4YjllZDQ4NmJlMDJjYzRmZTBhMzYzNTUxZmYyMDg4NmZmMDZkNGEzYmRkMTM5YmEzODI4NWQ2MmQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImRiMWExMWNlYmFkNTU3ZWU0ZDBjY2JjMWE3MDY5NjNmMjMwMTEwMzI3MTkwYWFjM2U3NmVkNDU4ZTU1OTc0ODciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjAxZDgyNWYzNDMxNWM3M2M2ZTMyMTA2NWY1ZjQ2OWRiNTZlMmIzYjdmOGI1Yjk0MzBlODFjNDdmZjRjNWJlZjciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjdiYjBlYjBjZDI1OGE3MGQ2NjNjM2RmZTczZmQ5NDU5MmIwZTliMTRiMDFjOTcxNGQwNjJmNzE3ZDQ4OWNlYTMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_cbd27a7f39ea4c82b1dcdca9142fdca8",
+      "statement": "The full foundation-model benchmark requires CUDA and treats metrics.csv as the completion/report-of-record artifact, with run.json written for the completed run.",
+      "evidence": [
+        {
+          "resource": "repo://docs/foundation-model-benchmark.md#L19-L29",
+          "version": "repo-lines-v1:sha256:0314b222f44c2cd1dc58e2be32ff30cfabd02939e64f60cc8784826b9f49450d:eyJzZWxlY3RlZExpbmVDb3VudCI6MTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjY4OTNlNDQ5YjY4YjFlZDc3MjQ5Yjc5YjA2NmQwZjVmZTM2OGMwNDZmYmQwNWM5MThmNGEyMDkxZmQ5MTRiNzAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjY0M2Q1OGE0MTQ1YzVjODkxNDNjZjVlYjVkNWU5OTczZTlhZjQ2YWU3MmIxYWE1MmExNTExYjg1NzEzNmI2Y2YiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjM0MjU5ZWUzYTQ0YmIzZWU2MmVjZmJiMzJlYWM2NDg2M2Q4NGExNWIwMmNiZDkwYzA5NWIxZjRlNWYwNGZkMjgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjVkYzlhNzM1MmM2ZGI1NzcxNmRiZmU0Yzg1NDJlNjQyODAyM2JmMWUzZTQ5ZjIxYjgzNGI2MDZhMzgxMWIyYWUifQ"
+        },
+        {
+          "resource": "repo://docs/foundation-model-benchmark.md#L7-L17",
+          "version": "repo-lines-v1:sha256:478028c6438496d618ff2b7e6ca6b95484b4d738daa8dedba25e6e9c26d65610:eyJzZWxlY3RlZExpbmVDb3VudCI6MTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImU5MTdjY2Q4N2EwN2JmODRhYzYwN2U5ZGQ3ZjdjMWUwY2Q5NzE5MTk3ZTNiZWNmYWFiN2QwNmZkOTFlOWQ4NjMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM4OTYyMjVhNTg0YmJhOTUwOGQ1MDdjYTVmYjMyMmQ3ZjE0NjBkZWE4MTM1ZTQxMTViNWRmOTJjMmQ5YmJiYTciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjRjNjllNTYzYThlMGZmN2I2YjA1NWNmODBlMzY2NmZlMzMwYjQzYzE0MzAyNGRiNmU4OTRlZGIyMDZkNzZmYWQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImQxM2FhN2IwOWMwY2E1NDBlM2Y5YmM5NGU4Mjc4ZGI1YWIwMDg5NzJiZGE2MzYzNDRiNGUxMjIzNGFhNTM2OGUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_27575ea70f384872af34d375ff85f77f",
+      "statement": "The repository's development guide recommends the named churn-revenue-project Jupyter kernel and says CPU notebook use is slower and more memory-sensitive than GPU use.",
+      "evidence": [
+        {
+          "resource": "repo://CONTRIBUTING.md#L24-L33",
+          "version": "repo-lines-v1:sha256:536acf6352f81373158f0c615b513582d9af945d4b4f83f15b619706f378d75b:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImU5YWQ2ODNmN2Y4ZDFiMTJkNjJmMmJkMDhlMzQzNDBlNjMxMDkyZDI3YzgzODRmNGQyZjM3NjA4MDQzMzBlZmMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQyM2VlMWI1YmZiNGVkZDAyMzJlMWQ3YzI4MmE5NDg4YmI3NjNkNDU1ZjAwNGJhYjE3YTVmMGE4ZjNhYTlhNTQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImI3MzcxZDc4OWY3ZGM4MTUzYTJiNDRmZWE5MGM3ZGFhMGI4MWYxNjFjMzVlOGYxZGMyN2Q5YjA5YmRjMjU0MTYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjM0M2M1YmRmMjE5YjkwYzMxMzcyMWYxNmJmYmQ2OWFmNzg4OWU1ZThhYjkyOTMyMDdmYTFjNzYxYzg1OGZjOWYifQ"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.5.2",
+    "at": "2026-09-23T14:20:45.468Z"
+  }
+}

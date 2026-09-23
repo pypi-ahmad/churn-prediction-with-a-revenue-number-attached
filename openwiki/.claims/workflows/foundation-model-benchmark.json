@@ -1,0 +1,76 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:4392b57c035d2b130d0a1680111b20b43f73ce88e187e28eda4abe291aebb04e",
+  "claims": [
+    {
+      "id": "claim_48252de89b92407d84ab9e28f8b05fbe",
+      "statement": "The benchmark requires --all and CUDA; before running it removes the selected output directory's models child, so the runbook directs users to choose a dedicated output path.",
+      "evidence": [
+        {
+          "resource": "repo://docs/foundation-model-benchmark.md#L7-L17",
+          "version": "repo-lines-v1:sha256:478028c6438496d618ff2b7e6ca6b95484b4d738daa8dedba25e6e9c26d65610:eyJzZWxlY3RlZExpbmVDb3VudCI6MTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImU5MTdjY2Q4N2EwN2JmODRhYzYwN2U5ZGQ3ZjdjMWUwY2Q5NzE5MTk3ZTNiZWNmYWFiN2QwNmZkOTFlOWQ4NjMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM4OTYyMjVhNTg0YmJhOTUwOGQ1MDdjYTVmYjMyMmQ3ZjE0NjBkZWE4MTM1ZTQxMTViNWRmOTJjMmQ5YmJiYTciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjRjNjllNTYzYThlMGZmN2I2YjA1NWNmODBlMzY2NmZlMzMwYjQzYzE0MzAyNGRiNmU4OTRlZGIyMDZkNzZmYWQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImQxM2FhN2IwOWMwY2E1NDBlM2Y5YmM5NGU4Mjc4ZGI1YWIwMDg5NzJiZGE2MzYzNDRiNGUxMjIzNGFhNTM2OGUifQ"
+        },
+        {
+          "resource": "repo://scripts/run_foundation_benchmarks.py#L101-L112",
+          "version": "repo-lines-v1:sha256:d229c1e1f2ef8be97f7a49b1c16e864336a7720a4188c0386cad35648fd4d15f:eyJzZWxlY3RlZExpbmVDb3VudCI6MTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjU3NTg1M2VjNmExYzc1ZjdmYjc1M2I5ODQ0NTc4NDgyMmFjZThjMDZiOGU1MjQ2MWJhZDk4MWI0Njk1NzY0MmMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjBlYjY5Y2I0MGE5ODE5NzAwNGI0MGM4MGFjZWUxZWNmZGMzMGRlODk1YjNlNmNiZjY2NWQ5ZTMyYzE4M2I3MTUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjE3ZTY2NDgzMmE2NzQwNGEzMjEzNzBhN2EwNWVhZmNlMTQ0ZGI4OWQ1ZWZiYzEzZTdmNGUwNWYyMGQ2MzQ3ZjAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImM4MDkzNmQ1YWIxNmE4NzgxZDEyZmZhY2EzMmU3NzY4MjM2MDQ3Nzk2NTAxODlhMGQ1NTk5Yzg3MDI4ZDBiZGEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_222994994b814e6f8758804da2b53dea",
+      "statement": "For each Mitra dataset, the benchmark selects an F1 threshold on validation, refits on train plus validation, and evaluates the held-out test set once with that threshold.",
+      "evidence": [
+        {
+          "resource": "repo://docs/foundation-model-benchmark.md#L33-L44",
+          "version": "repo-lines-v1:sha256:74d85dd83cf3405a14dfecdad328c660a883d8a22b8ab0a9135083ce90cf3f70:eyJzZWxlY3RlZExpbmVDb3VudCI6MTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjFmYTUxNWY5NTE1MDkxNDNiYzQzM2ZjNzE4YTJmZDdlMzk2MzQ2NGZmYWEyMGUwYzM4N2I3ZTU4MWZlOWIxNzEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImU0N2UwYTc4OTg2ZDEyNWFlYTRkMjhmNzY5NjYxNzBkNGE5ODZjNGM1NzJjMzU4YzFjNzYyZTA5MzU4NjU1YzQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjVkYzlhNzM1MmM2ZGI1NzcxNmRiZmU0Yzg1NDJlNjQyODAyM2JmMWUzZTQ5ZjIxYjgzNGI2MDZhMzgxMWIyYWUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImIyNmMxZGUyNWNmYWEyOGRiNzE3ZDM3ZmY5M2MxNjFkMmM1ODM5MGViNDRlYmE1ZTcwODZhZWFkMjViZjFiYTkifQ"
+        },
+        {
+          "resource": "repo://scripts/run_foundation_benchmarks.py#L76-L81",
+          "version": "repo-lines-v1:sha256:4b937055005a74c2e1dc19cc30a407a7e236916352f5362e0e4ec01b26f46907:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZTk3ZjM0YTEwYmFlYjJkNDhhMjhhMzg2Y2MzZjE1ZDQxYWRlNjZmZGM4ZDE4ZDYyZjJjODA5MTI1ODVmOTI4ZCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZjgxNmYxOTI4MDQ5OGExNzM2NDk0OGQ4ZDUxMzc3MGRiYmU4ODAyNTMzOTRiNjlmZGViYWJhOGZjNjlkMjI3ZSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOWZiYmRjMmQ4MTcyOGIxOWI4MzQxZWQyNmUwOWI1NTgwMTk2MzYyMTExZjMwMzFkMWNhNzdmYTNhNDE3MjA2ZCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNWExNGE4ZjVjYWVlZjQ5N2MxNWM2YTRjOWQyZDhlNWM3NWEwMWU1MjU5ZmUyMDAzMDFiMDRlYmQ4OGJlNGZmNCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_7c559d92edeb453fb4ece5d679379948",
+      "statement": "Mitra training contexts are capped at a deterministic stratified 500 rows and use AutoGluon's configured memory-use ratio; prediction cleanup releases Python and CUDA caches.",
+      "evidence": [
+        {
+          "resource": "repo://src/churn_revenue/foundation.py#L23-L58",
+          "version": "repo-lines-v1:sha256:7a7f96ccb25b0813f8828b1f2caae8acea0ced9f40a58a1271c8b1f8ab9c0773:eyJzZWxlY3RlZExpbmVDb3VudCI6MzYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAzNWNhMjdkMzhlMzNiMWUwNWEyODNlZWQ2YTY0N2ZmNGQ5YzM3ZjUyYTJhYTM5MDY3NzMzMjI1ZGQ4YjVkYmYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjZlOGQ3NmU2NmJiNzhhZmIzYTE2NTZlN2ZhZjE0NTU2YWM5M2RkYmExOGQ3NzVjNDNmYmI4NzEzOTFlOTJiYjQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImI5MjdhMjZlZDVlOWJiMWI2YTU0NDU5YTkzODEwZTQ3N2VhZTZiNTI5ZWE5ODY0NmMzZmVhNWI0Mzc3YjRiOTIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImI0NzdiY2NmODQ3ODM1NmE4YjMzY2RjMTFiYTM4N2E2NzE1NmI0OTcxMWVjN2QwZDE1NWYxZGVhZTM2NjlmYmYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_550801ef382348ef9c50c7d115414682",
+      "statement": "The TimesFM phase forecasts Retail weekly activity and negates the sum of clipped non-negative forecasts to form a higher-is-riskier score; documentation explicitly distinguishes this ranking from churn probabilities.",
+      "evidence": [
+        {
+          "resource": "repo://docs/foundation-model-benchmark.md#L46-L52",
+          "version": "repo-lines-v1:sha256:ea66e4d295ba9b2169e8f00e524be32d653439fd761e89e5bd845415b39ecb07:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOTA1YzUxNDdiM2E4ODI1ZmUxMjQzZTU3M2NkZmM0YWJjNmFmMzg5YTYxYzljNTIxNDg2Y2M3ZjFkNTFjZTM2MCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMGU2NmE3ZDA3NWZkOGY3OTYxYTM5M2U5NDdiNGQ0NjNlNGZkNzA3MWU2NzQ0YTVhYTVlZTgwM2RiOTVkZmU0OSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMzhmNmNiYWQwMzY4ZGY0MTkyOWIwMzU4YWU1YzdmOWFlNzQ4YmZmZDRjOGQzMmFiZTAyNzdiN2QxY2ZlNDFlNiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYTVmY2JmODM5NjVhZjUzNmYwODZkOWMxOTk0ZDAxYmQ3Y2FhYmQ4ZDNiYWNjZWZhZjMyNTU4OWJlYTkzYjBkYiJ9"
+        },
+        {
+          "resource": "repo://src/churn_revenue/foundation.py#L78-L103",
+          "version": "repo-lines-v1:sha256:82511163e284672d76f8c917d3bf7b13ebbcaa0abb3c2cb67bb7ef10edaa2282:eyJzZWxlY3RlZExpbmVDb3VudCI6MjYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImU0OWZjNTY5MmU2ODNkODViMmJmYjJlMDgzZDAyOGFiNGE3OWI3YWM0OGRjNmUzOGFhMjNiZDE0N2U4NWFjOTciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhNzVlNDgwYzU4ODE1N2VhMjYyZmNjNjA1MTNmMzQ3YWYwNjRmYTA4Nzg0MWJmZmNhNTk5OWJlYjJmOWQ1NjYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImU5MzdmYjA3OGMyODFhN2I5NDNhZTNhNzE2YmNjNjNjYjRlZWQ2ZGNiY2E3NTZkNTc2ODNiMWNlMjA4ODUzNjQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjUxMzNlMDFiYTg4ZTk5YTI1ZDE0M2ZiZWQ4M2VmN2EwZTcwY2YxMDJhMTcyZmYzMjNjY2Y1Y2FmYTc5ZWY1NWQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_3b4dfcbafd8c4eba93bc21554a83febd",
+      "statement": "The runner writes metrics.csv and run.json only after all four benchmark evaluations have completed, and the runbook treats metrics.csv as the report of record.",
+      "evidence": [
+        {
+          "resource": "repo://docs/foundation-model-benchmark.md#L19-L29",
+          "version": "repo-lines-v1:sha256:0314b222f44c2cd1dc58e2be32ff30cfabd02939e64f60cc8784826b9f49450d:eyJzZWxlY3RlZExpbmVDb3VudCI6MTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjY4OTNlNDQ5YjY4YjFlZDc3MjQ5Yjc5YjA2NmQwZjVmZTM2OGMwNDZmYmQwNWM5MThmNGEyMDkxZmQ5MTRiNzAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjY0M2Q1OGE0MTQ1YzVjODkxNDNjZjVlYjVkNWU5OTczZTlhZjQ2YWU3MmIxYWE1MmExNTExYjg1NzEzNmI2Y2YiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjM0MjU5ZWUzYTQ0YmIzZWU2MmVjZmJiMzJlYWM2NDg2M2Q4NGExNWIwMmNiZDkwYzA5NWIxZjRlNWYwNGZkMjgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjVkYzlhNzM1MmM2ZGI1NzcxNmRiZmU0Yzg1NDJlNjQyODAyM2JmMWUzZTQ5ZjIxYjgzNGI2MDZhMzgxMWIyYWUifQ"
+        },
+        {
+          "resource": "repo://scripts/run_foundation_benchmarks.py#L113-L127",
+          "version": "repo-lines-v1:sha256:81ea5251fe3235af38a7b22b93b1d0809fb8b4b824abc686c262ea8d04ed0ca5:eyJzZWxlY3RlZExpbmVDb3VudCI6MTUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxZmZiN2E1ZjRhNDk5MWViMDQzOTkyODFlY2RlNzI4OTQxMDU2NGNlM2JiMGQzN2E3NzBmODNiMGIzZTkxM2YiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImJiZjZjYmE5Y2Q4YjhiMWJhMTFkMTBjNmVmNjVhNjczM2RlYzhjNWFkYTdmZWRlNTE4N2E1YTYxZjI0ZDg2YWUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjhkNGM0ZjdmYmEzZmEyYjhhNjc1YTk2YmJlNGM2ZDNmZDA1ZWI5ZDkyYzE0OWI4ZTE2ZmY2Yjk2OWNjMDE4YjQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImU5ZjdmN2FhMTYzMDU2N2MxYjVlNjY0NGUyMWNiZWM4M2E0MzkzM2RjNWIwZGEwZDkwY2Q1M2JhNDhlOTEwZDIifQ"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.5.2",
+    "at": "2026-09-23T14:20:45.468Z"
+  }
+}

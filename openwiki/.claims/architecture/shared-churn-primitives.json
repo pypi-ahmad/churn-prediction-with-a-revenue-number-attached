@@ -1,0 +1,116 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:3d3e97082bd0462fbe8ea1076e6549ff40256ad11b73608cab180399edb20fbd",
+  "claims": [
+    {
+      "id": "claim_a5f18f09da1d4cbea647fac56fc0494c",
+      "statement": "The churn_revenue package initializer exports shared functions spanning model training, metrics and thresholds, value policies, hybrid probabilities, leakage-aware target encoding, repeated CV, segment analysis, and retail feature and label building.",
+      "evidence": [
+        {
+          "resource": "repo://src/churn_revenue/__init__.py#L1-L29",
+          "version": "repo-lines-v1:sha256:643df9aee3620ae6a7f75f59319adba01ba0cb905a32c520bcdac6301dc1f2da:eyJzZWxlY3RlZExpbmVDb3VudCI6MjksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVmMDE1YzNjMTdkNWNkMjMwYThjYjU0ZTJlZTdiMjIzYjdiYzRjNDUzMjc3MGFmOTUzMmM2OTM5ZDM5ZWE1N2YiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjliMzllMDIyZTBkODU0MTIwMDAzZDc5MGMyOGI3NTk2MmVkZDMwMzc1NmQ1MTMzM2RmNzQ1Y2ZiODZlYTExY2UiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjE2YjRhYmIyMGViYWQ1YTE5YWViMDJhYTBkNGU0YzEyM2M2ZWNmOTBhYWFhOGI1ODliOTlkMGEyYTQ4YjgzNTMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_e572c4a661d84c0881ad4574853c1172",
+      "statement": "Classical candidate construction accounts for class imbalance, and tune_model uses stratified randomized search with average precision as its default scoring objective.",
+      "evidence": [
+        {
+          "resource": "repo://src/churn_revenue/modeling.py#L202-L232",
+          "version": "repo-lines-v1:sha256:74db0d6f106c8a8f06b84028cf89ef4b71e339983b3c23e1d112421bbec727ea:eyJzZWxlY3RlZExpbmVDb3VudCI6MzEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjZmMzU1ZGJlNTg3ODEyZTU5NDdiYjNhMjkwMTExOThkNmIxODJmODkxMzA2N2RlNTQwY2FmMDFlODdmODVhOTUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImE4ZmFjYzZmZDc1MDRlNzI1NmQ2ZTYyY2NkOGI4MGMyOTA5NmJlY2Q2ODBiZWNlOTg5OTkzNmVjODI0NTVmYjYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjkxOGZmMzkwNzBiZGFlOWJlMGU1OWViZTkyYTczMGNjNzI4ODIyZTAxNDU2ZmY0ZTg3ZGJlYjY2MTRjMTRlMjQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjdmZTQxNWY5MzYxYjMxNWY2MzA1NGZhNzk1MDRkMGMxYjJkNDZlYTZjM2YzMzA2M2UxZjE2MDNjZjc1OTZhZjkifQ"
+        },
+        {
+          "resource": "repo://src/churn_revenue/modeling.py#L48-L55",
+          "version": "repo-lines-v1:sha256:989f47278dfdb91558ba267afed86f835a7b69b8e720cb77a33a89e0da44673f:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiM2NkYmIyYTBjNDRkNjIxOWJhZjJmYjdhODk1ZTdiMzdmYjVhMDI3NTIxNDk5MWZkMzg1ZmI4MWU5ZWM2NDVkZSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiOWY4NzNlOGVkMDU3ZGJmYzlkYmRlMDc1YjVlNDcyZTk1YTcyMzNmYmM4MGJjNjg0Mjc5MmEyZDIxYmJmY2ZmYSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiY2IzZWY4ODVlNzc2MDFmY2MzYWNjMjcwOTIzNDllZTU2MmE1MjhlMDEwOThkMWZhYzMxMTAwNjA0N2Q4N2YzNCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMWJkYjFhOGM4OTdhMWEzOTE2NWExZDQwMTE2ODJjZjY4MWM0YWEyY2ExNDU1Y2M2YjA0MmNhMzVkNWMzZTUwOCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_a608a61baa784873b9bf0ebef0947c4d",
+      "statement": "The target encoder creates out-of-fold encodings for training rows and then fits full-training mappings for later transforms; the Telco v3 notebook applies it to train, validation, and test separately.",
+      "evidence": [
+        {
+          "resource": "repo://notebooks/v3/02_telco_v3_awesome.py#L146-L156",
+          "version": "repo-lines-v1:sha256:5563e39daabc78acc21c86cdd2b21c2218cfa2909b2af29585ed378efa484b34:eyJzZWxlY3RlZExpbmVDb3VudCI6MTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImIzY2Q2ZjBiNTIxNWE0OWJjYmY3NjZjYmE0MmE5MTY5MjliOTQ0NGEwZGQ1MWU1ZDQzZTZmM2Y3OGEyYmNmZmQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImJmOWEzMjdkNWM2MWUzY2FkMTIwMmQ2M2MxOGMxOWJjN2JiODZkM2VlNTRlMDVmYWUzYmY3MzFlNWMzYTgxNTgiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImY4M2YxZmE1OWIwNGUxMjRmOTgzZTBlNTZmMDQ4NmRmOGRkNWRiNjQ1ZjQ1OGRmYTU3MmVlMWU0MjRlODg4ZWQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjEwYWFjM2Y5NjQ5YWM2NTgxOTFhNzgxM2QxNDlkMzRkYWIyZWZkNWI0NjJhMDllOTY0Yjg1OTY3NGM3MGU0ZTYifQ"
+        },
+        {
+          "resource": "repo://src/churn_revenue/target_encoding.py#L72-L108",
+          "version": "repo-lines-v1:sha256:7fe2c27ddd44a42d23a2b3b8e2e0a082e5543d1ec8b3773ca0c7c49b397c3ddb:eyJzZWxlY3RlZExpbmVDb3VudCI6MzcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijc3NTgyMzdkMDU3NzE4ZDMzZjA3OWFlNTAxZTlhYzFmMTk1MDk3M2I5YjE1YjAwNzFkMjMzN2VhMjZiMDZiZWYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjFmYjc0MDc0ZjI4OGY3ZjAwZjE2NTg5OTkzNTFjYTM0MzdhOTkwZWRmODIzYmVhOWUzZWVjY2FmZjM3NjI0MmYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImU3ZjA5NDJiYzY5NDI1OWVhNGU5YWRjMGVjMGZmYTI5ZTA0ZjhiYTVmNDU1NzRmNTliZDZlNmMyZWRiYmE1NjUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoxLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjMwNDljNGQ5ZmY4NTI3YjQwOTQzNDQwNjRlOWUzYTBhNmEzZjU3MTJmMDNlYzcyZGFjYzM3OGY0ZWVkODY2NDYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_d1eade53a41c4229bb831b0519f6c971",
+      "statement": "Retail feature construction uses transactions before a cutoff, while hazard labels mark customers with no purchase in the selected post-cutoff horizon; v3 also builds labels for multiple horizons.",
+      "evidence": [
+        {
+          "resource": "repo://src/churn_revenue/multiwindow_rfm.py#L14-L29",
+          "version": "repo-lines-v1:sha256:eae8945025a1485bb77d9c1eaa4b2eb36b15795e06c8dfa4ace950507a53581f:eyJzZWxlY3RlZExpbmVDb3VudCI6MTYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImIwNDhmZTJmZWQ2M2Y1YTY3ZTBmMmQzMTgzOGNlZDQ0ZWYxZDM2YjVlY2YxZmM2ZmE1YTRiNWM2MGU0MGYxYjciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImM1MGU5YWUyZjhlOGU2NWVhOGVkYzA1OTBiMjQ5MWIyN2M1ZjA4NTM1NWMzNTdiNmI4ODg1OWQ4MWJjMDMwMTAiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImJiYjc5MzhmZDI5MjkwN2YzNDI0NDc1ODllZGEyNzY0ZTkxZjIzZTc2NWI4NzhmZGE0OTgxOWVlODM1YmQyZjgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjVhNDU3ZjdiZWIyNmJhODQ5ZjAzOTI5ZDMyMjg5NjUwOTg5NWUzOGVmZWE3ODAwNjgwYjdmZDE1NDI2MzE0YWUifQ"
+        },
+        {
+          "resource": "repo://src/churn_revenue/multiwindow_rfm.py#L96-L137",
+          "version": "repo-lines-v1:sha256:3e242d65c5041098e848911e25736e4dc9cf40fbec5103d15a2d2b51aa0dadac:eyJzZWxlY3RlZExpbmVDb3VudCI6NDIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjA1MmVmNjNkOTk2MTUzZDVlM2I0ZDNjNTNmMmI2OTIwZDVhMGRjYmU5OWE5Y2M5ODAyZjc5ZDM4OWRiY2VhN2EiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjlmNzBhMTA4ZDQ0YzQzMTYxNDQ0NGRiNjA0YzMwMDE0ZGQ3ZTU1NGM5MjYwYWYzMGYzZmVhMWMzY2ZkNjIyMzkiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjU3Nzg0MWZhYjM1MjMwMGMxMDJlMDkxNGJlZmFmMDlkNWRjNzdhOTc5MTY2OWUwZTk1ZWY1NDJlOGFhZTg4OGMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_90c80e09620e42f586b8cdb3cf0b7c9d",
+      "statement": "Hybrid scoring combines GBM and TabFM probabilities plus their product in a logistic meta-model; the current v3 notebook examples fit that meta-model using validation scores and labels.",
+      "evidence": [
+        {
+          "resource": "repo://notebooks/v3/01_iranian_v3_awesome.py#L147-L154",
+          "version": "repo-lines-v1:sha256:7880dc3d76615b19b2b785920265db3f5558a50be9250cf74bbefe1d98a5d5ca:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZGUxZTE0NzM3YjhmN2YxZWMwYTE1M2QxYjM0YTMxMzNkYmM1NGNmYzdiMTY0NmZiMTJiMjNjNWNhNTRmYTM4MCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNjljNWNkMmZjMzFhZTE2OTdhMTkxYjQ0NjNmMTc3YTc3Y2UxZmU0MDY1Y2E4ZjZiZGU0Mzk2ZDU1MTg5MDg1YiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYjY4Y2QxY2E4OWZjODEzMTNiODgyOTM0NGZkZjFkOThjN2Q2YTJhYjRjOGFhMmVlODE2ZTFlY2E3M2NkYzM4ZCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZjM4MTI3NTFlZTJjYjkxZWEwM2QwOTE3MWYzMGQxMzZjNTAwYzZmOGNhMWZlNWUxYzNmMjIzMjAxNjlhYjZlYyJ9"
+        },
+        {
+          "resource": "repo://notebooks/v3/02_telco_v3_awesome.py#L253-L259",
+          "version": "repo-lines-v1:sha256:ad2a04f70cb7532d3f0cd6fdab30bd773ba93d96174eb4190eff81cf2160468a:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNmE3M2MyYTZmODhmYWI0MDQ1NjFjZWY2ZDFjZmQ1YjdlNjgzMGVhNzZiZjlkNWZlNDhhZjAxN2IxNzM1YWQ4NiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMjRiYzUyNTA2ZDJmOWM2ODZjZmEzNTYzNjRmYjc2NjNlZDllZjM1MTNkYWQxYjZiNWE4NTZjMDIyNzI4NzFiNSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTg4ZTk1NjVhMDA2NzhhYzVmYjFhNzYzOWUzNWRkMzc5NTQ5YjViYjMwN2I1MTkyYzJlOGI3NDZlOWM0NzUwMyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMzM2ODkyOWIwN2E2MTdmMjhlNTI4M2NiODgzNTBlOThiZjBiMTY0ZjY2OGNiYTFlYzgyZjg3ZWFhMzQxYjRkOSJ9"
+        },
+        {
+          "resource": "repo://src/churn_revenue/hybrid.py#L44-L81",
+          "version": "repo-lines-v1:sha256:d7102c1341d1dfb5f9c17fcf2b431cbdc1a02032d3abf06deae6f2e9922a1bb6:eyJzZWxlY3RlZExpbmVDb3VudCI6MzgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImU4YzFjZmVhODAzYmQzM2EzMjVjNjI5ODBkOTA2ZjE0M2E5MzhjZGRhYjM1ZGNhZDE3MDFiMDlhMTEwNWJhYmYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjY4NmIyNmQzYWFmODIwNDdlNjE5ODUxM2MzYjY4YTEwMjU1NGRjZDliNWY2YmZhYjRmNTkwMGU5Y2Y4YzM1ZGIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjFhNjczNzZlNmRlYjU5ZDBiYTk0ZTBmMmI4OTg0MGJkNDcwOGQxYjQ3YTU0NDIyNWNhM2VmN2RkNzBmNGY1NmYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_0d0b19df4b2e446b94f64ec636722dbd",
+      "statement": "Expected contact value uses a constant assumed save probability, and the top-K fraction is selected from validation results by net expected value before being applied to holdout data.",
+      "evidence": [
+        {
+          "resource": "repo://notebooks/v3/03_retail_v3_awesome.py#L207-L220",
+          "version": "repo-lines-v1:sha256:6e007c94e5642f29b3fd4dfa80e051fb23f2f7b0ec27776f76f32400f97c3f77:eyJzZWxlY3RlZExpbmVDb3VudCI6MTQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY3MTNhZGYwY2YwODYzZWE3OTlmMzYxNTQzMDg3Yzg2MTIyZGIzMGVkYThhMmZkYzc5YWI1Zjk5ODhhYTIwOWMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjU2YzMwNDNiZWJjZjEyMTMzZjI5NmU3ODRkNDNlYjg2ZGY2N2I1NjYzNjZjYTAwZmVjMDA1ZGMyOTMyOGI1YTUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijg5ODNkYjFmN2Y3ZmZlNDhmODYzMzVkNTkwZDczMmMyNmYxOGYzZjFlOWZmYzU2ZWViZDFjZGY0MjA2NDc3NWMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImE0MWUwOGIyZDI1ZmE3OGMzODdmZjhmZjYwNDc1ZWQ5OWZlNDNhNmZmOWQ5MTg2ZjBkYzEzZGFiMTE2YWE0ZTEifQ"
+        },
+        {
+          "resource": "repo://src/churn_revenue/value_policy.py#L121-L138",
+          "version": "repo-lines-v1:sha256:73396ce40334d844d06d5f6fe32d69a28d008f07502e563180ed1fa05976b261:eyJzZWxlY3RlZExpbmVDb3VudCI6MTgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImZhNDRmZDcxZTBjYjFhYTVkMmY5NjYwYTFhYzU4MzIwMmIzN2MzNjM2ODRjYWIwZmMxM2QwMGNjNjgyYWZhOGYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImZiYjEwYTVhMTUxMjg0NmU3MDU3MzNhYjk5M2M3MDVjNjIwMWRjNmI3Nzg0ODQwZTA5NjVlZGRmZjFhMjM0YjIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjY3YzM3NWI4Y2QwNTQ0MGNlZjYwMWRiMjM2MzA3YTI2ZTNlZWMwMjhjNmQ1NTQ0ZjE1MDlhNmUwZmJmNjQ3YzIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://src/churn_revenue/value_policy.py#L16-L33",
+          "version": "repo-lines-v1:sha256:67215b6dcd4a7f71b2cb06b2a8f7d1faa5107746bac38bb24db3cec0d40fb43e:eyJzZWxlY3RlZExpbmVDb3VudCI6MTgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM1N2Q4OWRmYjMyOGRjZWY1YzIxMzAxZjYxZTAxMTBlOTY4NDg0NzdlNzM0N2JmOTNiMDBhMjQwYjc5MjVhNzUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjIyN2U2ZDgzY2UwOGI1MmUyZDY5YTc2Y2VhM2JkNDMwYTQxMTExMTQ5MWVjMTJkNDMwNDJhOGQxMDk4NjJlNzciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImJiYjc5MzhmZDI5MjkwN2YzNDI0NDc1ODllZGEyNzY0ZTkxZjIzZTc2NWI4NzhmZGE0OTgxOWVlODM1YmQyZjgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImQ0NDY3YjU3MjgxNjU5NjMxNGE2ZjExYWVmNmZiZjY5NzFkNTI4NWYxNTAzOWQ2M2NmZTYyNzg5YjY1MzgzOGQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_163a4212bd0f4414881cd13ae6ec9df3",
+      "statement": "The shared evaluation layer reports ranking and thresholded classification metrics, optionally adds Brier and log loss when both classes are present, and supplies repeated-CV and segment summaries.",
+      "evidence": [
+        {
+          "resource": "repo://src/churn_revenue/metrics.py#L26-L60",
+          "version": "repo-lines-v1:sha256:a6e8e6962d6aee93cb4beaa0ace1c04ec27de88c351314c86d0cb39119c50373:eyJzZWxlY3RlZExpbmVDb3VudCI6MzUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjcyMzkwYzRhMjU1YjVmNzkyZjlmMTZhNjgzNWExNzEzNjJhOTFjYjdkZjhjYzA2ZDgyM2ZlNDg4MTk1NDU4ZjMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjIwMDI4MTdjNWEzMGY3YzQ1YWZiYmIyNjNiYWYwMDliNjE0ZWZmYjUwN2Q2MTY3ZWExNzc3MmEyMDBmZWQzYzYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjhlNmNkMjRmMmVjMWVmNGJkMzhiYzBkZjAxYjhkNThjMjE2ZGI2MDYzOTlhZTNkMGJhNDQ4NDkzNGQ0MTE2YzIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjViMjQ3MDczZmI5MTZhODkzYjQ4M2FkYjJiZWQwNDU4ZWNjNGNkMTIzNzQyZjdmYWI1MzkyYjkwMzdkMDI4NGMifQ"
+        },
+        {
+          "resource": "repo://src/churn_revenue/nested_cv.py#L20-L54",
+          "version": "repo-lines-v1:sha256:ef4ab046cf820fa3fb96654af7f4f9013e60046f086fa865f9c64afcc79995cc:eyJzZWxlY3RlZExpbmVDb3VudCI6MzUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjhjMGRlYjczNzFjNTRhNGY3Y2NmZTEyOWM0NTU3MGUzODQ2MzBmODAxODY1MjhjZjBjNjBkZmZmOTc1OTVkOWQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjdhODIxNTYzYzk3N2QzMGI0NzI0Mjc5NzZkYjNmNzMwNmZlNDY5ZWE4YjIyYWEwMDQ0OTY1ZjRhZWQ4ZjNhZmUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjY0NzAwYWM2ZGM1MmZhMzcyNTQ4ODljOTFlYzUwMDc1MjA5ZjZkODA2YTY2OGRiNmVjZGU4MzRjYTRlZjc3Y2QiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjY3NGYyNjI5MzQ2M2YwYmZjNzkzMDEzOGViNzYzZTZhZTAzY2ZmMjFkMmE5ZGQwNGRmNGEzMGEyZTI1OGYyYzEifQ"
+        },
+        {
+          "resource": "repo://src/churn_revenue/segment_report.py#L10-L43",
+          "version": "repo-lines-v1:sha256:9556d5f0b8eaf500ec60286c0cd81e20f564573140ffa08467e08e3a5e5afd8d:eyJzZWxlY3RlZExpbmVDb3VudCI6MzQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjgzOTQ2ZDhiNzAyZTI2N2I0Yzg4MGY0YTYxNjEwNWIxMTU2YzZiOTJjOGU3NGVmZmUxNThlMWVmMmJhYzUwODAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImE2ZTNlMDVjMGZkYThjZjYwMzJjMzVhYmQxZWRiZmU2YjM4MGQyYzliODc4MzlhOTE5ZTZkNjNkN2YxNDdkY2YiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjdmZmJjYTVkZTk1NGEwZGFlZWYyMjFhMjg3ZmE3YjRkMTA0ZWEwYjMwMjc1NzM1NGI4ZDNlMDI0OTJhMjZlYWEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.5.2",
+    "at": "2026-09-23T14:20:45.468Z"
+  }
+}
